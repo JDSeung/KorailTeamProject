@@ -1,0 +1,83 @@
+@CHARSET "UTF-8";
+
+html body {
+   height: 100%;
+   
+}
+
+.mailWrap {
+   height: 70vh;
+   background: #adadad;
+}
+
+.header {
+   height: 15vh;
+}
+
+
+.container {
+   margin: auto;
+   width: 80%;
+   height: 100%;
+   background: white;
+}
+
+.location>h2 {
+   font-weight: bold;
+   font-size: 2.3em;
+   padding-top: 2%;
+   padding-left: 2%;
+}
+
+.content {
+   margin-top: 2%;
+   
+}
+
+.content>h3 {
+   color: red;
+   font-size: 1.2em;
+   padding-left: 2%;
+}
+
+.content>div>ul {
+   margin-top: 1.2%;
+   padding-left: 2%;
+}
+
+form {
+   margin: auto;
+   margin-top: 6.5%;
+   text-align: center;
+   border: 1px solid;
+   padding-top: 5%;
+   width: 65%;
+   -webkit-border-radius: 10px;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
+}
+
+form>div>ul>li {
+   line-height: 500%;
+}
+
+form>div>ul>li>a {
+   background: #3333cc;
+   border-radius: 5px;
+   padding-left: 6%;
+   padding-right: 6%;
+   padding-top: 1.4%;
+   padding-bottom: 1.4%;
+   font-size: 2em;
+}
+/*색상 변경 안됨.*/
+.validation:link{
+   color: white;
+}
+.validation:visited {
+   color: white;
+}
+
+.footer {
+   height: 15vh;
+}

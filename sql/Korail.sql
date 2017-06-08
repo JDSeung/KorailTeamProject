@@ -106,6 +106,7 @@
         JEOLLA          VARCHAR2(1)
     ) nologging;
     
+    select * from CITYACCOTTRAIN_TB where NODENAME like '산';
     
   
     /*KTX 정보*/
@@ -117,6 +118,7 @@
         ARRPlANDTIME VARCHAR2(14)   NOT NULL,
         TAKETIME VARCHAR2(7)    NOT NULL
     ) nologging;
+    select * from KTXINFO_TB;
     /*KTX 요금 정보 테이블 시퀀스*/
     CREATE SEQUENCE KTXINFO_TB_SEQ
     MINVALUE 1 
@@ -178,7 +180,9 @@
     START WITH 1 
     NOCYCLE;
     
-   
+   SELECT * 
+    FROM KTXINFO_TB
+    WHERE DEPPLACENAME = '서울' AND ARRPLACENAME = '영등포';
     
     INSERT INTO USER_TB
                 ( USERNO, 
