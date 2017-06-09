@@ -1,5 +1,14 @@
+<<<<<<< HEAD
 .container {
    height: 70vh;
+=======
+
+#wrap{
+	height: 70vh;
+}
+.container {
+	height: 70vh;
+>>>>>>> 97e9861b63e70e8dc741ef86d08e504fe0d923df
 }
 
 .topSection section article {
