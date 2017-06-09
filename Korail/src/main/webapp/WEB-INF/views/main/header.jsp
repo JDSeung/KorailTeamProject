@@ -19,7 +19,7 @@
             <header>
                <div id="sidegnb" class="sidegnb">
                      <ul>
-                        <li><a href="#">HOME</a></li>
+                        <li><a href="/korail/">HOME</a></li>
                         <li><a href="#">로그인</a></li>
                         <li><a href="#">마이페이지</a></li>
                         <li><a href="#"onclick="return join_link()">회원가입</a></li>

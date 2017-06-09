@@ -10,12 +10,12 @@
 <meta charset="UTF-8">
 <script type="text/javascript" src="<%=root%>/resources/jquery-3.2.1.min.js" /></script>
 <script type="text/javascript" src="<%=root%>/resources/jquery/jquery-ui.js" /></script>
-<script type="text/javascript" src="<%=root%>/resources/front/js/res/resInfo.js" /></script>
+<script type="text/javascript" src="<%=root%>/resources/front/js/res/searchTrain.js" /></script>
 <link rel="stylesheet" href="<%=root%>/resources/jquery/jquery-ui.css">
 <link rel="stylesheet" href="<%=root%>/resources/jquery/jquery-ui.structure.css">
 <link rel="stylesheet" href="<%=root%>/resources/jquery/jquery-ui.theme.css">
 <link rel="stylesheet" href="<%=root%>/resources/front/css/basic.css">
-<link rel="stylesheet" href="<%=root%>/resources/front/css/res/resInfo.css">
+<link rel="stylesheet" href="<%=root%>/resources/front/css/res/searchTrain.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -37,34 +37,40 @@
 							<tbody>
 								<tr>
 									<td><select name="cmbAdult" id="cmbAdult" class="cmb">
-											<option value="1">성인 1명</option>
 									</select></td>
 									<td><label for="depPlaceName" class="labtxt">출발역</label> <input
 										type="text" id="depPlaceName" class="txtroot" /></td>
 								</tr>
 								<tr>
 									<td><select name="cmbChilde" id="cmbChilde" class="cmb">
-											<option value="0">만 4세 ~ 12세</option>
 									</select></td>
 									<td><label for="depPlandTime" class="labtxt">도착역</label> <input
 										type="text" id="depPlandTime" class="txtroot" /></td>
 								</tr>
 								<tr>
 									<td><select name="cmbSenior" id="cmbSenior" class="cmb">
-											<option value="0">만 65세 이상</option>
 									</select></td>
-									<td class="noncss"><label for="cmbYear" class="labtxt">출발일</label>
-										<select name="cmbYear" id="cmbYear" class="cmbdate">
-									</select> <label for="cmbYear">년</label> <select name="cmbMonth"
-										id="cmbMonth" class="cmbdate">
-									</select> <label for="cmbMonth">월</label> <select name="cmbDay"
-										id="cmbDay" class="cmbdate">
-									</select> <label for="cmbDay">일</label> <input type="text"
-										id="datepicker" /></td>
+									<td class="noncss">
+										<label for="cmbYear" class="labtxt">출발일</label>
+										<select name="cmbYear" id="cmbYear" class="cmbdate" onChange="javascript:fn_DayOfMonth()">
+										</select> 
+										<label for="cmbYear" >년</label>
+										<select name="cmbMonth" id="cmbMonth" class="cmbdate" onChange="javascript:fn_DayOfMonth()">
+										</select>
+										<label for="cmbMonth">월</label>
+										<select name="cmbDay" id="cmbDay" class="cmbdate"></select>
+										<label for="cmbDay">일</label>
+										<select name="cmbTime" id="cmbTime" class="cmbdate"></select>
+										<label for="cmbTime">시</label> 
+										<input type="text" id="datepicker"/></td>
+								</tr>
+								<tr>
+									<td colspan="2" class="tblbtnarea">
+										<button  class="ui-button ui-corner-all ui-widget" > 조 회 </button>
+									</td>
 								</tr>
 							</tbody>
 						</table>
-						<button  class="ui-button ui-corner-all ui-widget"> 조 회 </button>
 					</form>
 				</section>
 			</section>

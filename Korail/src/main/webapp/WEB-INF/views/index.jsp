@@ -14,7 +14,7 @@
 </head>
 <body>
 <jsp:include page="main/header.jsp"/>
-	<div id="mainHomeWrap" class="mainHomeWrap">
+	<div id="wrap" class="wrap">
 		<div class="container">
 			<div class="topSection">
 				<section>

@@ -7,10 +7,18 @@
 	color: #333;
 
 }
+body{
+	background-color: #efefef;
+}
+#wrap{
+  margin: 0 auto;
+  
+}
 .container {
-   margin: 0 auto;
-   width: 90%;
-   height: 100%;
+	margin: 0 auto;
+	width: 90%;
+	background: tomato;
+	height: 100%;
 }
 button.ui-button {
 	background-color: #256cc6;
