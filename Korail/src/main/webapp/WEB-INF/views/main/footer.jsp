@@ -1,30 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<% 
-  String root = request.getContextPath();
+<%
+   String root = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="<%=root%>/resources/css/main/index.css">
-<link rel="stylesheet" href="<%=root%>/resources/css/main/footer.css">
+<link rel="stylesheet" href="<%=root%>/resources/front/css/main/index.css">
+<link rel="stylesheet" href="<%=root%>/resources/front/css/main/footer.css">
 <title>Insert title here</title>
 </head>
 <body>
-   <div id="footerWrap">
-      <div class="footerWrap">
+   <div id="footerWrap" class="footerWrap">
          <footer>
             <div class="container">
                <ul>
-                  <li>
+                  <li class="liLogo">
                      <div class="logo"></div>
                   </li>
-                  <li>
+                  <li class="liBox">
                      <ul>
                         <li>
-                           <ul>
+                           <ul class="ulBox">
                               <li>
                                  <div class="logo">
                                     <a href="#">logo image</a>
@@ -44,7 +43,6 @@
                </ul>
             </div>
          </footer>
-      </div>
    </div>
 </body>
 </html>

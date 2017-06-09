@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.korail.batch.vo.KTXInfoVO" alias="ktxInfoVO"/>
-		<typeAlias type="com.korail.batch.vo.KTXRateInfoVO" alias="ktxRateInfoVO"/>
+		<typeAlias type="com.korail.client.reservation.vo.KTXInfoVO" alias="ktxInfoVO"/>
+		<typeAlias type="com.korail.client.reservation.vo.KTXRateInfoVO" alias="ktxRateInfoVO"/>
 	</typeAliases>
 </configuration>

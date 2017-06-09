@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+footer{
+	height: 15vh;
+}
+
+.ulBox{
+  display: block;
+}
+
+.ulBox > li {
+  display: inline-block;
+}
+
+.container a{
+  color: #333;
+}

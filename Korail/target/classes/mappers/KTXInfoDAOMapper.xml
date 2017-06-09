@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="#package.#mapperinterfacename">
+<mapper namespace="com.korail.client.reservation.dao.KTXInfoDAO">
 	<select id="searchTrain" resultType="ktxInfoVO">
 		SELECT * 
 		FROM KTXINFO_TB
 		WHERE DEPPLACENAME = {ktxInfoVO.depPlaceName} AND ARRPLACENAME = {ktxInfoVO.arrPlaceName}
-				AND DEPPLANDTIME = {ktxInfoVO.depPlandTime} AND ARRPLANDTIME = {ktxInfoVO.arrPlandTime} 		
+				AND DEPPLANDTIME = {ktxInfoVO.depPlandTime} 		
 	</select>
 	<select id="searchRate" resultType="ktxRateInfoVO">
 		SELECT * FROM KTXRATEINFO_TB		

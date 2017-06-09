@@ -20,17 +20,7 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-	
-		
-		
 		return "index";
 	}
-	@RequestMapping(value = "/mail", method = RequestMethod.GET)
-	public String mail(Model model) {
-	
-		
-		
-		return "/signup/mail";
-	}
-	
+
 }

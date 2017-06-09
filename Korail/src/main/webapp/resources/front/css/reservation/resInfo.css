@@ -1,0 +1,59 @@
+@CHARSET "UTF-8";
+#wrap{
+	background: PaleTurquoise;
+}
+.container{
+  width: 80%;
+  margin: 0 auto;
+  background: tomato;
+}
+
+li.prograss{
+  float: left;
+  
+}
+section.searchData:before{
+  content:'';
+  display:block;
+  height:0;
+  clear: both;
+}
+form{
+  width: 100%;
+}
+table{
+ border-collapse: collapse;
+  width: 70%;
+}
+table, th, td{
+  padding: 5px;
+  border: 1px solid #000;
+}
+th{
+  text-align: left;
+}
+img.ui-datepicker-trigger{
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+select.cmb, input.txtroot{
+  width: 210px;
+  height: 30px;
+}
+label.labtxt{
+  letter-spacing: 15px;
+  font-size: 18px;
+}
+select.cmbdate{
+  width: 90px;
+  height: 30px;
+}
+input#datepicker{
+  display: none;
+}
+.ui-datepicker{
+	margin-top: 20px;
+}

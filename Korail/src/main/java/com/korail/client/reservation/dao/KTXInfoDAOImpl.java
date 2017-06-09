@@ -17,7 +17,7 @@ public class KTXInfoDAOImpl implements KTXInfoDAO {
 	
 	@Override
 	public List<KTXInfoVO> searchTrain(KTXInfoVO ktxInfoVO) {
-		return session.selectList("searchTrain", ktxInfoVO);
+		return session.selectList("searchTrain");
 	}
 
 }

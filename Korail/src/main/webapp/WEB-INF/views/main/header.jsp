@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<% 
-  String root = request.getContextPath();
+<%
+   String root = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="<%=root%>/resources/css/main/index.css">
-<link rel="stylesheet" href="<%=root%>/resources/css/main/header.css">
-<script type="text/javascript" src="<%=root%>/resources/js/header.js"></script>
+<link rel="stylesheet" href="<%=root%>/resources/front/css/main/index.css">
+<link rel="stylesheet" href="<%=root%>/resources/front/css/main/header.css">
+<script type="text/javascript" src="<%=root%>/resources/front/js/main/header.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -24,7 +24,7 @@
                         <li><a href="#">HOME</a></li>
                         <li><a href="#">로그인</a></li>
                         <li><a href="#">마이페이지</a></li>
-                        <li><a href="#"onclick="return join_link()">회원가입</a></li>
+                        <li><a href="/korail/signup/">회원가입</a></li>
                         <li><a href="#">고객센터</a></li>
                         <li><a href="#">사이트맵</a></li>
                      </ul>
@@ -36,7 +36,7 @@
                         <li>
                            <div class="logo">logo image</div>
                         </li>
-                        <li><a href="#">승차권</a></li>
+                        <li><a href="/korail/reservation/">승차권</a></li>
                         <li>
                            <a href="#">고객센터</a>
                            <ul>

@@ -119,6 +119,8 @@
         TAKETIME VARCHAR2(7)    NOT NULL
     ) nologging;
     select * from KTXINFO_TB;
+    SELECT TO_DATE(SYSDATE, 'YYYY-MM-DD') FROM DUAL;
+    SELECT * FROM KTXINFO_TB WHERE TO_DATE(DEPPLANDTIME, 'YYYYMMDDHH24MISS') <= (SYSDATE-1);
     /*KTX 요금 정보 테이블 시퀀스*/
     CREATE SEQUENCE KTXINFO_TB_SEQ
     MINVALUE 1 
@@ -179,7 +181,21 @@
     INCREMENT BY 1 
     START WITH 1 
     NOCYCLE;
-    
+    /*좌석 정보*/
+    CREATE TABLE SEATINFO_TB(
+        SEATDIV VARCHAR2(10) NOT NULL PRIMARY KEY,
+        SEATROW NUMBER NOT NULL,
+        SEATCOLUMN NUMBER NOT NULL
+    );
+    SELECT * FROM SEATINFO_TB;
+    INSERT INTO SEATINFO_TB(SEATDIV,
+                            SEATROW,
+                            SEATCOLUMN)
+                    VALUES ('일반실', 4,15);
+    INSERT INTO SEATINFO_TB(SEATDIV,
+                            SEATROW,
+                            SEATCOLUMN)
+                    VALUES ('특실', 3,11);
    SELECT * 
     FROM KTXINFO_TB
     WHERE DEPPLACENAME = '서울' AND ARRPLACENAME = '영등포';

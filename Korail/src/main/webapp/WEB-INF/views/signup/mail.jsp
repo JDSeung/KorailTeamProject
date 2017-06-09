@@ -9,8 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>본인 인증 || 회원가입 Korail</title>
-<link rel="stylesheet" href="<%=root%>/resources/css/main/index.css" />
-<link rel="stylesheet" href="<%=root%>/resources/css/mail/mail.css" />
+<link rel="stylesheet" href="<%=root%>/resources/front/css/main/index.css" />
+<link rel="stylesheet" href="<%=root%>/resources/front/css/signup/mail.css" />
 </head>
 <body>
    <div class="header">
