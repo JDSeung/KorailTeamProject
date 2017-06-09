@@ -12,12 +12,12 @@
    width: 90%;
    height: 100%;
 }
-button.btnbg{
+button.ui-button {
 	background-color: #256cc6;
-	border: 0;
-	padding: 10px;
-	margin-left: 10px;
-	text-align: center;
 	color: white;
-	font-size: 1em;
+	border: 1px solid #256cc6;
+}
+
+.ui-datepicker{
+	margin-top: 25px;
 }

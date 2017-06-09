@@ -32,7 +32,7 @@
                         <li>
                            <div class="logo">logo image</div>
                         </li>
-                        <li><a href="#">승차권</a></li>
+                        <li><a href="/korail/reservation/">승차권</a></li>
                         <li>
                            <a href="#">고객센터</a>
                            <ul>
