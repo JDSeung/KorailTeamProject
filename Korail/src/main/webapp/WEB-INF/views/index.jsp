@@ -14,7 +14,7 @@
 </head>
 <body>
 <jsp:include page="main/header.jsp"/>
-	<div id="mainHomeWrap" class="mainHomeWrap">
+	<div id="wrap" class="wrap">
 		<div class="container">
 			<div class="topSection">
 				<section>
@@ -26,22 +26,22 @@
 							<tr>
 								<td>출발역</td>
 								<td><input type="text" /></td>
-								<td>조회</td>
+								<td><button class="ui-button ui-corner-all ui-widget">조회</button></td>
 							</tr>
 							<tr>
 								<td>도착역</td>
 								<td><input type="text" /></td>
-								<td>조회</td>
+								<td><button class="ui-button ui-corner-all ui-widget">조회</button></td>
 							</tr>
 							<tr>
 								<td>출발일</td>
 								<td><input type="text" /></td>
-								<td>조회</td>
+								<td><button class="ui-button ui-corner-all ui-widget">조회</button></td>
 							</tr>
 							<tr>
 								<td>시간</td>
 								<td><input type="text" /></td>
-								<td>조회</td>
+								<td><button class="ui-button ui-corner-all ui-widget">조회</button></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -56,7 +56,7 @@
 								<td><input type="text" /></td>
 							</tr>
 							<tr>
-								<td colspan="4"><button>승차권 조회</button></td>
+								<td colspan="4"><button class="ui-button ui-corner-all ui-widget">승차권 조회</button></td>
 							</tr>
 						</table>
 					</article>
