@@ -95,19 +95,18 @@
     INCREMENT BY 1 
     START WITH 1 
     NOCYCLE;
-    
+    SELECT * FROM CITYACCOTTRAIN_TB;
+    DROP TABLE CITYACCOTTRAIN_TB;
     /*CITYACCOTTRAIN_TB 테이블*/
     CREATE TABLE CITYACCOTTRAIN_TB(
         NODEID		    VARCHAR2(60)     NOT NULL PRIMARY KEY,			        --기차역ID
         NODENAME	    VARCHAR2(200)    NOT NULL,                              --기차역명
-        GYEONBU      VARCHAR2(1),
+        GYEONGBU      VARCHAR2(1),
         GYEONGJEON       VARCHAR2(1),
         HONAM           VARCHAR2(1),
         JEOLLA          VARCHAR2(1)
     ) nologging;
-    
     select * from CITYACCOTTRAIN_TB where NODENAME like '산';
-    
   
     /*KTX 정보*/
     CREATE TABLE KTXINFO_TB(
@@ -118,7 +117,7 @@
         ARRPlANDTIME VARCHAR2(14)   NOT NULL,
         TAKETIME VARCHAR2(7)    NOT NULL
     ) nologging;
-    select * from KTXINFO_TB;
+    select count(*) from KTXINFO_TB;
     SELECT TO_DATE(SYSDATE, 'YYYY-MM-DD') FROM DUAL;
     SELECT * FROM KTXINFO_TB WHERE TO_DATE(DEPPLANDTIME, 'YYYYMMDDHH24MISS') <= (SYSDATE-1);
     /*KTX 요금 정보 테이블 시퀀스*/

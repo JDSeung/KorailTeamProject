@@ -1,5 +1,5 @@
 package com.korail.admin.reservation.dao;
 
-public class KtxInfoDAO {
+public interface KTXInfoDAO {
 
 }

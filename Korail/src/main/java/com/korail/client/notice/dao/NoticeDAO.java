@@ -1,5 +1,5 @@
 package com.korail.client.notice.dao;
 
-public class NoticeDAO {
+public interface NoticeDAO {
 	/*도윤*/
 }

@@ -7,7 +7,5 @@
 <title>Insert title here</title>
 </head>
 <body>
-편성정보
-승열
 </body>
 </html>

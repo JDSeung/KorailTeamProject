@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+        <property name="username" value="Korail"/>
+        <property name="password" value="korail123"/>
+    </bean>
+    <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+        <constructor-arg ref="dataSourceSpied" />
+        <property name="logFormatter">
+            <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+                <property name="loggingType" value="MULTI_LINE" />
+                <property name="sqlPrefix" value="SQL         :  "/>
+            </bean>
+        </property>
+    </bean>
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<property name="dataSource" ref="dataSource"/>
+    	<property name="configLocation" value="classpath:config/mybatis-config.xml"></property>
+    	<property name="mapperLocations" value="classpath:mappers/**/*.xml"/>
+    </bean>
+    <bean id="sqlSeesion" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+    	<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+    
+   	<!-- a platformTransactionManager is still required -->
+	<bean 	id="transactionManager"
+			class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+			<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<context:annotation-config />
+    <context:component-scan base-package="com.korail" />
+    <bean id="testCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean" >
+        <property name="jobDetail">
+            <bean id="testJobProcess" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass" value="com.korail.batch.quartz.CronQuartzJob" />
+                <property name="applicationContextJobDataKey" value="applicationContext" />
+            </bean>
+        </property>
+        <property name="cronExpression" value="0 10 11 * * ?" />
+    </bean>
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="testCronTrigger" />
+            </list>
+        </property>
+    </bean>	
+</beans>

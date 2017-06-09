@@ -1,5 +1,5 @@
 package com.korail.client.cscenter.dao;
 
-public class QnADAO {
+public interface QnADAO {
 	/*승열*/
 }

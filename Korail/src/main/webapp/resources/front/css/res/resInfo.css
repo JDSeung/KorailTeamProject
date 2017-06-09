@@ -1,32 +1,25 @@
 @CHARSET "UTF-8";
+
 #wrap{
-	background: PaleTurquoise;
-}
-.container{
   width: 80%;
   margin: 0 auto;
   background: tomato;
 }
-
-li.prograss{
-  float: left;
-  
+section>h2{
+  font-size: 2.0em;
+  padding: 20px;
 }
-section.searchData:before{
-  content:'';
-  display:block;
-  height:0;
-  clear: both;
-}
-form{
-  width: 100%;
+section.searchData>h2{
+  display: none;
 }
 table{
  border-collapse: collapse;
-  width: 70%;
+  margin: 0 auto;
+  width: 80%;
 }
 table, th, td{
-  padding: 5px;
+  margin-top: 10px;
+  padding: 7px;
   border: 1px solid #000;
 }
 th{
@@ -40,7 +33,7 @@ img.ui-datepicker-trigger{
   margin-top: 5px;
 }
 select.cmb, input.txtroot{
-  width: 210px;
+  width: 190px;
   height: 30px;
 }
 label.labtxt{
@@ -53,7 +46,4 @@ select.cmbdate{
 }
 input#datepicker{
   display: none;
-}
-.ui-datepicker{
-	margin-top: 20px;
 }
