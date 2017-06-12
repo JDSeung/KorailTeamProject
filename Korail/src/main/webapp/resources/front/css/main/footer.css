@@ -10,6 +10,8 @@ footer{
 
 .ulBox > li {
   display: inline-block;
+  vertical-align: middle;
+  margin: 0 3% 0 0;
 }
 
 .container a{

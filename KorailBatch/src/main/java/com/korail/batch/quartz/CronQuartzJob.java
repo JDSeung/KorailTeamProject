@@ -12,7 +12,6 @@ public class CronQuartzJob extends QuartzJob{
 		TrainPairingService trainPairingServiceImpl = (TrainPairingService)super.getBean("trainPairingServiceImpl"); //get service bean from spring applicationContext
 		  
 		try {
-			trainPairingServiceImpl.deleteTrainParing();
 			trainPairingServiceImpl.getTrainParing();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

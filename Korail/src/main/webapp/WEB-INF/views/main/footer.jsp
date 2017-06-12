@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% 
   String root = request.getContextPath();
+  String rootImg = request.getContextPath()+"/resources/front/img/";
 %>
 <!DOCTYPE html>
 <html>
@@ -13,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-   <div id="footerWrap" class="footerWrap">
+   <div id="wrap" class="wrap">
          <footer>
             <div class="container">
                <ul>
@@ -26,7 +27,7 @@
                            <ul class="ulBox">
                               <li>
                                  <div class="logo">
-                                    <a href="#">logo image</a>
+                                    <img src="<%=rootImg%>/f_logo.gif" alt="Korail"/>
                                  </div>
                               </li>
                               <li><a href="#">개인정보방침</a></li>
@@ -36,7 +37,9 @@
                            </ul>
                         </li>
                         <li>
-                           <address>address</address>
+                           <address>
+                           	<img src="<%=rootImg%>/f_add.gif" alt="(우 140-704) 서울특별시 용산구 녹사평대로 150 (이태원동 34-87) TEL:2199-6114">
+                           </address>
                         </li>
                      </ul>
                   </li>

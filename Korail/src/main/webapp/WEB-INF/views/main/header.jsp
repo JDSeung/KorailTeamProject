@@ -20,24 +20,17 @@
                <div id="sidegnb" class="sidegnb">
                      <ul>
                         <li><a href="/korail/">HOME</a></li>
-<<<<<<< HEAD
                         <li><a href="/korail/login/">로그인</a></li>
                         <li><a href="/korail/user/">마이페이지</a></li>
                         <li><a href="/korail/mail/">회원가입</a></li>
-                        <li><a href="/korail/qnaboard/">고객센터</a></li>
-=======
-                        <li><a href="#">로그인</a></li>
-                        <li><a href="#">마이페이지</a></li>
-                        <li><a href="#"onclick="return join_link()">회원가입</a></li>
-                        <li><a href="#">고객센터</a></li>
->>>>>>> 97e9861b63e70e8dc741ef86d08e504fe0d923df
+                        <li><a href="/korail/faqboard/">고객센터</a></li>
                         <li><a href="#">사이트맵</a></li>
                      </ul>
                </div>
                <div id="maingnb" class="maingnb">
                      <ul>
                         <li>
-                           <div class="logo"><img src="<%=root%>/resources/img/logo.png" /></div>
+                           <div class="logo"><a href="/korail/"><img src="<%=root%>/resources/front/img/logo.gif" alt="Korail"/></a></div>
                         </li>
                         <li><a href="/korail/reservation/">승차권</a></li>
                         <li>

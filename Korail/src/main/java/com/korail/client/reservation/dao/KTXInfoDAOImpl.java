@@ -16,8 +16,9 @@ public class KTXInfoDAOImpl implements KTXInfoDAO {
 	SqlSession session;
 	
 	@Override
-	public List<KTXInfoVO> searchTrain(KTXInfoVO ktxInfoVO) {
-		return session.selectList("searchTrain");
+	public List<KTXInfoVO> getTrainInfo(KTXInfoVO ktxInfoVO) {
+		//만약 여기서 에러가 난다고하면 의심해봐야 할 상항 resultType는 Vo인데 반환값은 ?? 매핑이 되는건지 의심한번쯤은
+		return session.selectList("getTrainInfo", ktxInfoVO);
 	}
 
 }

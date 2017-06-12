@@ -1,87 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% 
+  String rootCSS = request.getContextPath()+"/resources/front/css/res/";
+  String rootJS = request.getContextPath()+"/resources/front/js/res/";
+%>
+<!-- 팝업창 -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	table{
-		margin: 0;
-		padding: 0;
-		width: 450px;
-		border: 1px solid #000;
-	}
-	tr{
-	margin: 0;
-	padding: 0;
-	}
-	.tableCoulmn{
-	background-color: #fff;
-		text-align: center;
-	}
-	a{
-		background-color: #333;
-		display: block;
-	}
-</style>
+
+<script type="text/javascript" src="<%=rootJS%>stationPOPUP.js" /></script>
+<link rel="stylesheet" href="<%=rootCSS%>stationPOPUP.css">
 </head>
 <body>
-<table>
-	<tr>
-		<td class="tableCoulmn"><a href="http://www.naver.com">서울</a></td>
-		<td class="tableCoulmn">용산</td>
-		<td class="tableCoulmn">영등포</td>
-		<td class="tableCoulmn">광명</td>
-		<td class="tableCoulmn">수원</td>
-	</tr>
-	<tr>
-		<td class="tableCoulmn">천안아산</td>
-		<td class="tableCoulmn">오송</td>
-		<td class="tableCoulmn">부산</td>
-		<td class="tableCoulmn">대전</td>
-		<td class="tableCoulmn">서대전</td>
-	</tr>
-	<tr>
-		<td class="tableCoulmn">김천</td>
-		<td class="tableCoulmn">동대구</td>
-		<td class="tableCoulmn">포항</td>
-		<td class="tableCoulmn">밀양</td>
-		<td class="tableCoulmn">구포</td>
-	<tr>
-		<td class="tableCoulmn">신경주</td>
-		<td class="tableCoulmn">울산</td>
-		<td class="tableCoulmn">진주</td>
-		<td class="tableCoulmn">마산</td>
-		<td class="tableCoulmn">창원</td>
-	</tr>
-	<tr>	
-		<td class="tableCoulmn">창원중앙</td>
-		<td class="tableCoulmn">진영</td>
-		<td class="tableCoulmn">논산</td>
-		<td class="tableCoulmn">공주</td>
-		<td class="tableCoulmn">익산</td>
-	</tr>
-	<tr>
-		<td class="tableCoulmn">정읍</td>
-		<td class="tableCoulmn">광주송정</td>
-		<td class="tableCoulmn">나주</td>
-		<td class="tableCoulmn">목포</td>
-		<td class="tableCoulmn">전주</td>
-	</tr>
-	<tr>
-		<td class="tableCoulmn">남원</td>
-		<td class="tableCoulmn">순천</td>
-		<td class="tableCoulmn">여수EXPO</td>
-		<td class="tableCoulmn">행신</td>
-		<td class="tableCoulmn">계룡</td>
-	</tr>
-	<tr>
-		<td class="tableCoulmn">곡성</td>
-		<td class="tableCoulmn">여천</td>
-		<td class="tableCoulmn">구례구</td>
-		<td colspan="2"></td>
-	</tr>
-</table>
+<input type="text" class="division"/>
+<div class="pop_container">
+	<section class="pop_station">
+   		<h2>역명조회</h2>
+    	<div class="pop_item">
+			<ul>
+				<li><a href="javascript:putStation('서울')">서 울</a></li>
+				<li><a href="javascript:putStation('용산')">용 산</a></li>
+				<li><a href="javascript:putStation('영등포')">영 등 포</a></li>
+				<li><a href="javascript:putStation('광명')">광 명</a></li>
+				<li><a href="javascript:putStation('수원')">수 원</a></li>
+				<li><a href="javascript:putStation('천안아산')">천 안 아 산</a></li>
+				<li><a href="javascript:putStation('오송')">오 송</a></li>
+				<li><a href="javascript:putStation('부산')">부 산</a></li>
+				<li><a href="javascript:putStation('대전')">대 전</a></li>
+				<li><a href="javascript:putStation('서대전')">서 대 전</a></li>
+				<li><a href="javascript:putStation('김천')">김 천</a></li>
+				<li><a href="javascript:putStation('동대구')">동 대 구</a></li>
+				<li><a href="javascript:putStation('포항')">포 항</a></li>
+				<li><a href="javascript:putStation('밀양')">밀 양</a></li>
+				<li><a href="javascript:putStation('구포')">구 포</a></li>
+				<li><a href="javascript:putStation('신경주')">신 경 주</a></li>
+				<li><a href="javascript:putStation('울산')">울 산</a></li>
+				<li><a href="javascript:putStation('진주')">진 주</a></li>
+				<li><a href="javascript:putStation('마산')">마 산</a></li>
+				<li><a href="javascript:putStation('창원')">창 원</a></li>
+				<li><a href="javascript:putStation('창원중앙')">창 원 중 앙</a></li>
+				<li><a href="javascript:putStation('진영')">진 영</a></li>
+				<li><a href="javascript:putStation('논산')">논 산</a></li>
+				<li><a href="javascript:putStation('공주')">공 주</a></li>
+				<li><a href="javascript:putStation('익산')">익 산</a></li>
+				<li><a href="javascript:putStation('정읍')">정 읍</a></li>
+				<li><a href="javascript:putStation('광주송정')">광 주 송 정</a></li>
+				<li><a href="javascript:putStation('나주')">나 주</a></li>
+				<li><a href="javascript:putStation('목포')">목 포</a></li>
+				<li><a href="javascript:putStation('전주')">전 주</a></li>
+				<li><a href="javascript:putStation('서울')">남 원</a></li>
+				<li><a href="javascript:putStation('서울')">순 천</a></li>
+				<li><a href="javascript:putStation('서울')">여 수 EXPO</a></li>
+				<li><a href="javascript:putStation('서울')">행 신</a></li>
+				<li><a href="javascript:putStation('서울')">계 룡</a></li>
+				<li><a href="javascript:putStation('곡성')">곡 성</a></li>
+				<li><a href="javascript:putStation('여천')">여 천</a></li>
+				<li><a href="javascript:putStation('구례구')">구 례 구</a></li>
+			</ul>
+	    </div>
+	</section>
+</div>
 </body>
 </html>

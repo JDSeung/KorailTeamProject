@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+input.division{
+	display: none;
+}
+section.pop_station >h2{
+	display: none;
+}
+.pop_container{
+  width: 570px;
+  
+}
+.pop_container ul li{
+  width: 130px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid #000;
+  display: inline-block;
+  background: #2b90d9;
+  border-radius : 2px;
+  
+  margin: 1px 0px 3px 0px;
+}
+.pop_item ul li a{
+  display: block;
+  height: 100%;
+	padding: 3px;
+  font-weight: bold;
+  color: white;
+}

@@ -8,16 +8,16 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.korail.batch.vo.TrainPairingVO;
+import com.korail.batch.vo.KTXInfoVO;
 
 @Repository
-public class TrainPairingDAOImpl implements TrainPairingDAO {
+public class KTXInfoDAOImpl implements KTXInfoDAO {
 
 	@Inject
 	private SqlSession session;
 	
 	@Override
-	public int korailInfoInsert(Map<String, List<TrainPairingVO>> korailInfoListMap) throws Exception {
+	public int korailInfoInsert(Map<String, List<KTXInfoVO>> korailInfoListMap) throws Exception {
 		return session.insert("trainPairingInsert", korailInfoListMap);
 	}
 

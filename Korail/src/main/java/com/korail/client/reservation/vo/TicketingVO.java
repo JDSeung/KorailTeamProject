@@ -6,20 +6,20 @@ public class TicketingVO {
 	/*승열*/
 	private int ticketNo; 			//예매번호
     private int userNo;				//회원번호
-    private String trainNo;			//열차호수
+    private String trainName;		//차량번호
     private Date rideDate;			//승차일자
-    private String vehiclekndId;	//열차번호
     private String vehiclekndNm;	//열차종별
     private String depPlaceName;	//출발역
     private String depPlandTime;	//출발시각
     private String arrPlaceName;	//도착역
     private String arrPlandTime;	//도착시각
-    private String reservationNo;	//예약매수
+    private String reservationNo;	//예매매수
     private String rate;			//금액
-    private String roomRating;		//객실등급
-    private String seatInfo;		//좌석정보
+    private String seatDivision;	//객실등급
+    private String seat;			//좌석정보
     private String passengerType;	//승객유형
-    private String ticketingETC;   	//티켓상황
+    private String ticketingDate; 	//예매일자
+    private String ticketingETC;   	//티켓상황 0 - 대기, 1 - 취소, 2 - 진행, 3 - 완료, 4 ? 만료
 	public int getTicketNo() {
 		return ticketNo;
 	}
@@ -32,23 +32,17 @@ public class TicketingVO {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-	public String getTrainNo() {
-		return trainNo;
+	public String getTrainName() {
+		return trainName;
 	}
-	public void setTrainNo(String trainNo) {
-		this.trainNo = trainNo;
+	public void setTrainName(String trainName) {
+		this.trainName = trainName;
 	}
 	public Date getRideDate() {
 		return rideDate;
 	}
 	public void setRideDate(Date rideDate) {
 		this.rideDate = rideDate;
-	}
-	public String getVehiclekndId() {
-		return vehiclekndId;
-	}
-	public void setVehiclekndId(String vehiclekndId) {
-		this.vehiclekndId = vehiclekndId;
 	}
 	public String getVehiclekndNm() {
 		return vehiclekndNm;
@@ -92,17 +86,17 @@ public class TicketingVO {
 	public void setRate(String rate) {
 		this.rate = rate;
 	}
-	public String getRoomRating() {
-		return roomRating;
+	public String getSeatDivision() {
+		return seatDivision;
 	}
-	public void setRoomRating(String roomRating) {
-		this.roomRating = roomRating;
+	public void setSeatDivision(String seatDivision) {
+		this.seatDivision = seatDivision;
 	}
-	public String getSeatInfo() {
-		return seatInfo;
+	public String getSeat() {
+		return seat;
 	}
-	public void setSeatInfo(String seatInfo) {
-		this.seatInfo = seatInfo;
+	public void setSeat(String seat) {
+		this.seat = seat;
 	}
 	public String getPassengerType() {
 		return passengerType;
@@ -110,11 +104,17 @@ public class TicketingVO {
 	public void setPassengerType(String passengerType) {
 		this.passengerType = passengerType;
 	}
+	public String getTicketingDate() {
+		return ticketingDate;
+	}
+	public void setTicketingDate(String ticketingDate) {
+		this.ticketingDate = ticketingDate;
+	}
 	public String getTicketingETC() {
 		return ticketingETC;
 	}
 	public void setTicketingETC(String ticketingETC) {
 		this.ticketingETC = ticketingETC;
 	}
-    
+
 }

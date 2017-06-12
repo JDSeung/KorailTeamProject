@@ -1,6 +1,6 @@
 package com.korail.batch.vo;
 
-public class TrainPairingVO {
+public class KTXInfoVO {
 
 	private String trainName;
 	private String depplaceName;

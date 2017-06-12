@@ -1,22 +1,17 @@
 $( function() {
-  
-    $( "#datepicker" ).datepicker({
-    	showOn: "button", 
-    	maxDate   : "+180D",
-    	setDate: $('#cmbYear').val()+'-'+$('#cmbMonth').val()+'-'+$('#cmbDate').val(),
-        buttonImage: "https://image.flaticon.com/icons/png/512/148/148982.png", 
-        buttonImageOnly: true,
-        onSelect:function(dateText, inst){
-    		altField : '#getdate';
-            var year = dateText.substr(6,4);
-            var month = dateText.substr(0,2)-1;
-            var day = dateText.substr(3,2)-1;
-        	$("#cmbYear option:eq('"+year+"')").prop("selected", true);
-            $("#cmbMonth option:eq('"+month+"')").prop("selected", true);
-            $("#cmbDay option:eq('"+day+"')").prop("selected", true);
-    	}
-    });
-    $("#datepicker").button();
+	var trainList;
+	$("#getTicketingInfo").click(function(){
+		$.ajax({
+			url:"",
+			type:"POST",
+			dataType : 'json',
+			data:$("#searchForm").serialize(),
+			success:function(resultData){
+				trainList = resultData;
+				getTrainList(trainList);
+			}
+		});
+	});
     var userType =['성인', '어린이', '경로'];
     for(i = 0; i<userType.length; i ++){
     	for(j = 0; j <=9; j++){
@@ -43,54 +38,14 @@ $( function() {
             
         }
     }
-    for(i = 0; i<24; i++){
-
-    	if(i<=12){
-    		var meridiem = '오전    ' + i;
-    	}else{
-    		var meridiem = '오후    ' + (i-12);
-    	}
-    	var option = $("<option value = '"+i+"'>"+i+"(  "+ meridiem +")</option>");
-    	$('#cmbTime').append(option);
-    }
-    for(i = 0; i<3; i++){
-    	var Now = new Date();
-    	var year = Now.getFullYear() + i;
-    	var option = $("<option value = '"+year+"'>"+year +"</option>");
-    	$('#cmbYear').append(option);
-    }
-    for(i = 1; i<=12; i++){
-    	var option = $("<option value = '"+i+"'>" + i + "</option>");
-    	$('#cmbMonth').append(option);
-    }
-    for(i = 1; i<=31; i++){
-    	var option = $("<option value = '"+i+"'>" + i + "</option>");
-    	$('#cmbDay').append(option);
-    }
-    function setDate(){
-    	var dd = $('#cmbDay').val();        
-    	var mm = $('#cmbMonth').val();
-    	var yyyy = $('#cmbYear').val();
-    	
-    	var ToDate = mm + '/' + dd + '/' + yyyy;
-    	var FromDate = mm + '/01/' + yyyy;
-    	$('#datepicker').datepicker('setDate', FromDate);
-    }
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = date.getMonth();
-    var day = date.getDate()-1;
-    $("#cmbYear option:eq('"+year+"')").prop("selected", true);
-    $("#cmbMonth option:eq('"+month+"')").prop("selected", true);
-    $("#cmbDay option:eq('"+day+"')").prop("selected", true);
-    		
-	
 } );
- 
-function fn_DayOfMonth(){
-	var day = 32 - new Date($('#cmbYear').val(), $('#cmbMonth').val()-1, 32).getDate();
-	 for(i = 1; i<=day; i++){
-	    	var option = $("<option value = '"+i+"'>" + i + "</option>");
-	    	$('#cmbDay').append(option);
-	    }
-};
+function getTrainList(trainList){
+	$.each(trainList, function(idx, val) {
+		console.log("열차번호 :" + val.trainName);
+		console.log("출발역 :" + val.depPlaceName);
+		console.log("도착역 :" + val.arrPlaceName);
+		console.log("출발시각 :" + val.depPlandTime);
+		console.log("도착시각 :" + val.arrPlandTime);
+		console.log("소요시각 :" + val.takeTime);
+	});
+}

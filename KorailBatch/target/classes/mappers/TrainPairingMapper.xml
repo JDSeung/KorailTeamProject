@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.korail.batch.DAO.StationDAO">
+<mapper namespace="com.korail.batch.dao.KTXInfoDAO">
 	<insert id="trainPairingInsert" parameterType ="map">
 		INSERT ALL 
 		<foreach collection="trainInfoList" item="trainInfo">
@@ -11,11 +11,4 @@
 		</foreach>
 		SELECT * FROM DUAL
 	</insert>
-	<delete id="trainPairingDelete">
-	<![CDATA[
-		DELETE 
-		FROM KTXINFO_TB
-		WHERE TO_DATE(DEPPLANDTIME, 'YYYYMMDDHH24MISS') <= (SYSDATE-1)
-	]]>
-	</delete>
 </mapper>

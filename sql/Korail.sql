@@ -106,8 +106,15 @@
         HONAM           VARCHAR2(1),
         JEOLLA          VARCHAR2(1)
     ) nologging;
-    select * from CITYACCOTTRAIN_TB where NODENAME like '산';
-  
+    create table CITYACCOTTRAIN_TBtest(
+        DEPID	        VARCHAR2(60)	NOT NULL,   --출발역ID
+        ARRID	        VARCHAR2(60)	NOT NULL,   --도착역ID
+        DEPPLACENAME	VARCHAR2(200)	NOT NULL,   --출발역명
+        ARRPLACENAME	VARCHAR2(200)	NOT NULL,   --도착역명
+        CONSTRAINT CITYACCOTTRAIN_TB_KEY PRIMARY KEY (DEPID, ARRID)
+    );
+    select * from TRAIN_TB_DATA;
+    select * from TRAIN_TB_DATA1;
     /*KTX 정보*/
     CREATE TABLE KTXINFO_TB(
         TRAINNAME NUMBER NOT NULL PRIMARY KEY,
@@ -127,7 +134,7 @@
     INCREMENT BY 1 
     START WITH 1 
     NOCYCLE;
-     CREATE FUNCTION KTXINFO_TB_SEQ_FUNC RETURN NUMBER IS
+    CREATE FUNCTION KTXINFO_TB_SEQ_FUNC RETURN NUMBER IS
     BEGIN
         RETURN KTXINFO_TB_SEQ.nextval;
     END;
@@ -190,7 +197,7 @@
     INSERT INTO SEATINFO_TB(SEATDIV,
                             SEATROW,
                             SEATCOLUMN)
-                    VALUES ('일반실', 4,15);
+                    VALUES ('일반', 4,15);
     INSERT INTO SEATINFO_TB(SEATDIV,
                             SEATROW,
                             SEATCOLUMN)

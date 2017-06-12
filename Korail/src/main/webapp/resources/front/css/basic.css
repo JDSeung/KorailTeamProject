@@ -1,31 +1,60 @@
 @CHARSET "UTF-8";
-*{
+
+* {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 	text-decoration: none;
 	color: #333;
-
+	border-spacing: 0px;
 }
-body{
+
+body {
 	background-color: #efefef;
 }
-#wrap{
-  margin: 0 auto;
-  
+
+#wrap {
+	margin: 0 auto;
 }
+
 .container {
 	margin: 0 auto;
 	width: 90%;
 	background: tomato;
 	height: 100%;
 }
+
 button.ui-button {
 	background-color: #256cc6;
 	color: white;
 	border: 1px solid #256cc6;
 }
 
-.ui-datepicker{
+input#datepicker {
+	display: none;
+}
+
+.ui-datepicker {
 	margin-top: 25px;
+}
+
+.logo {
+	vertical-align: middle;
+}
+
+input.basictxt {
+	width: 190px;
+	height: 30px;
+}
+
+select.cmbdate {
+	width: 90px;
+	height: 30px;
+}
+select.cmb, input.txtroot {
+		width: 190px;
+		height: 30px;
+}
+#dialog {
+	display: none;
 }

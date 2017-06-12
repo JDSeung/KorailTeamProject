@@ -13,10 +13,10 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.korail.batch.dao.StationDAO;
-import com.korail.batch.dao.TrainPairingDAO;
-import com.korail.batch.vo.StationVO;
-import com.korail.batch.vo.TrainPairingVO;
+import com.korail.batch.dao.CityAccotTrainDAO;
+import com.korail.batch.dao.KTXInfoDAO;
+import com.korail.batch.vo.CityAccotTrainVO;
+import com.korail.batch.vo.KTXInfoVO;
 
 
 /*
@@ -46,53 +46,30 @@ import com.korail.batch.vo.TrainPairingVO;
 @Service
 public class TrainPairingServiceImpl implements TrainPairingService {
 	@Autowired
-	private StationDAO stationDAO;
+	private CityAccotTrainDAO stationDAO;
 	@Autowired
-	private TrainPairingDAO trainPairingDAO;
+	private KTXInfoDAO trainPairingDAO;
 	@Autowired
 	private ConnectURLServiceImpl connectURLServiceImpl;
 	private StringBuilder urlBuilder = null;
 	private String url = "";
-	private String serviceKey = "?serviceKey=s%2BlJuLvexeuWG6J5nt3BTnfZpCiZITd7yGp9%2B5BnBD4u5rPyxHRBFgnBJHYuu2NMteTmROVRucFWmk3xzq23vg%3D%3D";
+	private String serviceKey = "?serviceKey=vEHxab430htbo5U2QtyuoviFGJ8E%2BG6zotOMd0z2%2BTjRDoQMdfAd7JgejkasxOEuSQaQlwAVWk2MxSIBNvIDKw%3D%3D";
 	private Elements apiElements = null;
-	private List<StationVO> cityAccottrainList= null;
-	private StationVO arrStationVo = null;
-	private List<TrainPairingVO> trainInfoList= null;
-	private Map<String, List<TrainPairingVO>> korailInfoListMap = null;
-	private TrainPairingVO trainPairingVO;
+	private List<CityAccotTrainVO> cityAccottrainList= null;
+	private List<KTXInfoVO> trainInfoList= null;
+	private Map<String, List<KTXInfoVO>> korailInfoListMap = null;
+	private KTXInfoVO trainPairingVO;
 	@Override
 	public void getTrainParing() throws Exception {
 		System.out.println("getStrtpntAlocFndTrainInfoURL 실행");
-		cityAccottrainList = new ArrayList<StationVO>();
-		korailInfoListMap =new HashMap<String, List<TrainPairingVO>>();
-		trainInfoList = new ArrayList<TrainPairingVO>();
+		cityAccottrainList = new ArrayList<CityAccotTrainVO>();
+		korailInfoListMap =new HashMap<String, List<KTXInfoVO>>();
+		trainInfoList = new ArrayList<KTXInfoVO>();
 		getStationData();
 		
 	}
-	@Override
-	public void deleteTrainParing() throws Exception {
-		trainPairingDAO.trainPairingDelete();
-	}
-	private int getLineCode(StationVO codeVO, int trainSerchType){
-		int lineCode = 0;
-		switch (trainSerchType) {
-		case 0:
-			lineCode = Integer.parseInt(codeVO.getGyeongbu());
-			break;
-		case 1:
-			lineCode = Integer.parseInt(codeVO.getGyeongjeon());
-			break;
-		case 2:
-			lineCode = Integer.parseInt(codeVO.getHonam());
-			break;
-		case 3:
-			lineCode = Integer.parseInt(codeVO.getJeolla());
-			break;
-		}
-		return lineCode;
-	}
 	
-	private String getTakeTime(TrainPairingVO korailInfoVO) throws ParseException{
+	private String getTakeTime(KTXInfoVO korailInfoVO) throws ParseException{
 		Date toStart = parseDate(korailInfoVO.getDepplandTime());
 		Date toEnd = parseDate(korailInfoVO.getArrplandTime());
 		long startTime = toStart.getTime();
@@ -109,26 +86,14 @@ public class TrainPairingServiceImpl implements TrainPairingService {
 		Date parsingDate = transFormat.parse(strDate);
 		return parsingDate;
 	}
+	/*출발/도착역 가져오기.*/
 	private void getStationData()  throws Exception{
-		for(int i = 0; i<4; i++){
-			cityAccottrainList = new ArrayList<StationVO>();
-			Map<String, Integer> trainSerchTypeMap = new HashMap<String, Integer>();
-			int trainSerchType = i;
-			trainSerchTypeMap.put("trainSerchType", trainSerchType);
-			cityAccottrainList = stationDAO.selectData(trainSerchTypeMap);
-			for(StationVO depStationVo : cityAccottrainList){
-				String depPlaceName = depStationVo.getNodeName();
-				for(int j = 0; j<cityAccottrainList.size(); j ++){
-					arrStationVo = cityAccottrainList.get(j);
-					String arrPlaceName = arrStationVo.getNodeName();
-					int arrLineCode = 0;
-					int depLineCode = 0;
-					depLineCode = getLineCode(depStationVo, trainSerchType);
-					arrLineCode = getLineCode(arrStationVo, trainSerchType);
-					if(!(depPlaceName.equals(arrPlaceName)) && (arrLineCode == 1|| depLineCode == 1)){
-						getAPIData(depStationVo);
-					}
-				}
+		cityAccottrainList = stationDAO.getDepArrData();
+		for(CityAccotTrainVO depArrVo : cityAccottrainList){
+			String depPlaceName = depArrVo.getDepplaceName();
+			String arrPlaceName = depArrVo.getArrplaceName();
+			if(!(depPlaceName.equals(arrPlaceName))){
+				getAPIData(depArrVo);
 			}
 		}
 		if((trainInfoList.size()%500) > 0){
@@ -136,21 +101,22 @@ public class TrainPairingServiceImpl implements TrainPairingService {
 			trainPairingDAO.korailInfoInsert(korailInfoListMap);
 		}
 		
+		
 	}
-	private void getAPIData(StationVO depStationVo) throws Exception{
+	private void getAPIData(CityAccotTrainVO depArrVo) throws Exception{
 		//출_도착지기반열차정보 가져오기
 		urlBuilder = new StringBuilder("http://openapi.tago.go.kr/openapi/service/TrainInfoService/");
 		url = "getStrtpntAlocFndTrainInfo";
 		urlBuilder.append(url + serviceKey);
 		urlBuilder.append("&numOfRows=100");
 		urlBuilder.append("&pageNo=1");
-		urlBuilder.append("&depPlaceId=" + depStationVo.getNodeId());
-		urlBuilder.append("&arrPlaceId=" + arrStationVo.getNodeId());
-		urlBuilder.append("&depPlandTime=" + "20170609");
+		urlBuilder.append("&depPlaceId=" + depArrVo.getDepID());
+		urlBuilder.append("&arrPlaceId=" + depArrVo.getArrID());
+		urlBuilder.append("&depPlandTime=" + "20170613");
 		urlBuilder.append("&trainGradeCode=" + "00");
 		System.out.println(urlBuilder.toString());
 		apiElements = connectURLServiceImpl.connectURL(urlBuilder);
-		korailInfoListMap = new HashMap<String, List<TrainPairingVO>>();
+		korailInfoListMap = new HashMap<String, List<KTXInfoVO>>();
 		if(apiElements != null){
 			setKorailDB();
 		}
@@ -159,7 +125,7 @@ public class TrainPairingServiceImpl implements TrainPairingService {
 		for(Element itemElement : apiElements){
 			System.out.println("dataCount 실행 횟수 : " + trainInfoList.size());
 			System.out.println("출발역 : " + itemElement.select("arrplacename").text() + "도착역 : " + itemElement.select("depplacename").text());
-			trainPairingVO = new TrainPairingVO();
+			trainPairingVO = new KTXInfoVO();
 			trainPairingVO.setArrplaceName(itemElement.select("arrplacename").text());
 			trainPairingVO.setArrplandTime(itemElement.select("arrplandtime").text());
 			trainPairingVO.setDepplaceName(itemElement.select("depplacename").text());
@@ -172,8 +138,8 @@ public class TrainPairingServiceImpl implements TrainPairingService {
 				System.out.println("실행완료 건수 : " + trainInfoList.size());
 				korailInfoListMap.put("trainInfoList", trainInfoList);
 				trainPairingDAO.korailInfoInsert(korailInfoListMap);
-				trainInfoList = new ArrayList<TrainPairingVO>();
-				korailInfoListMap =new HashMap<String, List<TrainPairingVO>>();
+				trainInfoList = new ArrayList<KTXInfoVO>();
+				korailInfoListMap =new HashMap<String, List<KTXInfoVO>>();
 			}
 		}
 	}

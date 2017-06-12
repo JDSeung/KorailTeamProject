@@ -6,5 +6,6 @@
 	<typeAliases>
 		<typeAlias type="com.korail.client.reservation.vo.KTXInfoVO" alias="ktxInfoVO"/>
 		<typeAlias type="com.korail.client.reservation.vo.KTXRateInfoVO" alias="ktxRateInfoVO"/>
+		<typeAlias type="com.korail.client.reservation.vo.TicketingVO" alias="ticketingVO"/>
 	</typeAliases>
 </configuration>

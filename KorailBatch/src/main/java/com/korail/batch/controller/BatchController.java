@@ -25,7 +25,6 @@ public class BatchController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 	
-		
 		return "index";
 	}
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
