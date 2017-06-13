@@ -26,7 +26,7 @@ public class TicketingDAOImpl implements TicketingDAO {
 	@Override
 	public List<TicketingVO> getTicketInfo() {
 		//현재 발권중인 사람 수
-		return session.selectOne("getTicketInfo");
+		return session.selectList("getTicketInfo");
 	}
 
 	@Override

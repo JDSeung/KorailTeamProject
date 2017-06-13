@@ -16,8 +16,8 @@
 <body>
    <div id="wrap" class="wrap">
          <footer>
-            <div class="container">
-               <ul>
+            <div class="container comInfowrap">
+               <ul class="comInfo">
                   <li class="liLogo">
                      <div class="logo"></div>
                   </li>
@@ -27,7 +27,7 @@
                            <ul class="ulBox">
                               <li>
                                  <div class="logo">
-                                    <img src="<%=rootImg%>/f_logo.gif" alt="Korail"/>
+                                    <img src="<%=rootImg%>f_logo.gif" alt="Korail"/>
                                  </div>
                               </li>
                               <li><a href="#">개인정보방침</a></li>
@@ -38,7 +38,7 @@
                         </li>
                         <li>
                            <address>
-                           	<img src="<%=rootImg%>/f_add.gif" alt="(우 140-704) 서울특별시 용산구 녹사평대로 150 (이태원동 34-87) TEL:2199-6114">
+                           	<img src="<%=rootImg%>f_add.gif" alt="(우 140-704) 서울특별시 용산구 녹사평대로 150 (이태원동 34-87) TEL:2199-6114">
                            </address>
                         </li>
                      </ul>

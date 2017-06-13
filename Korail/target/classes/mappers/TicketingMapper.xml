@@ -14,7 +14,7 @@
 		</where>
 	</select>
 	<select id="getTicketInfo" resultType="ticketingVO">
-		<!-- 2 = 현재 발권중인 사람 예매페이지에서 예약대기에 들어갈 항목. -->
+		<!-- 2 = 현재 발권중인 사람 예매페이지에서 예약대기에 들어갈 항목., 전체 인원 -->
 		SELECT COUNT(*)
 		FROM TICKETING_TB
 		WHERE TICKETINGETC = '2' AND  TICKETINGETC = '3'

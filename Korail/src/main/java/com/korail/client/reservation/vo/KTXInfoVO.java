@@ -10,7 +10,6 @@ package com.korail.client.reservation.vo;
  * @takeTime 소요시간
  */
 public class KTXInfoVO {
-	/*승열*/
 	private String trainName;		//열차번호
     private String depPlaceName;	//출발역
     private String depPlandTime;	//출발시각

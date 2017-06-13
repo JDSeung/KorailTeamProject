@@ -109,7 +109,6 @@
     START WITH 1 
     NOCYCLE;
     select * from SEAT_TB;
-    
     --KTX 요금 정보 테이블
     CREATE TABLE KTXRATEINFO_TB(
         TRAINNO	        NUMBER	    NOT NULL	PRIMARY KEY	,                           --일련번호
@@ -138,14 +137,46 @@
         CONSTRAINT CITYACCOTTRAIN_TB_KEY PRIMARY KEY (DEPID, ARRID, DEPPLACENAME, ARRPLACENAME)
     ) nologging;
     
-SELECT * 
+    SELECT  TRAINNAME,	    
+                           DEPPLACENAME,	
+                           TO_CHAR(TO_DATE(SUBSTR(DEPPLANDTIME,9,4),'HH24mi'),'HH24"시"mi"분"') as depPlandTime, 
+                           ARRPLACENAME,
+                           TO_CHAR(TO_DATE(SUBSTR(ARRPLANDTIME,9,4),'HH24mi'),'HH24"시"mi"분"')	as arrPlandTime,
+                           TAKETIME,
+                           ROW_NUMBER() OVER( ORDER BY DEPPLANDTIME ASC) AS RN
+                   FROM KTXINFO_TB
+                   WHERE DEPPLACENAME = '서울' AND ARRPLACENAME = '부산'
+                            AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') 
+                            	BETWEEN TO_DATE('2017061200','YYYYMMDDHH24') 
+                            	AND 	ROUND(TO_DATE('2017061200','YYYYMMDDHH24')+1);
+    SELECT COUNT(*)
 		FROM KTXINFO_TB
 		WHERE DEPPLACENAME = '서울' AND ARRPLACENAME = '부산'
-				AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') >= TO_DATE('20170612','YYYYMMDDHH24')
-		ORDER BY  TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') ASC;
-    
+             	AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') 
+             		BETWEEN TO_DATE('2017061200','YYYYMMDDHH24') 
+             		AND 	ROUND(TO_DATE('2017061200','YYYYMMDDHH24')+1);
     --KTX정보
-    select * from KTXINFO_TB;
+        SELECT  COUNT(*)
+        FROM KTXINFO_TB
+        WHERE DEPPLACENAME = '서울' AND ARRPLACENAME = '부산'
+        AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') >= TO_DATE('2017061200','YYYYMMDDHH24');
+        
+        SELECT *
+        FROM(SELECT *
+             FROM (SELECT  TRAINNAME,	    
+                           DEPPLACENAME,	
+                           TO_CHAR(TO_DATE(SUBSTR(DEPPLANDTIME,1,12),'YYMMDDHH24mi'),'YY"년"MM"월"DD"일"HH24"시"mi"분"') as depPlandTime, 
+                           ARRPLACENAME,
+                           TO_CHAR(TO_DATE(SUBSTR(ARRPLANDTIME,1,12),'YYMMDDHH24mi'),'YY"년"MM"월"DD"일"HH24"시"mi"분"')	as arrPlandTime,
+                           TAKETIME,
+                           ROW_NUMBER() OVER( ORDER BY depPlandTime ASC) AS RN
+                   FROM KTXINFO_TB
+                   WHERE DEPPLACENAME = '서울' AND ARRPLACENAME = '부산'
+                            AND  TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') BETWEEN  TO_DATE('2017061200','YYYYMMDDHH24') AND ROUND(TO_DATE('2017061300','YYYYMMDDHH24')+1)
+             )
+         WHERE RN>=31 AND RN <= 40);
+            
+      
     CREATE TABLE KTXINFO_TB(
         TRAINNAME	    VARCHAR2(100)	NOT NULL	PRIMARY KEY	,               --차량명
         DEPPLACENAME	VARCHAR2(200)	NOT NULL,                               --출발역명
@@ -736,3 +767,4 @@ INSERT INTO KTXRATEINFO_TB (TRAINNO,
                                 '83700',
                                 '53800',
                                 '83700');
+                                

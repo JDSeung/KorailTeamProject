@@ -5,8 +5,8 @@
 	padding: 0;
 	list-style: none;
 	text-decoration: none;
-	color: #333;
 	border-spacing: 0px;
+	vertical-align: middle;
 }
 
 body {
@@ -57,4 +57,11 @@ select.cmb, input.txtroot {
 }
 #dialog {
 	display: none;
+}
+img.ui-datepicker-trigger{
+	filter: grayscale(100%);
+	transition: .3s ease-in-out;
+}
+img.ui-datepicker-trigger:hover{
+	filter: grayscale(0);
 }
