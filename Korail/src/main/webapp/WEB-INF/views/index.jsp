@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="<%=rootCss%>basic.css">
 <link rel="stylesheet" href="<%=rootCss%>main/index.css">
 <script type="text/javascript" src="<%=rootJS%>basic.js" /></script>
+<script type="text/javascript" src="<%=rootJS%>main/index.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -32,18 +33,22 @@
 								<td colspan="4"><h4>승차권간편예매</h4></td>
 							</tr>
 							<tr>
-								<td>출발역</td>
-								<td><input type="text" id="depPlaceName" class="basictxt"/></td>
+								<td>
+									<label for="depPlaceName" class="labtxt">출발역</label>
+									<input type="text" id="depPlaceName" name="depPlaceName" class="basictxt" readonly/>
+								</td>
 								<td><button id="btnDepStation" class="ui-button ui-corner-all ui-widget">조회</button></td>
 							</tr>
 							<tr>
-								<td>도착역</td>
-								<td><input type="text" id="arrPlaceName" class="basictxt" /></td>
+								<td>
+									<label for="arrPlaceName" class="labtxt">도착역</label> 
+									<input type="text" id="arrPlaceName" name="arrPlaceName" class="basictxt" readonly/>
+								</td>
 								<td><button id="btnArrStation" class="ui-button ui-corner-all ui-widget">조회</button></td>
 							</tr>
 							<tr>
-								<td>출발일</td>
 								<td>
+									<label for="cmbYear" class="labtxt">출발일</label>
 									<select name="cmbYear" id="cmbYear" class="cmbdate" onChange="javascript:fn_GetDay();fn_validateDay()">
 									</select> 
 									<label for="cmbYear" >년</label>
@@ -54,38 +59,37 @@
 									<select name="cmbDay" id="cmbDay" class="cmbdate" onChange="javascript:fn_validateDay()"></select>
 									<label for="cmbDay">일</label>
 								</td>
-								<td><button class="ui-button ui-corner-all ui-widget">조회</button></td>
+								<td><input type="text" id="datepicker"/></td>
 							</tr>
 							<tr>
-								<td>시간</td>
-								<td><input type="text" class="basictxt"/></td>
-								<td><button class="ui-button ui-corner-all ui-widget">조회</button></td>
-							</tr>
-							<tr>
-								<td></td>
-								<td>어른</td>
-								<td>어린이</td>
-								<td>경로</td>
-							</tr>
-							<tr>
-								<td>인원</td>
 								<td>
+									<label for="cmbTime">시간</label>
+									<select name="cmbTime" id="cmbTime"></select>
+									<label for="time" class="">시</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="cmbAdult">어른</label>
+									<label for="cmbChilde">어린이</label>
+									<label for="cmbSenior">경로</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="people">인원</label>
 									<select name="cmbAdult" id="cmbAdult" class="cmb"></select>
-								</td>
-								<td>
 									<select name="cmbChilde" id="cmbChilde" class="cmb"></select>
-								</td>
-								<td>
 									<select name="cmbSenior" id="cmbSenior" class="cmb"></select>
 								</td>
 							</tr>
 							<tr>
-								<td colspan="4"><button class="ui-button ui-corner-all ui-widget">승차권 조회</button></td>
+								<td><button class="ui-button ui-corner-all ui-widget">승차권 조회</button></td>
 							</tr>
 						</table>
 					</article>
 					<article>
-						<div class="eventImage">이미지</div>
+						<div class="eventImage"><img src="<%=root%>/front/img/event_image.jpg" alt="Event"/></div>
 					</article>
 				</section>
 			</div>
@@ -93,18 +97,33 @@
 				<section>
 					<article class="c1">
 						<h2>공지사항</h2>
-						<table>
+						<table id="noticeBoard">
 							<tr>
-								<th><c:choose>
-										<c:when test="${not empty noticeList}">
-
-										</c:when>
-									</c:choose></th>
+								<th>
+									<c:forEach var="noticeList" items="${getNoticeList}" varStatus="status">
+										<tr>
+											<td>${noticeList.noticeTitle}</td>
+											<td>&nbsp;&nbsp;${noticeList.noticeRegdate}</td>
+										</tr>
+									</c:forEach>
+								</th>
 							</tr>
 						</table>
 					</article>
 					<article class="c1">
 						<h2>FAQ</h2>
+						<table id="FAQBoard">
+							<tr>
+								<th>
+									<c:forEach var="FAQList" items="${getFAQList}" varStatus="status">
+										<tr>
+											<td>${FAQList.faqTitle}</td>
+											<td>&nbsp;&nbsp;${FAQList.faqRegdate}</td>
+										</tr>
+									</c:forEach>
+								</th>
+							</tr>
+						</table>
 					</article>
 					<article class="c1">
 						<img src="" alt="" />이미지
