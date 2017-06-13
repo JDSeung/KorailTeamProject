@@ -10,7 +10,7 @@
 			FROM
 				(SELECT ROWNUM AS RN, FAQTITLE, FAQREGDATE
 				 FROM FAQ_TB ORDER BY FAQREGDATE)
-				 WHERE RN <= 5
+				 WHERE RN <= 5 
 		]]>
 	</select>
 
