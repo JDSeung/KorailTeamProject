@@ -32,6 +32,7 @@
 	<bean 	id="transactionManager"
 			class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 			<property name="dataSource" ref="dataSource"/>
+<<<<<<< HEAD
 	</bean>
 	<!-- 메일보내기 -->
    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -48,4 +49,7 @@
          </props>
       </property>
    </bean>		
+=======
+	</bean>		
+>>>>>>> d820d270b44245d02691aa984ca12e82a3924a21
 </beans>

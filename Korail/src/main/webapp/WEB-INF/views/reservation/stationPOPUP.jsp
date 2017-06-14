@@ -52,11 +52,11 @@
 				<li><a href="javascript:putStation('나주')">나 주</a></li>
 				<li><a href="javascript:putStation('목포')">목 포</a></li>
 				<li><a href="javascript:putStation('전주')">전 주</a></li>
-				<li><a href="javascript:putStation('남원')">남 원</a></li>
-				<li><a href="javascript:putStation('순천')">순 천</a></li>
-				<li><a href="javascript:putStation('여수EXPO')">여 수 EXPO</a></li>
-				<li><a href="javascript:putStation('행신')">행 신</a></li>
-				<li><a href="javascript:putStation('계룡')">계 룡</a></li>
+				<li><a href="javascript:putStation('서울')">남 원</a></li>
+				<li><a href="javascript:putStation('서울')">순 천</a></li>
+				<li><a href="javascript:putStation('서울')">여 수 EXPO</a></li>
+				<li><a href="javascript:putStation('서울')">행 신</a></li>
+				<li><a href="javascript:putStation('서울')">계 룡</a></li>
 				<li><a href="javascript:putStation('곡성')">곡 성</a></li>
 				<li><a href="javascript:putStation('여천')">여 천</a></li>
 				<li><a href="javascript:putStation('구례구')">구 례 구</a></li>

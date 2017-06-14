@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.korail.client.reservation.vo.KTXInfoVO;
 import com.korail.client.reservation.vo.KTXRateInfoVO;
-import com.korail.client.reservation.vo.SeatVO;
 import com.korail.client.reservation.vo.TicketingVO;
 
 public interface ReservationService {
@@ -17,5 +16,4 @@ public interface ReservationService {
 	public List<TicketingVO> getTicketingInfo(TicketingVO ticketingVO) throws Exception;
 	public List<TicketingVO> getTicketInfo() throws Exception;
 	public int setTicketing(TicketingVO ticketingVO) throws Exception;
-	public List<SeatVO> getSeatInfo() throws Exception;
 }

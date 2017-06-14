@@ -1,4 +1,14 @@
 $(function(){
+	// 출발역 텍스트박스를 클릭 했을 경우
+	$("#depPlaceName").on("click", function(){
+		$(".division").val("dep");
+			$("#dialog").dialog("open");
+	});
+	// 도착역 텍스트박스를 클릭 했을 경우
+	$("#arrPlaceName").on("click", function(){
+		$(".division").val("arr");
+			$("#dialog").dialog("open");
+	});
 	
 	// 공지사항 테이블
 	function addItem(){
@@ -9,18 +19,4 @@ $(function(){
 		td = tr.insertCell(0);
 		td.innerHTML = ""
 	}
-	$("#getTicketingInfo").click(function(){
-		if($("#depPlaceName").val() == "" || $("#arrPlaceName").val() == ""){
-			alert("출발지 혹은 도착지를 입력해 주십시오.");
-		}
-		if($("#depPlaceName").val() == $("#arrPlaceName").val()){
-			alert("출발지와 도착지가 같습니다.");
-			return;
-		}
-		$("#searchForm").attr({
-			"method":"POST",
-			"action":"reservation/"
-		});
-		$("#searchForm").submit();
-	});
 })
