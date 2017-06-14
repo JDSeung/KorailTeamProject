@@ -1,0 +1,53 @@
+	@CHARSET "UTF-8";
+	
+	table.tbl_Train{
+	  display: none;
+	}
+	
+	.thead_train{
+	  background-color: #256cc6;
+	}
+	
+	th.th_train{
+	  width: 10%;
+	  
+	}
+	thead.thead_train tr th {
+	  color: white;
+	  height: 30px; 
+	}
+	.th_train{
+	  border-right: 2px solid white;
+	  border-left: 2px solid white;
+	  padding: 10px;
+	  text-align: center;
+	}
+	.th_train:last{
+	  border-left: 2px solid white;
+	  border-right: 2px solid white;
+	  padding: 10px;
+	  text-align: center;
+	}
+	tbody.tbody_train tr td{
+	  height: 50px;
+	  border-top: 2px solid #666;
+	  border-left: 1px solid lightblue;
+	}
+	.btnArea{
+		text-align: right;
+	}
+	button.btnHide{
+		display: none;
+	}
+	button.btnnext{
+		display: inline-block;
+	}
+	button.btnprev{
+		display: inline-block;
+	}
+	table.tInfo{
+		text-align: center;
+	  	width: 100%;
+		display: block;
+		width: 100%;
+	}

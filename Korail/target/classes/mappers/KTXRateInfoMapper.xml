@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.korail.client.reservation.dao.KTXRateInfoDAO">
+	<select id="getTrainRate" resultType="ktxRateInfoVO">
+		<!-- 요금정보 -->
+		SELECT * FROM KTXRATEINFO_TB		
+	</select>
+</mapper>

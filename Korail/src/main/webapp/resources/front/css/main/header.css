@@ -1,0 +1,94 @@
+@CHARSET "UTF-8";
+
+#headerWrap {
+	height: 15vh;
+}
+
+.sidegnb>ul {  
+  
+  	display: table;
+	margin: 0;
+	padding: 0;
+	height: 30px;
+	font-size: 0;
+	position: absolute;
+	top: 0;
+	right: 5%;
+	height: 25px;
+}
+
+.sidegnb>ul>li {
+  
+  display: table-cell;
+  vertical-align: middle;
+  width: 110px;
+  text-align: center;
+  width: 75px;
+}
+
+.sidegnb>ul>li>a {
+  width: 100%;
+	float: left;
+	font-size: 13px;
+}
+
+.maingnb {
+	text-align: center;
+	width: 100%;
+	background-color: #083b82;
+	padding: 0;
+	height: 60px;
+	top: 35px;
+}
+
+.maingnb ul {
+	height: 60px;
+	margin-top: 25px;
+}
+
+.maingnb ul li {
+	vertical-align: middle;
+	display: inline-block;
+	width: 15%;
+}
+
+.maingnb ul li a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	color: white;
+	display: block;
+	height: 60px;
+	line-height: 60px;
+}
+
+.maingnb ul li:hover {
+	background: #f5f5f5;
+}
+.maingnb ul div.logo:hover {
+	background: #083b82;
+}
+.maingnb ul li:hover>a {
+	color: black;
+}
+
+.maingnb ul li:hover>ul {
+	display: block;
+}
+
+.maingnb ul ul {
+    background: lightblue;
+    text-align: left;
+    display: none; 
+    position: absolute;
+    top: 60px;
+    left: 5%;
+    width: 90%;
+}
+.maingnb ul ul li a{
+	color: black;
+	text-align: center;
+}
+.logo > a img {
+    width: 100%;
+}

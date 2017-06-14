@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korail.batch.dao.KTXInfoDAO">
+	<insert id="trainPairingInsert" parameterType ="map">
+		INSERT ALL 
+		<foreach collection="trainInfoList" item="trainInfo">
+			INTO KTXINFO_TB (TRAINNAME, DEPPLACENAME, DEPPLANDTIME, ARRPLACENAME, ARRPlANDTIME, TAKETIME)
+			VALUES(KTXINFO_TB_SEQ_FUNC, #{trainInfo.depplaceName},#{trainInfo.depplandTime},#{trainInfo.arrplaceName},#{trainInfo.arrplandTime},#{trainInfo.takeTime})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+</mapper>
