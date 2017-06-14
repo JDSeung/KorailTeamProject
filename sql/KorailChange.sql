@@ -100,6 +100,7 @@
         SEATCOLUMN	    NUMBER	        NOT NULL                    --열
         
     ) nologging;
+    select * from SEAT_TB;
 
     /*좌석 테이블 시퀀스*/
     CREATE SEQUENCE SEAT_TB_SEQ
@@ -128,6 +129,8 @@
     START WITH 1 
     NOCYCLE;
     
+    
+    
     --출도착정보
     CREATE TABLE CITYACCOTTRAIN_TB(
         DEPID	        VARCHAR2(60)	NOT NULL,   --출발역ID
@@ -136,7 +139,7 @@
         ARRPLACENAME	VARCHAR2(200)	NOT NULL,   --도착역명
         CONSTRAINT CITYACCOTTRAIN_TB_KEY PRIMARY KEY (DEPID, ARRID, DEPPLACENAME, ARRPLACENAME)
     ) nologging;
-    
+    select * from CITYACCOTTRAIN_TB  where DEPPLACENAME like '여수%';
     SELECT  TRAINNAME,	    
                            DEPPLACENAME,	
                            TO_CHAR(TO_DATE(SUBSTR(DEPPLANDTIME,9,4),'HH24mi'),'HH24"시"mi"분"') as depPlandTime, 
@@ -147,8 +150,8 @@
                    FROM KTXINFO_TB
                    WHERE DEPPLACENAME = '서울' AND ARRPLACENAME = '부산'
                             AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') 
-                            	BETWEEN TO_DATE('2017061200','YYYYMMDDHH24') 
-                            	AND 	ROUND(TO_DATE('2017061200','YYYYMMDDHH24')+1);
+                            	BETWEEN TO_DATE('2017061400','YYYYMMDDHH24') 
+                            	AND 	ROUND(TO_DATE('2017061400','YYYYMMDDHH24')+1);
     SELECT COUNT(*)
 		FROM KTXINFO_TB
 		WHERE DEPPLACENAME = '서울' AND ARRPLACENAME = '부산'
@@ -175,7 +178,7 @@
                             AND  TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') BETWEEN  TO_DATE('2017061200','YYYYMMDDHH24') AND ROUND(TO_DATE('2017061300','YYYYMMDDHH24')+1)
              )
          WHERE RN>=31 AND RN <= 40);
-            
+            select * from KTXINFO_TB;
       
     CREATE TABLE KTXINFO_TB(
         TRAINNAME	    VARCHAR2(100)	NOT NULL	PRIMARY KEY	,               --차량명

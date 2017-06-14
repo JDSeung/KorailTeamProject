@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 import com.korail.client.paging.PagingComponent;
 import com.korail.client.reservation.dao.KTXInfoDAO;
 import com.korail.client.reservation.dao.KTXRateInfoDAO;
+import com.korail.client.reservation.dao.SeatDAO;
 import com.korail.client.reservation.dao.TicketingDAO;
 import com.korail.client.reservation.vo.KTXInfoVO;
 import com.korail.client.reservation.vo.KTXRateInfoVO;
+import com.korail.client.reservation.vo.SeatVO;
 import com.korail.client.reservation.vo.TicketingVO;
 
 @Service
@@ -28,6 +30,8 @@ public class ReservationServiceImpl implements ReservationService{
 	@Autowired
 	private TicketingDAO ticketingDAO;
 	
+	@Autowired
+	private SeatDAO seatDAO;
 	@Override
 	public Map<String, Object> getTrainInfo(KTXInfoVO ktxInfoVO, HttpServletRequest request) throws Exception {
 		/*열차정보 조회*/
@@ -100,4 +104,8 @@ public class ReservationServiceImpl implements ReservationService{
 		return ticketingDAO.setTicketing(ticketingVO);
 	}
 	
+	@Override
+	public List<SeatVO> getSeatInfo() throws Exception {
+		return seatDAO.getSeatInfo();
+	}
 }

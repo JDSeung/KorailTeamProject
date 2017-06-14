@@ -14,7 +14,7 @@
 		margin: 0 auto;
 		width: 80%;
 	}
-	#tbl_Train{
+	table.tbl_Train{
 		display: none;
 	}
 	
@@ -52,11 +52,29 @@
 	input.curruntPage{
 		display: none;
 	}
-	#trainInfoWrap{
+	.trainInfoWrap{
 	width: 80%;
 	margin: 0 auto;
+	height: 296px;
 	}
-	#trainInfoWrap{
-		height: 660px;
+	.traininfo{
+		height: 690px;
 	}
-	
+	.popSale{
+		display: none;
+	}
+	ul.trainNo li.vip{
+		margin: 8px;
+	}
+	p.vip_left{
+		margin-left: 16px;
+	}
+	p.vip_right{
+		margin-left: 7px;
+	}
+	p.standard_left{
+		margin-left: 15px;
+	}
+	p.standard_right{
+		margin-left: 3px;
+	}

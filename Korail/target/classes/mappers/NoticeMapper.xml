@@ -4,7 +4,7 @@
 
 <mapper namespace="com.korail.client.notice.dao.NoticeDAO">
 
-	<select id="getNoticeList"  resultType="com.korail.client.notice.vo.NoticeVO">
+	<select id="getNoticeList"  resultType="noticeVO">
 		<![CDATA[
 			SELECT *
 			FROM

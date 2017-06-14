@@ -22,7 +22,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table id= "tbl_Train">
+<table id= "tbl_Train" class= "tbl_Train">
  	<thead class= "thead_train">
 		<tr>
 			<th class="th_train">열 차 번 호</th>

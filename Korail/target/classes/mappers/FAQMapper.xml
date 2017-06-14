@@ -4,7 +4,7 @@
 
 <mapper namespace="com.korail.client.cscenter.dao.FAQDAO">
 
-	<select id="getFAQList" resultType="com.korail.client.cscenter.vo.FAQVO">
+	<select id="getFAQList" resultType="faqVO">
 		<![CDATA[
 			SELECT * 
 			FROM

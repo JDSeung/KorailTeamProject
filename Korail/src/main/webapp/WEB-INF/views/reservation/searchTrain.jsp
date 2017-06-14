@@ -20,8 +20,8 @@
 <script type="text/javascript" src="<%=rootJS%>basic.js" /></script>
 <link rel="stylesheet" href="<%=rootCss%>res/searchTrain.css">
 <script type="text/javascript" src="<%=rootJS%>res/searchTrain.js" /></script>
-<title>Insert title here</title>
-</head>
+<title>Korail</title>
+<c:set var="resInfoList" value="${resInfoList}" />  
 <body>
 	<jsp:include page="../main/header.jsp" />
 	<div id="wrap">
@@ -88,12 +88,18 @@
 						</table>
 						
 					</form>
-					<div id="dialog" title="역명조회">
+					<div id="dialog" title="Korail 역명조회">
 						<jsp:include page="stationPOPUP.jsp"></jsp:include>
+					</div>
+					<div id="popSale" class="popSale" title="Korail 운임요금조회">
+						<jsp:include page="salePOPUP.jsp"></jsp:include>
+					</div>
+					<div id="popSeat" class="popSale" title="Korail 좌석선택">
+						<jsp:include page="selectSeat.jsp"></jsp:include>
 					</div>
 					<section class="searchData">
 						<h2>열차정보</h2>
-						<div id="trainInfoWrap">
+						<div id="trainInfoWrap" class="trainInfoWrap">
 							<jsp:include page="trainInfo.jsp"></jsp:include>
 						</div>
 					</section>	
