@@ -112,7 +112,7 @@ public class TrainPairingServiceImpl implements TrainPairingService {
 		urlBuilder.append("&pageNo=1");
 		urlBuilder.append("&depPlaceId=" + depArrVo.getDepID());
 		urlBuilder.append("&arrPlaceId=" + depArrVo.getArrID());
-		urlBuilder.append("&depPlandTime=" + "20170614");
+		urlBuilder.append("&depPlandTime=" + "20170616");
 		urlBuilder.append("&trainGradeCode=" + "00");
 		System.out.println(urlBuilder.toString());
 		apiElements = connectURLServiceImpl.connectURL(urlBuilder);
