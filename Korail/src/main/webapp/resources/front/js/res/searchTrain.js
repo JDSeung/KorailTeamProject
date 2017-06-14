@@ -1,16 +1,32 @@
+var ktxInfoList;
+var ticketInfoList;
+var ktxRateInfoList;
+var totalPage;
+var curruntPage;
 $( function() {
-	var trainList;
+	$("#btnPrev").click(function(){
+		curruntPage = Number($("#curruntPage").val());
+		if(curruntPage >0){
+			$("#curruntPage").val(curruntPage-1);
+			getTrainInfo();
+		}
+	});
+	$("#btnNext").click(function(){
+		curruntPage = Number($("#curruntPage").val());
+
+		
+		if(curruntPage < totalPage-1){
+			$("#curruntPage").val(Number($("#curruntPage").val())+1);
+			getTrainInfo();
+		}
+	});
 	$("#getTicketingInfo").click(function(){
-		$.ajax({
-			url:"",
-			type:"POST",
-			dataType : 'json',
-			data:$("#searchForm").serialize(),
-			success:function(resultData){
-				trainList = resultData;
-				getTrainList(trainList);
-			}
-		});
+		if($("#depPlaceName").val() == $("#arrPlaceName").val()){
+			alert("출발지와 도착지가 같습니다.");
+			return;
+		}
+		$("#curruntPage").val(0);
+		getTrainInfo();
 	});
     var userType =['성인', '어린이', '경로'];
     for(i = 0; i<userType.length; i ++){
@@ -39,13 +55,61 @@ $( function() {
         }
     }
 } );
-function getTrainList(trainList){
-	$.each(trainList, function(idx, val) {
-		console.log("열차번호 :" + val.trainName);
-		console.log("출발역 :" + val.depPlaceName);
-		console.log("도착역 :" + val.arrPlaceName);
-		console.log("출발시각 :" + val.depPlandTime);
-		console.log("도착시각 :" + val.arrPlandTime);
-		console.log("소요시각 :" + val.takeTime);
+function getTrainInfo(){
+	$.ajax({
+		url:"",
+		type:"POST",
+		dataType : 'json',
+		data:$("#searchForm").serialize(),
+	   success:function(resultData){
+				$("#tbl_Train tr:not(:first)").remove();
+				ktxInfoList = resultData.ktxInfoList;
+				ticketInfoList = resultData.ticketInfoList;
+				ktxRateInfoList = resultData.ktxRateInfoList;
+				totalPage = resultData.pagingComponent.totalPage;
+				if(ktxInfoList.length == 0){
+				    $("#tbl_Train").css('display','none');
+					alert("조회된 정보가 없습니다.");
+				    $("#btnNext").css('display','none');
+				    $("#btnPrev").css('display','none');
+				    return;
+				}
+				var ticketingNow = 0;
+				if(ticketInfoList == null ){
+					$.each(ticketInfoList, function(idx1, val) {
+						var ticketingETC = Number(val.ticketingETC);
+						if(ticketingETC == 2){
+							ticketingNow++;
+						}
+					});
+				}
+				
+				$.each(ktxInfoList, function(idx1, val) {
+				    var row = '<tr>';
+				    row += '<td>KTX'+val.trainName+'</td>';
+				    row += '<td>'+(val.depPlaceName+'<br/>'+val.depPlandTime)+'</td>';
+				    row += '<td>'+(val.arrPlaceName+'<br/>'+val.arrPlandTime)+'<br/></td>';
+				    row += '<td><button  class="ui-button ui-corner-all ui-widget" >조회</button></td>';
+				    row += '<td><button  class="ui-button ui-corner-all ui-widget" >조회</button></td>';
+				    row += '<td>' +ticketingNow +'명</td>';
+				    row += '<td><button class="ui-button ui-corner-all ui-widget" >조회</button></td>';
+				    row += '<td>'+ val.takeTime +'</tr>';
+				    $("#tbl_Train tbody").append(row);
+			   });
+				
+				var curruntPage = Number($("#curruntPage").val());
+				if(0< curruntPage && curruntPage <totalPage-1){
+					$("#btnNext").css('display','inline-block');
+					$("#btnPrev").css('display','inline-block');
+				}else if(totalPage-1 == curruntPage){
+					$("#btnNext").css('display','none');
+					$("#btnPrev").css('display','inline-block');
+				}else {
+					$("#btnNext").css('display','inline-block');
+					$("#btnPrev").css('display','none');
+				}
+				$("#tbl_Train").css('display','block');
+			   
+		}
 	});
 }

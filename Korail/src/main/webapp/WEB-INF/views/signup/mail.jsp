@@ -12,6 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>본인 인증 || 회원가입 Korail</title>
+<<<<<<< HEAD
 <script type="text/javascript" src="<%=root%>jquery-3.2.1.min.js" /></script>
 <script type="text/javascript" src="<%=root%>jquery/jquery-ui.js" /></script>
 <link rel="stylesheet" href="<%=rootJquery%>jquery-ui.css">
@@ -20,6 +21,10 @@
 <link rel="stylesheet" href="<%=rootCss%>basic.css">
 <link rel="stylesheet" href="<%=rootCss%>signup/mail.css" />
 <script type="text/javascript" src="<%=rootJS%>signup/mail.js"></script>
+=======
+<link rel="stylesheet" href="<%=root%>/resources/front/css/main/basic.css" />
+<link rel="stylesheet" href="<%=root%>/resources/front/css/signup/mail.css" />
+>>>>>>> b4b8be81163f02523b6c11eef63a983a4546f169
 </head>
 <body>
 	<div class="header">

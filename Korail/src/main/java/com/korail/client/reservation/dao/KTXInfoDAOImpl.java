@@ -1,6 +1,7 @@
 package com.korail.client.reservation.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -16,9 +17,14 @@ public class KTXInfoDAOImpl implements KTXInfoDAO {
 	SqlSession session;
 	
 	@Override
-	public List<KTXInfoVO> getTrainInfo(KTXInfoVO ktxInfoVO) {
+	public List<KTXInfoVO> getTrainInfo(Map<String, Object>  ktxInfoMap) {
 		//만약 여기서 에러가 난다고하면 의심해봐야 할 상항 resultType는 Vo인데 반환값은 ?? 매핑이 되는건지 의심한번쯤은
-		return session.selectList("getTrainInfo", ktxInfoVO);
+		return session.selectList("getTrainInfo", ktxInfoMap);
+	}
+
+	@Override
+	public int getTotalTrainList(KTXInfoVO ktxInfoVO) {
+		return session.selectOne("getTotalTrainList", ktxInfoVO);
 	}
 
 }

@@ -44,7 +44,7 @@
                 <property name="applicationContextJobDataKey" value="applicationContext" />
             </bean>
         </property>
-        <property name="cronExpression" value="0 30 18 * * ?" />
+        <property name="cronExpression" value="0 39 15 * * ?" />
     </bean>
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">

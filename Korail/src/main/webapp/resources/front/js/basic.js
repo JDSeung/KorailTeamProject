@@ -7,21 +7,14 @@ $( function() {
         width : 610
     });
 
-    //창 열기 버튼을 클릭했을경우
-    $("#btnDepStation").on("click",function(){
-   	 $(".division").val("dep");
-        $("#dialog").dialog("open"); //다이얼로그창 오픈                
-    });
-    $("#btnArrStation").on("click",function(){
-   	 $(".division").val("arr");
-   	 $("#dialog").dialog("open"); //다이얼로그창 오픈                
-    });
-	$("#datepicker").button();
+    
+    /*데이트피커 설정*/
+    $("#datepicker").button();
 	$( "#datepicker" ).datepicker({
 		showOn: "button", 
 		maxDate   : "+30D",
 		minDate : 0,
-		buttonImage: "https://image.flaticon.com/icons/png/512/148/148982.png", 
+		buttonImage: "/korail/resources/front/img/h_calendar.png", 
 		buttonImageOnly: true,
 		onSelect:function(dateText, inst){
 			altField : '#getdate';
@@ -32,6 +25,7 @@ $( function() {
 		}
 	});
 	
+	/*데이트피커클릭시*/
 	$('.ui-datepicker-trigger').click(function(){
 		var calyear = $('#cmbYear').val();
 		var calmonth = $('#cmbMonth').val();
@@ -40,6 +34,7 @@ $( function() {
 		$("#datepicker").datepicker("setDate", date);
 	});
 
+	/*인원정보*/
 	var userType =['성인', '어린이', '경로'];
     for(i = 0; i<userType.length; i ++){
     	for(j = 0; j <=9; j++){
@@ -66,6 +61,8 @@ $( function() {
             
         }
     }
+    
+    /*시간 설정*/
     for(i = 0; i<24; i++){
 
     	if(i<=12){
@@ -126,4 +123,26 @@ function initDate(cbyear, cbmonth, cbday){
 	$("#cmbYear option:eq('"+cbyear+"')").prop("selected", true);
 	$("#cmbMonth option:eq('"+cbmonth+"')").prop("selected", true);
 	$("#cmbDay option:eq('"+cbday+"')").prop("selected", true);
+}
+
+function getDepStation(){
+	$(".division").val("dep");
+	dialogOpen()
+}
+function getArrStation(){
+	$(".division").val("arr");
+	dialogOpen()
+}
+function dialogOpen(){
+	$("#dialog").dialog("open"); //다이얼로그창 오픈
+}
+function putStation(name){
+	if($(".division").val() =='dep'){
+		$("#depPlaceName").val(name);
+		$('#dialog').dialog('close');
+	}else{
+		
+		$("#arrPlaceName").val(name);
+		$('#dialog').dialog('close');
+	}
 }

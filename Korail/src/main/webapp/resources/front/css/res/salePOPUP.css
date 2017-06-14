@@ -1,0 +1,14 @@
+	@CHARSET "UTF-8";
+	.saleSerch h3{
+	   font-weight: normal;
+	   w100
+	}
+	table.tblSale{
+	  border: 1px solid #000;
+	  text-align: center;
+	}
+	
+	td {
+	  padding: 10px;
+	  border: 1px solid #000;
+	}

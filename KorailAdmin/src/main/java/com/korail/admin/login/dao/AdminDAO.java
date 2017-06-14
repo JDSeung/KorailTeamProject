@@ -1,5 +1,7 @@
 package com.korail.admin.login.dao;
 
-public interface AdminDAO {
+import com.korail.admin.login.vo.AdminVO;
 
+public interface AdminDAO {
+	public AdminVO adminLogin(String adminId, String adminPw);
 }
