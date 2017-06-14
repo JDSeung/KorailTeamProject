@@ -17,11 +17,11 @@ public class AdminDAOImpl implements AdminDAO{
 	
 	@Override
 	public AdminVO adminLogin(String adminId, String adminPw) {
-		Map<String, String> paramMap = new HashMap<String, String>();
-		paramMap.put("adminId", adminId);
-		paramMap.put("adminPw", adminPw);
+		AdminVO adminVO = new AdminVO();
+		adminVO.setAdminId(adminId);
+		adminVO.setAdminPw(adminPw);
 		
-		return session.selectOne("adminLogin", paramMap);
+		return null;
 	}
 
 }

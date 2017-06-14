@@ -27,13 +27,14 @@ public class LoginMgrController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView adminLogin(AdminVO adminVO, HttpSession session, HttpServletRequest request){
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:");
 		
 		AdminVO loginAdmin = loginService.adminLogin(adminVO.getAdminId(), adminVO.getAdminPw());
 		
 		if(loginAdmin != null){
-			session.setAttribute("mgr", loginAdmin);
+			session.setAttribute("login", loginAdmin);
 			mav.setViewName("/admin/success");
+		}else{
+			mav.setViewName("redirect:login");
 		}
 		return mav;
 	}
