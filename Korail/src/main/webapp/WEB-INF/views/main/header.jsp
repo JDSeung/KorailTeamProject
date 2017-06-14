@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="<%=root%>/resources/front/css/basic.css">
 <link rel="stylesheet" href="<%=root%>/resources/front/css/main/header.css">
 <script type="text/javascript" src="<%=root%>/resources/front/js/main/header.js"></script>
 <title>Insert title here</title>

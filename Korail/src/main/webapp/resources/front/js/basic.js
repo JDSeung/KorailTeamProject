@@ -4,8 +4,9 @@ $( function() {
         modal:true, //모달대화상자
         resizable:false, //크기 조절 못하게
         height : 500,
-        width : 590
+        width : 610
     });
+
     
     /*데이트피커 설정*/
     $("#datepicker").button();
@@ -88,7 +89,6 @@ $( function() {
     }
     setDate();
 }); 
-/*날짜 추가*/
 function fn_GetDay(){
 	var day = 32 - new Date($('#cmbYear').val(), $('#cmbMonth').val()-1, 32).getDate();
 	 for(i = 1; i<=day; i++){
@@ -96,7 +96,6 @@ function fn_GetDay(){
 	    	$('#cmbDay').append(option);
 	    }
 };
-/*예매 가능 날짜 여부 확인*/
 function fn_validateDay(){
 	var cbyear = $('#cmbYear option:selected').val();
     var cbmonth = $('#cmbMonth').val();
@@ -113,8 +112,6 @@ function fn_validateDay(){
 		setDate();
 	}
 };
-
-/*날짜 가져오기*/
 function setDate(){
     var date = new Date();
 	var year = date.getFullYear();
@@ -122,25 +119,22 @@ function setDate(){
 	var day = date.getDate()-1;
 	initDate(year, month, day);
 }
-/*날짜 cmb에 입력하기*/
 function initDate(cbyear, cbmonth, cbday){
 	$("#cmbYear option:eq('"+cbyear+"')").prop("selected", true);
 	$("#cmbMonth option:eq('"+cbmonth+"')").prop("selected", true);
 	$("#cmbDay option:eq('"+cbday+"')").prop("selected", true);
 }
-/*출발역 클릭시*/
+
 function getDepStation(){
 	$(".division").val("dep");
 	dialogOpen()
 }
-/*도착역 클릭시*/
 function getArrStation(){
 	$(".division").val("arr");
 	dialogOpen()
 }
-/*다이얼로그 창 오픈*/
 function dialogOpen(){
-	$("#dialog").dialog("open"); 
+	$("#dialog").dialog("open"); //다이얼로그창 오픈
 }
 function putStation(name){
 	if($(".division").val() =='dep'){
@@ -150,10 +144,5 @@ function putStation(name){
 		
 		$("#arrPlaceName").val(name);
 		$('#dialog').dialog('close');
-	}
-	/*테이블 초기화*/
-	if($("#tbl_Train").hasClass("tInfo") === true) {
-		$("#tbl_Train").removeClass("tInfo")
-		$("#tbl_Train tr:not(:first)").remove();
 	}
 }

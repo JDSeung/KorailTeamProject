@@ -9,6 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="<%=root%>/resources/front/css/basic.css">
 <link rel="stylesheet" href="<%=root%>/resources/front/css/main/footer.css">
 <title>Insert title here</title>
 </head>

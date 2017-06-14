@@ -4,7 +4,7 @@
   
 <mapper namespace="com.korail.client.reservation.dao.KTXRateInfoDAO">
 	<select id="getTrainRate" resultType="ktxRateInfoVO">
-		요금정보
+		<!-- 요금정보 -->
 		SELECT * FROM KTXRATEINFO_TB		
 	</select>
 </mapper>

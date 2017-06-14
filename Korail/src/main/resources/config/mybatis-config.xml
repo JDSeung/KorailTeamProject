@@ -7,9 +7,5 @@
 		<typeAlias type="com.korail.client.reservation.vo.KTXInfoVO" alias="ktxInfoVO"/>
 		<typeAlias type="com.korail.client.reservation.vo.KTXRateInfoVO" alias="ktxRateInfoVO"/>
 		<typeAlias type="com.korail.client.reservation.vo.TicketingVO" alias="ticketingVO"/>
-		<typeAlias type="com.korail.client.cscenter.vo.FAQVO" alias="faqVO"/>
-		<typeAlias type="com.korail.client.notice.vo.NoticeVO" alias="noticeVO"/>
-		<typeAlias type="com.korail.client.user.vo.EmailVO" alias="emailVO"/>
-		<typeAlias type="com.korail.client.reservation.vo.SeatVO" alias="seatVO"/>
 	</typeAliases>
 </configuration>

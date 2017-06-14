@@ -1,21 +1,23 @@
 @CHARSET "UTF-8";
 
 html body {
-   height: 80%;
+   height: 100%;
    
 }
 
-#mailwrap{
-	height: 100%;
+.mailWrap {
+   height: 70vh;
+   background: #adadad;
 }
+
 .header {
    height: 15vh;
 }
 
 
-#mailcontainer {
+.container {
    margin: 0 auto;
-   width: 90%;
+   width: 80%;
    height: 100%;
    background: white;
 }
@@ -29,7 +31,7 @@ html body {
 
 .content {
    margin-top: 2%;
-   height: 56.4vh;
+   
 }
 
 .content>h3 {
@@ -43,7 +45,7 @@ html body {
    padding-left: 2%;
 }
 
-.content>#mail {
+form {
    margin: auto;
    margin-top: 6.5%;
    text-align: center;
@@ -55,11 +57,11 @@ html body {
    border-radius: 10px;
 }
 
-.content>#mail>ul>li {
+form>div>ul>li {
    line-height: 500%;
 }
 
-.content>#mail>ul>li>a {
+form>div>ul>li>a {
    background: #3333cc;
    border-radius: 5px;
    padding-left: 6%;
@@ -68,15 +70,14 @@ html body {
    padding-bottom: 1.4%;
    font-size: 2em;
 }
-
-button.ui-button {
-	width: 250px;
-	height: 50px;
+/*색상 변경 안됨.*/
+.validation:link{
+   color: white;
+}
+.validation:visited {
+   color: white;
 }
 
 .footer {
    height: 15vh;
-}
-#maildialog {
-	display: none;
 }
