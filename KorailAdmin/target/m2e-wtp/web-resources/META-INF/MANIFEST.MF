@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: Sung
-=======
-Built-By: user2
->>>>>>> d820d270b44245d02691aa984ca12e82a3924a21
-Build-Jdk: 1.8.0_111
-Created-By: Maven Integration for Eclipse
-
