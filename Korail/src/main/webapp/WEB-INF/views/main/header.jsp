@@ -22,7 +22,7 @@
                         <li><a href="/korail/">HOME</a></li>
                         <li><a href="/korail/login/">로그인</a></li>
                         <li><a href="/korail/user/">마이페이지</a></li>
-                        <li><a href="/korail/mail/">회원가입</a></li>
+                        <li><a href="/korail/signup/">회원가입</a></li>
                         <li><a href="/korail/faqboard/">고객센터</a></li>
                         <li><a href="#">사이트맵</a></li>
                      </ul>

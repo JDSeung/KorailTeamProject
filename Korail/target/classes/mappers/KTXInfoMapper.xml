@@ -4,7 +4,7 @@
   
 <mapper namespace="com.korail.client.reservation.dao.KTXInfoDAO">
 	<select id="getTrainInfo" resultType="ktxInfoVO" parameterType="ktxInfoVO">
-		<!-- 열차조회 -->
+		열차조회
 		SELECT * 
 		FROM KTXINFO_TB
 		WHERE DEPPLACENAME = #{depPlaceName} AND ARRPLACENAME = #{arrPlaceName}
@@ -12,7 +12,7 @@
 		ORDER BY  TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') ASC
 	</select>
 	<select id="getTrainRate" resultType="ktxRateInfoVO">
-		<!-- 요금정보 -->
+		요금정보
 		SELECT * FROM KTXRATEINFO_TB		
 	</select>
 </mapper>

@@ -4,7 +4,7 @@
 
 <mapper namespace="com.korail.client.reservation.dao.TicketingDAO">
 	<select id="getTicketingInfo" resultType="ticketingVO" parameterType="ticketingVO">
-		<!-- 내 예매 정보, 전체 예매 정보  -->
+		내 예매 정보, 전체 예매 정보 
 		SELECT * 
 		FROM TICKETING_TB
 		<where>
@@ -14,13 +14,13 @@
 		</where>
 	</select>
 	<select id="getTicketInfo" resultType="ticketingVO">
-		<!-- 2 = 현재 발권중인 사람 예매페이지에서 예약대기에 들어갈 항목. -->
+		2 = 현재 발권중인 사람 예매페이지에서 예약대기에 들어갈 항목.
 		SELECT COUNT(*)
 		FROM TICKETING_TB
 		WHERE TICKETINGETC = '2' AND  TICKETINGETC = '3'
 	</select>
 	<insert id="setTicketing" parameterType="ticketingVO">
-		<!-- 예매 -->
+		예매
 		INSERT INTO
 		TICKETING_TB   (TICKETINGNO, USERNO, TRAINNAME, 
 						RIDEDATE, DEPPLACENAME, DEPPLANDTIME, 

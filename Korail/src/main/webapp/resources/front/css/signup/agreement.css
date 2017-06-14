@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+.container>.agreement1 {
+	overflow: hidden;
+	margin: 0 auto;
+	padding: 20px 0;
+	border-top: 1px solid #cdcdcd;
+}
+
+.agreement1>.agment {
+	overflow: hidden;
+	margin: 0 auto;
+	width: 75%;
+}
+
+.textarea {
+	margin: 0 auto;
+	overflow-y: scroll;
+	height: 162px;
+	width: 90%;
+	padding: 0 15px;
+	border: 1px solid #e5e5e5;
+	font-size: 11px;
+	text-align: left;
+	color: #767779;
+}
+
+.agcontent>h4 {
+	margin-top: 2%;
+	margin-left: 4%;
+}
+
+.consent {
+	text-align: right;
+	margin-right: 4%;
+}
+
+.agreement1>.agment>.goEnterinfo>.allConsent {
+	text-align: center;
+}
+
+.agbottom {
+	text-align: center;
+}
+
+button.ui-button {
+	width: 150px;
+	height: 40px;
+}

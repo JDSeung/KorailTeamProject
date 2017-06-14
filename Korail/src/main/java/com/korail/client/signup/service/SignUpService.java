@@ -1,5 +1,14 @@
 package com.korail.client.signup.service;
 
+import com.korail.client.user.vo.EmailVO;
+import com.korail.client.user.vo.UserVO;
+
 public interface SignUpService {
-	/*슬기형*/
+	
+	//회원가입
+	public int signup(UserVO userVO,EmailVO emailVO);
+	
+	
+	
 }
+
