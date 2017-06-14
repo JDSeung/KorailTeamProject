@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korail.admin.login.dao.AdminDAO">
+
+	<select id="adminLogin" parameterType="login" resultType="login">
+		SELECT
+			ADMINNO,
+			ADMINID,
+			ADMINPW,
+			ADMINNAME,
+			ADMINGRADE
+		FROM ADMIN_TB
+		WHERE ADMINID = #{ADMINID} AND ADMINPW = #{ADMINPW}
+	</select>
+
+</mapper>
