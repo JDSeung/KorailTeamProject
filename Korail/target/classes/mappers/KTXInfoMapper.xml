@@ -3,6 +3,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.korail.client.reservation.dao.KTXInfoDAO">
+<<<<<<< HEAD
+	<select id="getTrainInfo" resultType="ktxInfoVO" parameterType="ktxInfoVO">
+		열차조회
+		SELECT * 
+		FROM KTXINFO_TB
+		WHERE DEPPLACENAME = #{depPlaceName} AND ARRPLACENAME = #{arrPlaceName}
+				AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') >= TO_DATE(#{depPlandTime},'YYYYMMDDHH24')
+		ORDER BY  TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') ASC
+	</select>
+	<select id="getTrainRate" resultType="ktxRateInfoVO">
+		요금정보
+		SELECT * FROM KTXRATEINFO_TB		
+=======
 	<select id="getTrainInfo" resultType="ktxInfoVO" parameterType="java.util.Map">
 		<!-- 열차조회 -->
 		<![CDATA[SELECT *
@@ -28,5 +41,6 @@
              	AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') 
              		BETWEEN TO_DATE(#{depPlandTime},'YYYYMMDDHH24') 
              		AND 	ROUND(TO_DATE(#{depPlandTime},'YYYYMMDDHH24')+1)
+>>>>>>> b4b8be81163f02523b6c11eef63a983a4546f169
 	</select>
 </mapper>
