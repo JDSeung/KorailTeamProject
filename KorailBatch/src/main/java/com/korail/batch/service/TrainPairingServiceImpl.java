@@ -53,7 +53,7 @@ public class TrainPairingServiceImpl implements TrainPairingService {
 	private ConnectURLServiceImpl connectURLServiceImpl;
 	private StringBuilder urlBuilder = null;
 	private String url = "";
-	private String serviceKey = "?serviceKey=vEHxab430htbo5U2QtyuoviFGJ8E%2BG6zotOMd0z2%2BTjRDoQMdfAd7JgejkasxOEuSQaQlwAVWk2MxSIBNvIDKw%3D%3D";
+	private String serviceKey = "?serviceKey=EWaIWoYFWMoi3L9NF4%2BP5RVNrq1osLe37eLwQl7hRAhiFSQpFK3i8mOg0Te%2Fd%2Fw4QTE4aZiNB0FZ%2BLQc8l%2FI0w%3D%3D";
 	private Elements apiElements = null;
 	private List<CityAccotTrainVO> cityAccottrainList= null;
 	private List<KTXInfoVO> trainInfoList= null;
@@ -112,7 +112,7 @@ public class TrainPairingServiceImpl implements TrainPairingService {
 		urlBuilder.append("&pageNo=1");
 		urlBuilder.append("&depPlaceId=" + depArrVo.getDepID());
 		urlBuilder.append("&arrPlaceId=" + depArrVo.getArrID());
-		urlBuilder.append("&depPlandTime=" + "20170616");
+		urlBuilder.append("&depPlandTime=" + "20170706");
 		urlBuilder.append("&trainGradeCode=" + "00");
 		System.out.println(urlBuilder.toString());
 		apiElements = connectURLServiceImpl.connectURL(urlBuilder);

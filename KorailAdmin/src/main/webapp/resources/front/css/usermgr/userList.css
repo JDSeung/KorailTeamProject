@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+	.userWrap {
+	    height: 75vh;
+	}
+	section>h2 {
+		color: #424242;
+		word-spacing: 0.8em;
+	    display: block;
+	    font-size: 2.0em;
+	    padding: 1% 1% 1% 10%;
+	}
+	.searchNavi{
+		margin-bottom: 3px;
+		text-align: right;
+	}
+	button.swrite{
+	    float: right;
+    	right: 4em;
+    	position: absolute;
+	}
+	table.usertbl {
+	    width: 100%;
+	    text-align: center;
+	    margin: 2vh auto 0;
+	    border-top: 2px solid #0097d0;
+	    border-collapse: collapse;
+	}
+	table.usertbl thead{
+		word-spacing: 0.5em;
+	    text-align: center;
+		background-color: #f8f8f8;
+		font-size: 1em;
+	
+	}
+	table.usertbl thead tr{
+		height: 5vh;
+	}
+	table.usertbl thead tr th{
+		border-left: gray 1.5px solid;
+	}
+	table.usertbl thead tr th:first-child{
+		border-left: none;
+	}
+	table.usertbl tbody tr {
+		height: 4vh;
+	}
+	table.usertbl tbody tr td span{
+		display: inline-block;
+		text-align: center;
+	}
+	table.usertbl tbody tr:hover {
+		background: #cfcfcf;
+	}
+	table.usertbl tbody tr:hover a.title{
+		text-decoration: underline;
+	}
+	table.usertbl tbody tr td{
+	    font-size: 1em;
+	}
+	.pagingNavi  {
+		margin-top: 3vh;
+	    text-align: center;
+	}
+	a.pagenavi{
+		font-size: 1.13em;
+	    padding: 3px;
+	}
+	a.btnarrow img {
+	    width: 30px;
+	    height: 30px;
+	}
+	a:hover {
+	    cursor: pointer;
+	}
+	a.active{
+		text-decoration: underline;
+	}
+	select.keyWordType{
+		text-align: center;
+	    width: 100px;
+    	height: 30px;
+	}

@@ -1,0 +1,122 @@
+@CHARSET "UTF-8";
+
+section>h2 {
+    color: #424242;
+    word-spacing: 0.8em;
+    display: block;
+    font-size: 2.0em;
+    padding: 1% 1% 1% 10%;
+}
+.loginContent {
+	width: 90%;
+	margin: 0 auto;
+	height: 49.8vh;
+	margin-top: 5em;
+	margin-bottom: 3em;
+}
+
+.loginCenter {
+	border: 1px solid;
+	width: 90%;
+	height: 300px;
+	margin: 0 auto;
+	position: relative;
+	
+}
+.loginCenter>#idAndpw{
+	margin-left: 5%;
+}
+
+.box1 {
+	margin-top: 4%;
+	margin-left: 2%;
+	width: 55%;
+	height: 70%;
+	border-right: 1px solid;
+}
+
+.box1>ul {
+	position: relative;
+	margin-left: 1%;
+    margin-top: 4em;
+	
+}
+.box1>ul>li{
+	margin-top: 2%;
+}
+
+.box1>ul>li>label {
+    text-align: center;
+    display: inline-block;
+    width: 7em;
+}
+
+
+.box1>ul>.loginBtn {
+	position: absolute;
+	right: 0;
+	top: -10px;
+	margin-right: 3%;
+}
+
+
+.box2 {
+    margin-top: 2em;
+	margin-right: 0.3em;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 85%;
+}
+p#idAndpw {
+    display: inline-block;
+}
+
+
+input{
+	width: 180px;
+	height: 30px;
+	
+}
+
+div.aha>p {
+	margin-top: 7%;
+	margin-left: -4%;
+}
+div.aha>p>button{
+	width: 150px;
+}
+
+.buttons {
+	position: absolute;
+	left: 8%;
+}
+.ui-okBtn{
+	width: 110px;
+	height: 80px;
+}
+.box2>p{
+	margin-top: 2%;
+}
+.box2>ul{
+	margin-top: 10%;
+	margin-left: 20%;
+}
+.box2>ul>li{
+	margin-top: 7%;
+}
+.box2>ul>li>button{
+	width: 180px;
+}
+.aha {
+    margin-top: 2.5em;
+    text-align: center;
+}
+.box2>p {
+    margin-top: 2em;
+}
+p#idAndpw {
+    display: inline-block;
+    margin-top: 1em;
+    margin-left: 2em;
+}

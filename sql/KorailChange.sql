@@ -14,7 +14,6 @@
         USERETC	        VARCHAR2(1)	    NOT NULL,		                --비고 회원은 0 탈퇴는 1
         USERJOINDATE	DATE	        DEFAULT SYSDATE NOT NULL		--가입일
     ) nologging;
-    
     /*회원 테이블 시퀀스*/
     CREATE SEQUENCE USER_TB_SEQ
     MINVALUE 1 
@@ -49,7 +48,7 @@
     INCREMENT BY 1 
     START WITH 1 
     NOCYCLE;
-    
+   
     --QNA테이블
     CREATE TABLE QNA_TB(
         QNANO	        NUMBER		    NOT NULL	    PRIMARY KEY	,                           --글번호
@@ -63,7 +62,7 @@
         QNAATTACHMENTS	VARCHAR2(100)	DEFAULT 'N'	NOT NULL,                                   --첨부파일
         ISPUBLIC	    VARCHAR2(1)	    DEFAULT '0'	NOT NULL	                                --글공개여부0-공개 1-비공개
     ) nologging;
-    
+  
     /*QNA 테이블 시퀀스*/
     CREATE SEQUENCE QNA_TB_SEQ
     MINVALUE 1 
@@ -71,7 +70,8 @@
     INCREMENT BY 1 
     START WITH 1 
     NOCYCLE;
-    
+    delete from    QNA_TB;
+    commit;
     --공지사항테이블
     CREATE TABLE NOTICE_TB(
         NOTICENO	        NUMBER		    NOT NULL	PRIMARY KEY	,                   --글번호
@@ -139,47 +139,9 @@
         ARRPLACENAME	VARCHAR2(200)	NOT NULL,   --도착역명
         CONSTRAINT CITYACCOTTRAIN_TB_KEY PRIMARY KEY (DEPID, ARRID, DEPPLACENAME, ARRPLACENAME)
     ) nologging;
-    select * from CITYACCOTTRAIN_TB  where DEPPLACENAME like '여수%';
-    SELECT  TRAINNAME,	    
-                           DEPPLACENAME,	
-                           TO_CHAR(TO_DATE(SUBSTR(DEPPLANDTIME,9,4),'HH24mi'),'HH24"시"mi"분"') as depPlandTime, 
-                           ARRPLACENAME,
-                           TO_CHAR(TO_DATE(SUBSTR(ARRPLANDTIME,9,4),'HH24mi'),'HH24"시"mi"분"')	as arrPlandTime,
-                           TAKETIME,
-                           ROW_NUMBER() OVER( ORDER BY DEPPLANDTIME ASC) AS RN
-                   FROM KTXINFO_TB
-                   WHERE DEPPLACENAME = '서울' AND ARRPLACENAME = '부산'
-                            AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') 
-                            	BETWEEN TO_DATE('2017061400','YYYYMMDDHH24') 
-                            	AND 	ROUND(TO_DATE('2017061400','YYYYMMDDHH24')+1);
-    SELECT COUNT(*)
-		FROM KTXINFO_TB
-		WHERE DEPPLACENAME = '서울' AND ARRPLACENAME = '부산'
-             	AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') 
-             		BETWEEN TO_DATE('2017061200','YYYYMMDDHH24') 
-             		AND 	ROUND(TO_DATE('2017061200','YYYYMMDDHH24')+1);
+    select count(*) from KTXINFO_TB;
     --KTX정보
-        SELECT  COUNT(*)
-        FROM KTXINFO_TB
-        WHERE DEPPLACENAME = '서울' AND ARRPLACENAME = '부산'
-        AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') >= TO_DATE('2017061200','YYYYMMDDHH24');
-        
-        SELECT *
-        FROM(SELECT *
-             FROM (SELECT  TRAINNAME,	    
-                           DEPPLACENAME,	
-                           TO_CHAR(TO_DATE(SUBSTR(DEPPLANDTIME,1,12),'YYMMDDHH24mi'),'YY"년"MM"월"DD"일"HH24"시"mi"분"') as depPlandTime, 
-                           ARRPLACENAME,
-                           TO_CHAR(TO_DATE(SUBSTR(ARRPLANDTIME,1,12),'YYMMDDHH24mi'),'YY"년"MM"월"DD"일"HH24"시"mi"분"')	as arrPlandTime,
-                           TAKETIME,
-                           ROW_NUMBER() OVER( ORDER BY depPlandTime ASC) AS RN
-                   FROM KTXINFO_TB
-                   WHERE DEPPLACENAME = '서울' AND ARRPLACENAME = '부산'
-                            AND  TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') BETWEEN  TO_DATE('2017061200','YYYYMMDDHH24') AND ROUND(TO_DATE('2017061300','YYYYMMDDHH24')+1)
-             )
-         WHERE RN>=31 AND RN <= 40);
-            select * from KTXINFO_TB;
-      
+    select * from KTXINFO_TB;
     CREATE TABLE KTXINFO_TB(
         TRAINNAME	    VARCHAR2(100)	NOT NULL	PRIMARY KEY	,               --차량명
         DEPPLACENAME	VARCHAR2(200)	NOT NULL,                               --출발역명
@@ -188,17 +150,13 @@
         ARRPLANDTIME	VARCHAR2(14)	NOT NULL,                               --도착시각
         TAKETIME	    VARCHAR2(7)	    NOT NULL                                --소요시간
     ) nologging;
-     SELECT * 
-     FROM KTXINFO_TB
-     WHERE to_date(SUBSTR(DEPPLANDTIME,1,8),'yyyymmdd') = TO_DATE('20170612','YYYYMMDD');
-    SELECT TO_CHAR(SYSDATE, 'yyyymmdd') FROM dual;
-    SELECT count(*)  from KTXINFO_TB;
     --예매테이블
+
     CREATE TABLE TICKETING_TB(
         TICKETINGNO	    NUMBER          NOT NULL	PRIMARY KEY,                        --예매번호
         USERNO	        NUMBER	        NOT NULL	REFERENCES USER_TB(USERNO),         --회원번호
         TRAINNAME	    VARCHAR2(100)	NOT NULL	REFERENCES KTXINFO_TB(TRAINNAME),   --차량번호
-        RIDEDATE	    DATE            NOT NULL,                                       --승차일자
+        TRAINNO	        VARCHAR2(100)	NOT NULL,                                       --열차호수
         VEHICLEKNDNM	VARCHAR2(60)	DEFAULT 'KTX'	NOT NULL,                       --열차종별
         DEPPLACENAME	VARCHAR2(200)	NOT NULL,                                       --출발역
         DEPPLANDTIME	VARCHAR2(14)	NOT NULL,                                       --출발시각
@@ -241,6 +199,7 @@
                             SEATROW,
                             SEATCOLUMN)
                     VALUES (SEAT_TB_SEQ.NEXTVAL,'특실', 3,11);
+    SELECT * FROM USER_tB;
     INSERT INTO USER_TB
                 ( USERNO, 
                   USERID, 
@@ -631,7 +590,34 @@
                             '자주묻는질문 내용5'
                         );
                         
-    INSERT INTO QNA_TB(
+  
+INSERT INTO KTXRATEINFO_TB (TRAINNO,
+                                ADMINNO,
+                                SEATDIVISION,
+                                ADULTRATE,
+                                CHILDRATE,
+                                SENIORRATE)
+                        VALUES( KTXRATEINFO_TB_SEQ.NEXTVAL,
+                                '001',
+                                '일반',
+                                '59800',
+                                '29900',
+                                '59800');
+                                
+    INSERT INTO KTXRATEINFO_TB (TRAINNO,
+                                ADMINNO,
+                                SEATDIVISION,
+                                ADULTRATE,
+                                CHILDRATE,
+                                SENIORRATE)
+                        VALUES( KTXRATEINFO_TB_SEQ.NEXTVAL,
+                                '001',
+                                '특실',
+                                '83700',
+                                '53800',
+                                '83700');
+                                
+                                INSERT INTO QNA_TB(
                         QNANO,
                         USERNO,
                         QNAWRITER,
@@ -745,29 +731,4 @@
                        'N',
                        '0'
                     );
-INSERT INTO KTXRATEINFO_TB (TRAINNO,
-                                ADMINNO,
-                                SEATDIVISION,
-                                ADULTRATE,
-                                CHILDRATE,
-                                SENIORRATE)
-                        VALUES( KTXRATEINFO_TB_SEQ.NEXTVAL,
-                                '001',
-                                '일반',
-                                '59800',
-                                '29900',
-                                '59800');
-                                
-    INSERT INTO KTXRATEINFO_TB (TRAINNO,
-                                ADMINNO,
-                                SEATDIVISION,
-                                ADULTRATE,
-                                CHILDRATE,
-                                SENIORRATE)
-                        VALUES( KTXRATEINFO_TB_SEQ.NEXTVAL,
-                                '001',
-                                '특실',
-                                '83700',
-                                '53800',
-                                '83700');
-                                
+                               

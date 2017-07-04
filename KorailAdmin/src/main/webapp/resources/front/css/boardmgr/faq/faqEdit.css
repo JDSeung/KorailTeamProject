@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+
+.faqDetailWrap {
+	height: 40em;
+}
+
+div#cke_faqContent {
+	margin: 0 auto;
+}
+
+section>h2 {
+	color: #424242;
+	word-spacing: 0.3em;
+	display: block;
+	font-size: 2.0em;
+	padding: 1% 1% 1% 10%;
+}
+
+input.txtfaq {
+	width: 97%;
+	height: 75%;
+}
+
+textarea.faqContent {
+	width: 98%;
+	height: 90%;
+}
+
+table.faqDetailtbl {
+	width: 80%;
+	text-align: center;
+	margin: 5vh auto 0;
+	border-top: 2px solid #0097d0;
+	border-collapse: collapse;
+}
+
+table.faqDetailtbl tr td {
+	height: 5vh;
+	border: 1px solid #999;
+}
+
+table.faqDetailtbl tr td.tdpub {
+	text-align: left;
+}
+
+input#public {
+	margin-left: 10px;
+}
+
+table.faqDetailtbl tr td.content {
+	height: 20vh;
+}
+
+table.faqDetailtbl tr td.cont {
+	margin: 0;
+	padding: 0;
+}
+
+td.c1 {
+	width: 20%;
+}
+
+td.c2 {
+	width: 30%;
+}
+
+td.c3 {
+	width: 20%;
+}
+
+td.c4 {
+	width: 40%;
+}
+
+.btnarea {
+	margin-top: 3vh;
+	width: 90%;
+	text-align: right;
+}
+
+a.atts:hover {
+	text-decoration: underline;
+	color: blue;
+}
+
+input.txtfaq {
+	width: 97%;
+	height: 75%;
+}

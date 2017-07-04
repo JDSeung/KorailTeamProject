@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korail.admin.usermgr.dao.UserInfoDAO">
+
+	<select id="getUserInfo" resultType="userVO" parameterType="pagingComponent">
+		SELECT *
+		FROM (
+				SELECT
+					USERNO,
+					USERNAME,
+					FLOOR(MONTHS_BETWEEN(SYSDATE,USERBIRTH)/12) as USERBIRTH,
+					USERADDR,
+					USERGENDER,
+					USEREMAIL,
+					USERPHONE,
+					USERETC,
+					ROW_NUMBER() OVER(ORDER BY USERNO) AS RN
+				FROM USER_TB
+				<where>
+					<if test="keyWord != ''">
+						<choose>
+							<when test="keyWordType == 'all'">
+								(USERNO LIKE '%' || #{keyWord} || '%' OR USERNAME LIKE '%' || #{keyWord} || '%' OR USERNAME LIKE '%' || #{keyWord} || '%')
+							</when>
+							<when test="keyWordType == 'name'">
+								USERNAME LIKE '%' || #{keyWord} || '%'
+							</when>
+						</choose>
+					</if>
+				</where>)
+		WHERE <![CDATA[RN>=#{startPage}]]> AND <![CDATA[ RN <= #{endPage}]]>
+	</select>
+	<select id="getUserInfoTotalCnt" resultType="int" parameterType="PagingComponent">
+		SELECT count(*)
+		FROM USER_TB
+		<where>
+			<if test="keyWord != ''">
+				<choose>
+					<when test="keyWordType == 'all'">
+						(USERNO LIKE '%' || #{keyWord} || '%' OR USERNAME LIKE '%' || #{keyWord} || '%' OR USERNAME LIKE '%' || #{keyWord} || '%')
+					</when>
+					<when test="keyWordType == 'name'">
+						USERNAME LIKE '%' || #{keyWord} || '%'
+					</when>
+				</choose>
+			</if>
+		</where>
+	</select>
+	<select id="getUserTotal" resultType="int">
+		<![CDATA[
+		SELECT COUNT(USERETC)
+		FROM
+		USER_TB
+		WHERE USERETC = '0'
+		]]>
+	</select>
+	<select id="getUserDTotal" resultType="int">
+		<![CDATA[
+		SELECT COUNT(USERETC)
+		FROM
+		USER_TB
+		WHERE USERETC = '1'
+		]]>
+	</select>
+	<select id="getNewUser" resultType="int">
+		<![CDATA[
+		SELECT COUNT(*)
+		FROM USER_TB
+		WHERE USERETC = '0'
+			AND TO_CHAR(USERJOINDATE,'YY-MM-DD') = TO_CHAR(SYSDATE,'YY-MM-DD')
+		]]>
+	</select>
+</mapper>

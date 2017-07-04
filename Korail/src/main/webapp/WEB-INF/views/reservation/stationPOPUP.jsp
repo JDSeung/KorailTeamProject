@@ -12,7 +12,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script type="text/javascript" src="<%=rootJS%>stationPOPUP.js" /></script>
 <link rel="stylesheet" href="<%=rootCSS%>stationPOPUP.css">
 </head>
 <body>

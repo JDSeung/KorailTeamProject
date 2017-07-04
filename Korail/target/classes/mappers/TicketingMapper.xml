@@ -3,35 +3,91 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.korail.client.reservation.dao.TicketingDAO">
-	<select id="getTicketingInfo" resultType="ticketingVO" parameterType="ticketingVO">
+	<select id="getTicketingInfo" resultType="ticketingVO" parameterType="java.util.Map">
 		<!-- 내 예매 정보, 전체 예매 정보  -->
-		SELECT * 
-		FROM TICKETING_TB
-		<where>
-			<if test = "userNo != null">
-				USERNO = #{userNo}
-			</if>
-		</where>
+		SELECT *
+		FROM (  
+				SELECT 	TICKETINGNO,   
+						TRAINNAME,     
+						TRAINNO,       
+						VEHICLEKNDNM,  
+						DEPPLACENAME,  
+						DEPPLANDTIME,  
+						ARRPLACENAME,  
+						ARRPLANDTIME,  
+						RESERVATIONNO, 
+						RATE,          
+						SEATDIVISION,  
+						SEAT,          
+						PASSENGERTYPE, 
+						TICKETINGDATE, 
+						TICKETINGETC,
+						ROW_NUMBER() OVER(ORDER BY TO_DATE(DEPPLANDTIME,'YYYY-MM-DD hh24:MI')  DESC) AS RN 
+				FROM TICKETING_TB
+				WHERE USERNO = #{ticketingVO.userNo}
+						<if test="paging.keyWordType == ''">
+							AND
+							TICKETINGDATE
+	            			BETWEEN TO_DATE(#{ticketingVO.ticketingDate},'YY/MM/DD') 
+	            			AND 	ROUND(TO_DATE(#{ticketingVO.ticketingDate},'YY/MM/DD')+1)
+						</if>
+		)
+		WHERE <![CDATA[RN>=#{paging.startPage}]]> AND <![CDATA[ RN <= #{paging.endPage}]]>
 	</select>
-	<select id="getTicketInfo" resultType="ticketingVO">
+	<select id="getResTotalCnt" resultType="int" parameterType="java.util.Map">
+		<!-- 내 예매 정보, 전체 예매 정보  -->
+		SELECT COUNT(*) 
+		FROM TICKETING_TB
+		WHERE USERNO = #{ticketingVO.userNo}
+			  	<if test="paging.keyWordType == ''">
+					AND
+					TICKETINGDATE
+           			BETWEEN TO_DATE(#{ticketingVO.ticketingDate},'YY/MM/DD') 
+           			AND 	ROUND(TO_DATE(#{ticketingVO.ticketingDate},'YY/MM/DD')+1)
+				</if>
+	</select>
+	<select id="getTicketInfo" resultType="ticketingVO" parameterType="ticketingVO">
 		<!-- 2 = 현재 발권중인 사람 예매페이지에서 예약대기에 들어갈 항목., 전체 인원 -->
-		SELECT COUNT(*)
+		SELECT *
 		FROM TICKETING_TB
-		WHERE TICKETINGETC = '2' AND  TICKETINGETC = '3'
+		WHERE (TICKETINGETC = '2' OR  TICKETINGETC = '3')
+			AND DEPPLACENAME = #{depPlaceName} AND ARRPLACENAME = #{arrPlaceName}
+			AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') 
+            BETWEEN TO_DATE(#{depPlandTime},'YYYYMMDDHH24') 
+            	AND 	ROUND(TO_DATE(#{depPlandTime},'YYYYMMDDHH24')+1)
 	</select>
-	<insert id="setTicketing" parameterType="ticketingVO">
+	<insert id="reservationKTX" parameterType="ticketingVO">
 		<!-- 예매 -->
 		INSERT INTO
 		TICKETING_TB   (TICKETINGNO, USERNO, TRAINNAME, 
-						RIDEDATE, DEPPLACENAME, DEPPLANDTIME, 
+						TRAINNO, DEPPLACENAME, DEPPLANDTIME, 
 						ARRPLACENAME, ARRPLANDTIME, RESERVATIONNO, 
 						RATE, SEATDIVISION, SEAT, PASSENGERTYPE, 
-						TICKETINGDATE, TICKETINGETC)
+						TICKETINGETC)
 				VALUES(     TICKETING_TB_SEQ.NEXTVAL, #{userNo}, #{trainName},
-						    #{rideDate}, #{depPlaceName}, #{depPlandTime},
+						    #{trainNO}, #{depPlaceName}, #{depPlandTime},
 							#{arrPlaceName}, #{arrPlandTime}, #{reservationNo},
 							#{rate}, #{seatDivision}, #{seat}, #{passengerType},
-							#{ticketingDate}, #{ticketingETC}
+							#{ticketingETC}
 					 	)
 	</insert>
+	<delete id="resChange" parameterType="ticketingVO">
+		<!-- 예매변경 (취소, 진행, 완료, 만료) -->
+		UPDATE  TICKETING_TB
+		SET TICKETINGETC = #{ticketingETC}
+		WHERE USERNO = #{userNo} AND DEPPLACENAME = #{depPlaceName} AND ARRPLACENAME = #{arrPlaceName}
+			AND DEPPLANDTIME = #{depPlandTime} AND ARRPLANDTIME = #{arrPlandTime}
+			AND SEATDIVISION = #{seatDivision} AND SEAT = #{seat}
+	</delete>
+	<update id="updateResInfo" parameterType="userVO">
+		<!-- 로그인시 탑승 시간이 지난 정보를 만료로 변경 -->
+		UPDATE TICKETING_TB
+		SET TICKETINGETC = '4'
+		WHERE USERNO = #{userNo} AND TO_DATE(DEPPLANDTIME,'yyyy-mm-dd hh24:mi') <![CDATA[<=]]> sysdate
+	</update>
+	<select  id="isResUser" parameterType="userVO" resultType="int">
+		SELECT COUNT(*)
+		FROM TICKETING_TB
+		WHERE USERNO = #{userNo} AND TICKETINGETC = '3'
+	</select>
 </mapper>

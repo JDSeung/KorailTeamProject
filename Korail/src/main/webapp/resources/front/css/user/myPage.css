@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+
+table.myPagetbl{
+  margin: 15px;
+  width: 550px;
+}
+.myPageWrap {
+    height: 55em;
+}
+section>h2 {
+	color: #424242;
+	word-spacing: 0.8em;
+    display: block;
+    font-size: 2.0em;
+    padding: 1% 1% 1% 10%;
+}
+h2.hide{
+	display: none;
+}
+table.myPagetbl {
+    width: 80%;
+    text-align: center;
+    margin: 2em auto 0;
+    border-collapse: collapse;
+}
+table.myPagetbl thead{
+	color: #424242;
+	word-spacing: 0.5em;
+	font-size: 1.05em;
+
+}
+table.myPagetbl thead tr th {
+	padding-left: 2em;
+	text-align: left;
+	font-size: 1.2em;
+	border: none;
+}
+table.myPagetbl thead tr{
+		height: 3em;
+}
+table.myPagetbl tbody tr {
+		height: 3em;
+}
+table.myPagetbl tbody tr td{
+	word-spacing: 0.5em;
+	text-align: left;
+	padding-left: 2em;
+	background-color: white;
+	border: 1px solid #cfcfcf;
+}
+table.myPagetbl tbody tr td.thr{
+	font-weight: bold;
+	color: #424242;
+	width: 9em;
+	text-align: right;	
+	padding-right: 0.8em;
+	background-color: #f8f8f8;
+}
+.btnarea{
+	width: 90%;
+	text-align: right;
+	margin-top: 2em;
+}
+button#btnedit, button#btnsearch{
+	margin-right: 2em;
+}
+table.myPagetbl tbody tr td.thrs{
+	font-weight: bold;
+	color: #424242;
+	width: 9em;
+	text-align: center;
+	background-color: #f8f8f8;
+}
+table.stbl tr td{
+	margin: 0;
+	padding: 0;
+}
+table.stbl tbody tr td{
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korail.admin.noticeboardmgr.dao.NoticeDAO">
+
+	<select id="getadNoticeList" parameterType="java.util.Map" resultType="noticeVO">
+	
+		SELECT *
+		FROM (SELECT
+					NOTICENO, 	
+			        ADMINNO,
+			        ADMINNAME,
+			        TO_CHAR(NoticeREGDATE,'YYYY-MM-DD') NoticeREGDATE,
+			        NOTICETITLE,
+			        NOTICECONTENT,
+			        NOTICEATTACHMENTS,
+			        NOTICEETC,
+			        ROW_NUMBER() OVER(ORDER BY NoticeNO DESC) AS RN
+			      	FROM NOTICE_TB
+					<if test="paging.keyWord != ''">
+						<choose>
+							<when test="paging.keyWordType == 'all'">
+								WHERE (NoticeTITLE LIKE '%' || #{paging.keyWord} || '%')
+							</when>
+							<when test="paging.keyWordType == 'title'">
+								WHERE NoticeTITLE LIKE '%' || #{paging.keyWord} || '%'
+							</when>
+						</choose>
+					</if>
+				)
+		WHERE <![CDATA[RN>=#{paging.startPage}]]> AND <![CDATA[ RN <= #{paging.endPage}]]>
+	</select>
+	
+	<select id="getadNoticeTotalCnt" resultType="int" parameterType="pagingComponent">
+		SELECT count(*)
+		FROM Notice_TB
+		<if test="keyWord != ''">
+			<choose>
+				<when test="keyWordType == 'all'">
+					WHERE (NoticeTITLE LIKE '%' || #{keyWord} || '%')
+				</when>
+				<when test="keyWordType == 'title'">
+					WHERE NoticeTITLE  LIKE '%' || #{keyWord} || '%'
+				</when>
+			</choose>
+		</if>
+	</select>
+	
+	<insert id="noticeadWrite" parameterType="noticeVO">
+		INSERT INTO NOTICE_TB
+		VALUE(
+				NOTICENO,
+				ADMINNO,
+				ADMINNAME,   
+				NOTICETITLE,   
+				NOTICECONTENT, 
+				NOTICEATTACHMENTS,  
+				NOTICEETC    
+		)
+		VALUES(
+				NOTICE_TB_SEQ.NEXTVAL,
+				#{adminNO},
+				#{adminName},   
+				#{noticeTitle},   
+				#{noticeContent}, 
+				<choose>
+				   <when test="noticeAttachments != null and noticeAttachments != ''">
+				    #{noticeAttachments},
+				   </when>
+				   <otherwise>
+				     'N',
+				   </otherwise>
+			 	</choose>
+				#{noticeEtc}
+		)
+		
+	</insert>
+	
+	<select id="getadNotice" parameterType="noticeVO" resultType="noticeVO">
+		SELECT *
+		FROM NOTICE_TB
+		WHERE NOTICENO = #{noticeNO}
+	</select>
+	
+	<delete id="noticeadDelete" parameterType="noticeVO">
+		DELETE
+		FROM NOTICE_TB
+		WHERE NOTICENO = #{noticeNO}
+	</delete>
+	
+	<update id="noticeadUpdate" parameterType="noticeVO">
+		UPDATE NOTICE_TB
+		SET NOTICEETC = #{noticeEtc},
+			NOTICETITLE = #{noticeTitle},
+			NOTICECONTENT = #{noticeContent},
+            <choose>
+				<when test="noticeAttachments != null and noticeAttachments != ''">
+					NOTICEATTACHMENTS = #{noticeAttachments},
+				</when>
+				<otherwise>
+				     NOTICEATTACHMENTS = 'N',
+				</otherwise>
+			</choose>
+		WHERE NOTICENO = #{noticeNO} 
+		
+	</update>
+
+</mapper>

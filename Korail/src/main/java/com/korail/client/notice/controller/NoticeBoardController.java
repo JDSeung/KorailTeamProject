@@ -1,35 +1,89 @@
 package com.korail.client.notice.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.apache.log4j.Logger;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.korail.client.notice.service.NoticeService;
 import com.korail.client.notice.vo.NoticeVO;
+import com.korail.client.paging.PagingComponent;
 
 @Controller
 @RequestMapping(value="/noticeboard")
 public class NoticeBoardController {
 	/*도윤*/
-	Logger logger = Logger.getLogger(NoticeBoardController.class);
 	
 	@Autowired
 	private NoticeService noticeService;
 	
+	@RequestMapping(value="/")
+	public ModelAndView notice(NoticeVO noticeVO, PagingComponent pagingComponent){
+		ModelAndView noticeView = new ModelAndView();
+		noticeView.addObject("paging", pagingComponent);
+		noticeView.setViewName("noticeboard/noticeList");
+		return noticeView;
+	}
+	
 	// 글 목록
-	@RequestMapping(value="/noticelist", method=RequestMethod.GET)
-	public String noticeList(@ModelAttribute NoticeVO noticeVO, Model model){
-		logger.info("noticeList 호출 성공");
+	@ResponseBody
+	@RequestMapping(value="/list")
+	public Map<String, Object> noticeList(NoticeVO noticeVO, PagingComponent pagingComponent){
+		/*ModelAndView notice = new ModelAndView();
+		List<NoticeVO> noticeList = new ArrayList<NoticeVO>();
+		PagingComponent pagingComponent = new PagingComponent();
+		noticeList = noticeService.getNoticeList(noticeVO, pagingComponent);
+		notice.addObject("noticeList", noticeList);
+		notice.addObject("paging", pagingComponent);
+		notice.setViewName("/noticeboard/noticeList");
+		return notice;*/
 		
-		List<NoticeVO> getNoticeList = noticeService.getNoticeList(noticeVO);
-		model.addAttribute("getNoticeList", getNoticeList);
+		/*ModelAndView notice = new ModelAndView();
+		Map<String, Object> mapList = new HashMap<String, Object>();
+		PagingComponent pagingComponent = new PagingComponent();
+		List<NoticeVO> noticeList = noticeService.getNoticeList(noticeVO, pagingComponent);
+		System.out.println(pagingComponent.getTotalPage());
+		mapList.put("noticeList", noticeList);
+		mapList.put("paging", pagingComponent);
+		notice.addObject("mapList", mapList);
+		notice.setViewName("/noticeboard/noticeList");
+		return notice;*/
 		
-		return "/noticelist";
+		Map<String, Object> mapList = new HashMap<String, Object>();
+		List<NoticeVO> noticeList = noticeService.getNoticeList(noticeVO, pagingComponent);
+		mapList.put("noticeList", noticeList);
+		mapList.put("paging", pagingComponent);
+		return mapList;
+		
+	}
+	
+	// 글 상세보기
+	/* pagingComponent는 서비스쪽에서 넘겨 받을 필요가 없으므로 vo만 넘겨받음 */
+	@RequestMapping(value="/noticedetail")
+	public ModelAndView detail(NoticeVO noticeVO, PagingComponent pagingComponent, HttpServletRequest request){
+		ModelAndView noticeView = new ModelAndView();
+		noticeVO = noticeService.noticeDetail(noticeVO);
+		noticeView.addObject("noticeVO", noticeVO);
+		noticeView.addObject("paging", pagingComponent);
+		noticeView.setViewName("noticeboard/noticeDetail");
+		return noticeView;
+		
+	}
+	/*게시물 검색*/
+	@ResponseBody
+	@RequestMapping(value = "/searchData")
+	public Map<String, Object> searchData(NoticeVO noticeVO, PagingComponent paging) throws Exception{
+		Map<String, Object> noticeMap = new HashMap<String, Object>();
+		List<NoticeVO>  noticeList = noticeService.getNoticeList(noticeVO, paging);
+		noticeMap.put("noticeList", noticeList);
+		noticeMap.put("paging", paging);
+		return noticeMap;
 	}
 }

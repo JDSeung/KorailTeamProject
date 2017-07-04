@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+.pop_container{
+	line-height: 2.5em;
+}
+table.roadtbl{
+	line-height: 1.7em;
+    text-align: left;
+    margin-top: 1.7em;
+}
+table.roadtbl tr th{
+	text-align: center;
+}
+table.hidetbl{
+	display: none;
+}
+input#searchData{
+	margin-left : 2%;
+	margin-right : 1%;
+}
+tbody#roadList {
+    font-size: 0.8em;
+}
+td#doro {
+    text-align: center;
+}.
+a#doroaddr {
+    margin-left: 1em;
+}

@@ -7,6 +7,8 @@ public class PagingComponent {
 	private int startPage = 1;		//게시물 시작 번호
 	private int endPage = 10;		//게시물 끝 번호
 	private int totalContent =0;	//총 게시물
+	private String keyWordType =""; //게시물 검색 타입
+	private String keyWord ="";		//게시물 검색어
 	public int getTotalContent() {
 		return totalContent;
 	}
@@ -61,6 +63,18 @@ public class PagingComponent {
 	}
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
+	}
+	public String getKeyWordType() {
+		return keyWordType;
+	}
+	public void setKeyWordType(String keyWordType) {
+		this.keyWordType = keyWordType;
+	}
+	public String getKeyWord() {
+		return keyWord;
+	}
+	public void setKeyWord(String keyWord) {
+		this.keyWord = keyWord;
 	}
 	
 }

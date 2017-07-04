@@ -14,7 +14,9 @@ public class SeatDAOImpl implements SeatDAO{
 	
 	@Inject
 	SqlSession session;
-	
+
+	@Override
+	/*좌석정보조회*/
 	public List<SeatVO> getSeatInfo(){
 		return session.selectList("getSeatInfo");
 	}

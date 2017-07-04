@@ -1,0 +1,106 @@
+	@CHARSET "UTF-8";
+	.qnaWrap {
+	    height: 35em;
+	}
+	section>h2 {
+		color: #424242;
+		word-spacing: 0.8em;
+	    display: block;
+	    font-size: 2.0em;
+	    padding: 1% 1% 1% 10%;
+	}
+	.searchNavi{
+		width: 90%;
+		margin-bottom: 3px;
+		text-align: right;
+	}
+	button.swrite{
+	    float: right;
+    	right: 11em;
+    	position: absolute;
+	}
+	table.qnatbl {
+	    width: 80%;
+	    text-align: center;
+	    margin: 2em auto 0;
+	    border-top: 2px solid #0097d0;
+	    border-collapse: collapse;
+	}
+	table.qnatbl thead{
+		word-spacing: 0.5em;
+	    text-align: center;
+		background-color: #f8f8f8;
+		font-size: 1.05em;
+	
+	}
+	table.qnatbl thead tr{
+		height: 5vh;
+	}
+	table.qnatbl thead tr th{
+		border-left: gray 1.5px solid;
+	}
+	table.qnatbl thead tr th:first-child{
+		border-left: none;
+	}
+	table.qnatbl tbody tr {
+		height: 4vh;
+	}
+	table.qnatbl tbody tr td span{
+		display: inline-block;
+		text-align: center;
+	}
+	table.qnatbl tbody tr:hover {
+		background: #cfcfcf;
+	}
+	table.qnatbl tbody tr:hover a.title{
+		text-decoration: underline;
+	}
+	table.qnatbl tbody tr td{
+	    font-size: 1.15em;
+	}
+	.pagingNavi  {
+		margin-top: 3vh;
+	    text-align: center;
+	}
+	a.pagenavi{
+		font-size: 1.13em;
+	    padding: 3px;
+	}
+	a.btnarrow img {
+	    width: 30px;
+	    height: 30px;
+	}
+	img.lock{
+		margin-top: -0.5vh;
+		width: 15px;
+		height: 15px;
+	}
+	th.tblt {
+	    word-spacing: 7em;
+	    width: 40%;
+	}
+	a:hover {
+	    cursor: pointer;
+	}
+	a.active{
+		text-decoration: underline;
+	}
+	select.keyWordType{
+		text-align: center;
+	    width: 100px;
+    	height: 30px;
+	}
+	td.tdt{
+		text-align: left;
+	}
+	a.title{
+		color: #666666;
+	    white-space: nowrap;
+	    display: inline-block;
+	    overflow: hidden;
+	    width: 16em;
+	    text-overflow: ellipsis;
+	    text-align: left;
+		margin-left: 1em;
+	}
+	

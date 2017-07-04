@@ -18,10 +18,12 @@
 <link rel="stylesheet" href="<%=rootJquery%>jquery-ui.structure.css">
 <link rel="stylesheet" href="<%=rootJquery%>jquery-ui.theme.css">
 <link rel="stylesheet" href="<%=rootCss%>basic.css">
+<script type="text/javascript" src="<%=rootJS%>basic.js" /></script>
 <link rel="stylesheet" href="<%=rootCss%>signup/mail.css" />
 <script type="text/javascript" src="<%=rootJS%>signup/mail.js"></script>
 </head>
 <body>
+	<h2>회원가입</h2>
 	<div class="header">
 		<jsp:include page="../main/header.jsp" />
 	</div>
@@ -32,18 +34,18 @@
 					<h2>회원가입</h2>
 				</div>
 				<div class="content">
-					<h3>회원 가입 여부 확인</h3>
-					<div>
-						<ul>
-							<li>E-Mail을 통하여 홈페이지 회원 가입 여부를 확인 할 수 있습니다.</li>
-						</ul>
-					</div>
+					
 					<div class="content join">
 						<div id="mail">
 							<ul>
-								<li><button type="button" id="validationBtn"
-										class="ui-button ui-corner-all ui-widget">E-Mail 인증</button>
-									<br /> 이메일은 반드시 본인 명의로 된 메일 주소로 인증 하셔야 합니다.</li>
+								<li><h3>회원 가입 여부 확인</h3></li>
+								<li>
+									<button type="button" id="validationBtn"class="ui-button ui-corner-all ui-widget">E-Mail 인증</button>
+								</li>
+								<li>
+									<p>E-Mail을 통하여 홈페이지 회원 가입 여부를 확인 할 수 있습니다.</p>
+									<p>이메일은 반드시 본인 명의로 된 메일 주소로 인증 하셔야 합니다.</p>
+								</li>
 							</ul>
 						</div>
 					</div>

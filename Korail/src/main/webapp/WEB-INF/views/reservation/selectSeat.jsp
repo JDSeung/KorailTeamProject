@@ -7,7 +7,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <link rel="stylesheet" href="<%=rootCss%>res/selectSeat.css">
 <meta charset="UTF-8">
 <title>Korail|좌석선택</title>
@@ -27,6 +26,9 @@
   	<table class = "strain">
     
   </table>
+  <div class="btnArea">
+  	<button type="button" id="btnRes" class="ui-button ui-corner-all ui-widget">선택 좌석 예약하기</button>
+  </div>
 </div>
 </body>
 </html>

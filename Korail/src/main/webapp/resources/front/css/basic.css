@@ -15,12 +15,15 @@
 	
 	#wrap {
 		margin: 0 auto;
+		
 	}
-	
+	.wrap{
+		height: 38em;
+	}
 	.container {
 		margin: 0 auto;
 		width: 90%;
-		background: tomato;
+		background: white;
 		height: 100%;
 	}
 	
@@ -65,3 +68,12 @@
 	img.ui-datepicker-trigger:hover{
 		filter: grayscale(0);
 	}
+	img.ui-datepicker-trigger {
+	    width: 25px;
+	    height: 25px;
+	    cursor: pointer;
+	    margin-left: 5px;
+	    margin-top: 5px;
+	}
+	.ui-datepicker{ z-index: 9999 !important;}
+	

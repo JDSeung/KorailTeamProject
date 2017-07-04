@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+	h2{
+		display: none;
+	}
+	section>h2 {
+		display: block;
+	    color: #424242;
+	    word-spacing: 0.2em;
+	    display: block;
+	    font-size: 2.0em;
+	    padding: 1% 1% 1% 10%;
+	}
+	div.pwWrap {
+	    height: 39em;
+	}
+	img.logoimg{
+		width: 15em;
+	}
+	table.tblid {
+		border: 1px solid #000;
+	    width: 80%;
+	    text-align: center;
+	    margin: 10em auto 0;
+	    border-collapse: collapse;
+	}
+	table.tblid tr{
+		height: 3em;
+	}
+	table.tblid tr .c1{
+		text-align: right;
+		margin-right: 2em;
+	}
+	table.tblid tr .c2{
+		text-align: right;
+	}
+	table.tblid tr .c3{
+		text-align: center;
+		width: 400px;
+	}
+	table.tblid tr .c4{
+		text-align: left;
+	}
+	

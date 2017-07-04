@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="<%=rootJquery%>jquery-ui.theme.css">
 <link rel="stylesheet" href="<%=rootCss%>basic.css">
 <link rel="stylesheet" href="<%=rootCss%>res/trainInfo.css">
-<script type="text/javascript" src="<%=rootJS%>basic.js" /></script>
 <title>Insert title here</title>
 </head>
 <body>

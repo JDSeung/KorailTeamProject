@@ -1,0 +1,108 @@
+@CHARSET "UTF-8";
+h2.hide{
+	display: none;
+}
+div#resWrap {
+    height: 65em;
+}
+div.wrap{
+	height: 63em;
+}
+table.myPagetbl{
+  margin: 15px;
+  width: 550px;
+}
+.tblwrap {
+    height: 47em;
+}
+section>h2 {
+	color: #424242;
+	word-spacing: 0.3em;
+    display: block;
+    font-size: 2.0em;
+    padding: 1% 1% 1% 10%;
+}
+.tblwrap{
+	width: 80%;
+	margin: 0 auto;
+}
+table.restbl {
+	width: 100%;
+    text-align: center;
+    margin: 2em auto 0;
+    border-collapse: collapse;
+}
+table.restbl thead tr th {
+	padding-left: 2em;
+	text-align: left;
+	font-size: 1.2em;
+	border: none;
+}
+table.restbl tr{
+	height: 3em;
+}
+
+table.restbl tbody tr td{
+	word-spacing: 0.5em;
+	text-align: left;
+	background-color: white;
+	border: 1px solid #cfcfcf;
+}
+table.restbl tr:nth-child(odd) td{
+	font-weight: bold;
+	color: #424242;
+	width: 9em;
+	background-color: #efefef;
+}
+table.restbl tbody tr td{
+	text-align: center;
+}
+.btnarea{
+	width: 90%;
+	text-align: right;
+	margin-top: 2em;
+}
+button#btnedit, button#btnsearch{
+	margin-right: 2em;
+}
+.pagingNavi  {
+		margin-top: 3vh;
+	    text-align: center;
+	}
+	a.pagenavi{
+		font-size: 1.13em;
+	    padding: 3px;
+	}
+	a.btnarrow img {
+	    width: 30px;
+	    height: 30px;
+	}
+	img.lock{
+		margin-top: -0.5vh;
+		width: 15px;
+		height: 15px;
+	}
+	a:hover {
+	    cursor: pointer;
+	}
+	a.active{
+		text-decoration: underline;
+	}
+	p.info{
+		text-align: right;
+		margin-top: 2em;
+		font-weight: bold;
+		color: red;
+	}
+	input#resdatepicker{
+		display: none;
+		margin-right: 0.3em;
+	}
+	.dateArea{
+		text-align: right;
+		vertical-align: middle;
+		margin-top: 1em;
+	}
+	.hide{
+		display: none;
+	}

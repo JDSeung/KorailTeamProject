@@ -5,5 +5,11 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.korail.admin.login.vo.AdminVO" alias="login"/>
+		<typeAlias type="com.korail.admin.usermgr.vo.UserVO" alias="userVO"/>
+		<typeAlias type="com.korail.admin.noticeboardmgr.vo.NoticeVO" alias="noticeVO"/>
+		<typeAlias type="com.korail.admin.Paging.PagingComponent" alias="pagingComponent"/>
+		<typeAlias type="com.korail.admin.reservation.vo.TicketingVO" alias="ticketingVO"/>
+		<typeAlias type="com.korail.admin.cscenter.vo.QnAVO" alias="qnaVO"/>
+		<typeAlias type="com.korail.admin.cscenter.vo.FAQVO" alias="FAQVO"/>
 	</typeAliases>
 </configuration>

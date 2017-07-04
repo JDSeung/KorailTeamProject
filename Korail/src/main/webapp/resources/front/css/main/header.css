@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 #headerWrap {
-	height: 15vh;
+	height: 8.3em;
 }
 
 .sidegnb>ul {  
@@ -31,6 +31,10 @@
 	float: left;
 	font-size: 13px;
 }
+.sidegnb>ul>li.uName {
+	    width: 20em;
+	font-size: 13px;
+}
 
 .maingnb {
 	text-align: center;
@@ -42,7 +46,6 @@
 }
 
 .maingnb ul {
-	height: 60px;
 	margin-top: 25px;
 }
 
@@ -63,13 +66,10 @@
 }
 
 .maingnb ul li:hover {
-	background: #f5f5f5;
+	background: #0097d0;
 }
 .maingnb ul div.logo:hover {
 	background: #083b82;
-}
-.maingnb ul li:hover>a {
-	color: black;
 }
 
 .maingnb ul li:hover>ul {
@@ -77,16 +77,23 @@
 }
 
 .maingnb ul ul {
-    background: lightblue;
+	display: none;
+    background: #083b82;
     text-align: left;
-    display: none; 
     position: absolute;
     top: 60px;
-    left: 5%;
-    width: 90%;
+    width: 13.5%;
+    z-index: 99999;
+}
+.maingnb ul li ul li {
+    display: inline;
+}
+.maingnb ul li ul li:hover a {
+    background: gainsboro;
+    color: black;
 }
 .maingnb ul ul li a{
-	color: black;
+	color: white;
 	text-align: center;
 }
 .logo > a img {

@@ -4,15 +4,13 @@
 
 <mapper namespace="com.korail.admin.login.dao.AdminDAO">
 
-	<select id="adminLogin" parameterType="login" resultType="login">
+	<select id="loginCheck" parameterType="login" resultType="login">
 		SELECT
 			ADMINNO,
 			ADMINID,
-			ADMINPW,
-			ADMINNAME,
-			ADMINGRADE
+			ADMINNAME
 		FROM ADMIN_TB
-		WHERE ADMINID = #{ADMINID} AND ADMINPW = #{ADMINPW}
+		WHERE ADMINID = #{adminId} AND ADMINPW = #{adminPw}
 	</select>
 
 </mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korail.client.user.dao.UserInfoDAO">
+	
+	<select id="checkPw" resultType="userVO" parameterType="userVO">
+		SELECT 
+				USERNO,         
+				USERID,   
+				USERPW,
+				USERNAME,   
+				USERPHONE,   
+				TO_CHAR(USERBIRTH,'YYYY"년"MM"월"DD"일"') USERBIRTH,           
+				USEREMAIL,   
+				USERGENDER,    
+				USERADDR,
+				USERJOINAGREE,    
+				USERINFOAGREE,    
+				USERETC  	 
+		FROM USER_TB 
+		WHERE USERNO = #{userNo}
+	</select>
+	<select id="searchId" resultType="userVO" parameterType="emailVO">
+		SELECT USERID FROM USER_TB WHERE USEREMAIL = #{userEmail}
+	</select>
+	<select id="searchPw" resultType="userVO" parameterType="userVO">
+		SELECT USERNO FROM USER_TB WHERE USEREMAIL = #{userEmail} AND USERID = #{userId}
+	</select>
+	<update id="updatePw" parameterType="userVO">
+		UPDATE USER_TB
+		SET USERPW = #{userPw}
+		WHERE USERNO = #{userNo}
+	</update>
+	<select id="myPageInfo" resultType="ticketingVO" parameterType="ticketingVO">
+       SELECT *
+         FROM(
+         SELECT  TRAINNAME,
+                 VEHICLEKNDNM,
+                 DEPPLACENAME,
+                 DEPPLANDTIME,
+                 ARRPLACENAME,
+                 ARRPLANDTIME,
+                 RESERVATIONNO,
+                 RATE,
+                 ROW_NUMBER() OVER (ORDER BY DEPPLANDTIME DESC) AS RN
+             FROM TICKETING_TB
+             WHERE USERNO = #{userNo}
+             ) TICKETING_TB
+             WHERE RN=1
+   </select>
+   <update id="updateUserInfo" parameterType="userVO">
+   		UPDATE USER_TB
+   		SET USEREMAIL = #{userEmail},
+   			USERPHONE = #{userPhone},
+   			USERADDR = #{userAddr}
+   		WHERE USERID =#{userId}
+   </update>
+   <update id="signOut" parameterType="userVO">
+   		UPDATE USER_TB
+   		SET USERETC = '1'
+   		WHERE USERNO =#{userNo}
+   </update>
+</mapper>

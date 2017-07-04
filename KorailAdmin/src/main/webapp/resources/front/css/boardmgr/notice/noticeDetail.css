@@ -1,0 +1,76 @@
+@CHARSET "UTF-8";
+
+.noticeDetailWrap {
+	height: 75vh;
+}
+
+
+section>h2 {
+	color: #424242;
+	word-spacing: 0.3em;
+	display: block;
+	font-size: 2.0em;
+	padding: 1% 1% 1% 10%;
+}
+
+table.noticeDetailtbl {
+	width: 80%;
+	text-align: center;
+	margin: 5vh auto 0;
+	border-collapse: collapse;
+}
+
+table.noticeDetailtbl tbody {
+	border-top: 2px solid #0097d0;
+}
+
+table.noticeDetailtbl thead tr th {
+	word-spacing: 0.1em;
+	color: #424242;
+	font-size: 1.2em;
+	padding-bottom: 2vh;
+	padding-left: 2vh;
+	text-align: left;
+}
+
+table.noticeDetailtbl tr td {
+	height: 5vh;
+	border: 1px solid #000;
+}
+
+table.noticeDetailtbl tr td.content {
+	height: 20vh;
+}
+
+table.noticeDetailtbl tr td.cont {
+	padding: 2vh;
+	vertical-align: top;
+	text-align: left;
+}
+
+td.c1 {
+	width: 20%;
+}
+
+td.c2 {
+	width: 30%;
+}
+
+td.c3 {
+	width: 20%;
+}
+
+td.c4 {
+	width: 40%;
+}
+
+.btnarea {
+	margin-top: 3vh;
+	width: 90%;
+	text-align: right;
+}
+
+a.atts:hover {
+	text-decoration: underline;
+	color: blue;
+}

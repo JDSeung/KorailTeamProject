@@ -1,13 +1,11 @@
 package com.korail.client.reservation.vo;
 
-import java.util.Date;
-
 public class TicketingVO {
 	/*승열*/
 	private int ticketNo; 			//예매번호
-    private int userNo;				//회원번호
+    private String userNo;			//회원번호
     private String trainName;		//차량번호
-    private Date rideDate;			//승차일자
+    private String trainNO;			//열차호수
     private String vehiclekndNm;	//열차종별
     private String depPlaceName;	//출발역
     private String depPlandTime;	//출발시각
@@ -26,10 +24,10 @@ public class TicketingVO {
 	public void setTicketNo(int ticketNo) {
 		this.ticketNo = ticketNo;
 	}
-	public int getUserNo() {
+	public String getUserNo() {
 		return userNo;
 	}
-	public void setUserNo(int userNo) {
+	public void setUserNo(String userNo) {
 		this.userNo = userNo;
 	}
 	public String getTrainName() {
@@ -38,11 +36,11 @@ public class TicketingVO {
 	public void setTrainName(String trainName) {
 		this.trainName = trainName;
 	}
-	public Date getRideDate() {
-		return rideDate;
+	public String getTrainNO() {
+		return trainNO;
 	}
-	public void setRideDate(Date rideDate) {
-		this.rideDate = rideDate;
+	public void setTrainNO(String trainNO) {
+		this.trainNO = trainNO;
 	}
 	public String getVehiclekndNm() {
 		return vehiclekndNm;
@@ -116,5 +114,14 @@ public class TicketingVO {
 	public void setTicketingETC(String ticketingETC) {
 		this.ticketingETC = ticketingETC;
 	}
-
+	@Override
+	public String toString() {
+		return "TicketingVO [ticketNo=" + ticketNo + ", userNo=" + userNo + ", trainName=" + trainName + ", trainNO="
+				+ trainNO + ", vehiclekndNm=" + vehiclekndNm + ", depPlaceName=" + depPlaceName + ", depPlandTime="
+				+ depPlandTime + ", arrPlaceName=" + arrPlaceName + ", arrPlandTime=" + arrPlandTime
+				+ ", reservationNo=" + reservationNo + ", rate=" + rate + ", seatDivision=" + seatDivision + ", seat="
+				+ seat + ", passengerType=" + passengerType + ", ticketingDate=" + ticketingDate + ", ticketingETC="
+				+ ticketingETC + "]";
+	}
+	
 }

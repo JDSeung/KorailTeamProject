@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korail.admin.chart.dao.ChartMgrDAO">
+
+	<select id="getSalesList" parameterType="ticketingVO" resultType="ticketingVO">
+			SELECT 
+	                RATE,
+	                TICKETINGDATE,
+	                CNT,
+	                LENGTH(SEAT) - LENGTH(REPLACE(SEAT,',','')) AS SEAT,
+	                TICKETINGETC
+	        FROM(
+	                SELECT 
+	                        SUM(RATE) RATE,
+	                        TICKETINGDATE,
+	                        COUNT(TICKETINGETC) AS CNT,
+	                        LISTAGG(SEAT,',') WITHIN GROUP (ORDER BY SEAT) AS SEAT,
+	                        TICKETINGETC
+	                FROM
+	                        (SELECT RATE,
+	                                SEAT,
+	                                TO_CHAR(TICKETINGDATE, 'YYYY-MM-DD') AS TICKETINGDATE,
+	                                CASE WHEN TICKETINGETC = '3' OR TICKETINGETC = '4' THEN '1' ELSE '0' END AS TICKETINGETC
+	                        FROM TICKETING_TB
+	                         WHERE TO_CHAR(TICKETINGDATE) BETWEEN TO_CHAR(TICKETINGDATE-15) AND TO_CHAR(SYSDATE))
+	                GROUP BY TICKETINGETC, TICKETINGDATE
+	        )
+	        ORDER BY TICKETINGDATE DESC
+	</select>
+
+</mapper>

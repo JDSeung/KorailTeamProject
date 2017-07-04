@@ -3,15 +3,35 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.korail.client.cscenter.dao.FAQDAO">
-
-	<select id="getFAQList" resultType="faqVO">
-		<![CDATA[
-			SELECT * 
-			FROM
-				(SELECT ROWNUM AS RN, FAQTITLE, FAQREGDATE
-				 FROM FAQ_TB ORDER BY FAQREGDATE)
-				 WHERE RN <= 5 
-		]]>
+	<select id="getFAQList" parameterType="java.util.Map" resultType="faqVO">
+	
+		SELECT *
+		FROM (SELECT
+					FAQNO, 	
+			        ADMINNO,
+			        FAQTITLE,
+			        FAQCONTENT,
+			        TO_CHAR(FAQREGDATE,'YYYY-MM-DD') FAQREGDATE,
+			        ROW_NUMBER() OVER(ORDER BY FAQNO DESC) AS RN
+			      	FROM FAQ_TB
+					<if test="paging.keyWord != ''">
+						WHERE (FAQTITLE LIKE '%' || #{paging.keyWord} || '%')
+					</if>
+					)
+		WHERE <![CDATA[RN>=#{paging.startPage}]]> AND <![CDATA[ RN <= #{paging.endPage}]]>
 	</select>
-
+	
+	<select id="getFAQTotalCnt" resultType="int" parameterType="PagingComponent">
+		SELECT count(*)
+		FROM FAQ_TB
+		<if test="keyWord != ''">
+			WHERE (FAQTITLE LIKE '%' || #{keyWord} || '%')
+		</if>
+	</select>
+	
+	<select id="getFAQ" parameterType="faqVO" resultType="faqVO">
+		SELECT *
+		FROM FAQ_TB
+		WHERE FAQNO = #{faqNo}
+	</select>
 </mapper>

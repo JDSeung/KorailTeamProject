@@ -11,7 +11,10 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.korail.client.signup.dao.SignupDAO;
+import com.korail.client.user.dao.UserInfoDAO;
 import com.korail.client.user.vo.EmailVO;
+import com.korail.client.user.vo.UserVO;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -19,27 +22,26 @@ public class EmailServiceImpl implements EmailService {
 	@Autowired
 	private JavaMailSender mailSender;
 	
+	@Autowired
+	private SignupDAO signDAO;
+	@Autowired
+	private UserInfoDAO userInfoDAO;
+	private String title;
+	private String content;
 	@Override
-	public EmailVO sendMail(EmailVO emailVO){
+	/*메일 발송*/
+	public void sendMail(EmailVO emailVO){
 		MimeMessage msg = mailSender.createMimeMessage();
 		
 		try {
-			int ran = new Random().nextInt(1000000)+10000;
-			
-			String key = String.valueOf(ran);
-			
-			String title = "회원 가입 인증 코드 발급 안내 입니다.";
-			
-			String content = "귀하의 인증 코드는  " + key + " 입니다.";
-			
+		
 			
 			msg.setSubject(title);
-            msg.setText(content.toString());
-            msg.setRecipients(MimeMessage.RecipientType.TO , InternetAddress.parse(emailVO.getUsermail()));
+            msg.setText(content);
+            msg.setRecipients(MimeMessage.RecipientType.TO , InternetAddress.parse(emailVO.getUserEmail()));
             msg.setFrom(emailVO.getFrom());
             
 			mailSender.send(msg);
-			emailVO.setAuthNum(key);
 		} catch (MessagingException e) {
 			System.out.println("MessagingException");
 			e.printStackTrace();
@@ -47,7 +49,40 @@ public class EmailServiceImpl implements EmailService {
 			System.out.println("MailException발생");
 			e.printStackTrace();
 		}
-		return emailVO;
+		
 	}
-	/* 슬기형 */
+	
+	@Override
+	/*이메일 중복체크*/
+	public String getChkEmail(EmailVO emailVO) {
+		// TODO Auto-generated method stub
+		signDAO.getChkEmail(emailVO);
+		String result = signDAO.getChkEmail(emailVO);
+		return result;
+	}
+
+	@Override
+	/*인증번호생성*/
+	public void makeKey(EmailVO emailVO) {
+		int ran = new Random().nextInt(1000000)+10000;
+		
+		String key = String.valueOf(ran);
+		
+		title = "Korail 회원 가입 인증 코드 발급 안내 입니다.";
+		
+		content = "귀하의 인증 코드는  " + key + " 입니다.";
+		System.out.println(content);
+		emailVO.setAuthNum(key);
+		sendMail(emailVO);
+	}
+	
+	@Override
+	/*ID 발송*/
+	public void sendId(EmailVO emailVO){
+		title = "Korail ID찾기 입니다.";
+		UserVO userVO = userInfoDAO.searchId(emailVO);
+		content = "귀하의 인증 코드는  " + userVO.getUserId() + " 입니다.";
+		System.out.println(content);
+		sendMail(emailVO);
+	}
 }

@@ -1,7 +1,8 @@
 package com.korail.admin.login.dao;
 
-import java.util.HashMap;
-import java.util.Map;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +13,12 @@ import com.korail.admin.login.vo.AdminVO;
 @Repository
 public class AdminDAOImpl implements AdminDAO{
 
-	@Autowired
+	@Inject
 	private SqlSession session;
-	
+
 	@Override
-	public AdminVO adminLogin(String adminId, String adminPw) {
-		Map<String, String> paramMap = new HashMap<String, String>();
-		paramMap.put("adminId", adminId);
-		paramMap.put("adminPw", adminPw);
-		
-		return session.selectOne("adminLogin", paramMap);
+	public AdminVO loginCheck(AdminVO adminVO) {
+		return session.selectOne("loginCheck", adminVO);
 	}
 
 }

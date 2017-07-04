@@ -1,4 +1,21 @@
 $( function() { 
+	
+	
+	/*메일 인증 키 입력  숫자만 가능*/
+	$('.numbersOnly').keyup(function () { 
+	    this.value = this.value.replace(/[^0-9\.]/g,'');
+	});
+	/*한글만 입력가능*/
+	$('.koreanOnly').keyup(function () { 
+		if (!(event.keyCode >=37 && event.keyCode<=40)) {
+			var inputVal = $(this).val();
+			$(this).val(inputVal.replace(/[a-z0-9]/gi,''));
+		}
+	});
+	/*영어, 숫자만 입력가능*/
+	$('.engNumOnly').keyup(function () { 
+	this.value = this.value.replace(/[^\w-]+/gi,'');
+	});
 	$("#dialog").dialog({
         autoOpen:false, //자동으로 열리지않게
         modal:true, //모달대화상자
@@ -17,10 +34,10 @@ $( function() {
 		buttonImageOnly: true,
 		onSelect:function(dateText, inst){
 			altField : '#getdate';
-	var calyear = dateText.substr(6,4);
-	var calmonth = dateText.substr(0,2)-1;
-	var calday = dateText.substr(3,2)-1;
-	initDate(calyear, calmonth, calday);
+		var calyear = dateText.substr(6,4);
+		var calmonth = dateText.substr(0,2)-1;
+		var calday = dateText.substr(3,2)-1;
+		initDate(calyear, calmonth, calday);
 		}
 	});
 	
@@ -32,69 +49,70 @@ $( function() {
 		var date = new Date(calyear, calmonth-1, calday, 0, 0, 0, 0);
 		$("#datepicker").datepicker("setDate", date);
 	});
-
-	/*인원정보*/
-	var userType =['성인', '어린이', '경로'];
-    for(i = 0; i<userType.length; i ++){
-    	for(j = 0; j <=9; j++){
-        	var option = $("<option value = '"+j+"'>"+userType[i]+" " +j+"명</option>");
-        	switch (i) {
-			case 0:
-				$('#cmbAdult').append(option);
-	            $("#cmbAdult option:eq(1)").prop("selected", true);
-				break;
-			case 1:
-				if(j == 0){
-					option = $("<option value = '"+j+"'>만 4세 ~ 12세</option>");
+	if($('#cmbAdult').length <= 1){
+		/*인원정보*/
+		var userType =['성인', '어린이', '경로'];
+	    for(i = 0; i<userType.length; i ++){
+	    	for(j = 0; j <=9; j++){
+	        	var option = $("<option value = '"+j+"'>"+userType[i]+" " +j+"명</option>");
+	        	switch (i) {
+				case 0:
+					$('#cmbAdult').append(option);
+		            $("#cmbAdult option:eq(1)").prop("selected", true);
+					break;
+				case 1:
+					if(j == 0){
+						option = $("<option value = '"+j+"'>만 4세 ~ 12세</option>");
+					}
+					$('#cmbChild').append(option);
+					break;
+				case 2:
+					if(j == 0){
+						option = $("<option value = '"+j+"'>만 65세 이상</option>");
+					}
+					$('#cmbSenior').append(option);
+					break;
 				}
-				$('#cmbChilde').append(option);
-				break;
-			case 2:
-				if(j == 0){
-					option = $("<option value = '"+j+"'>만 65세 이상</option>");
-				}
-				$('#cmbSenior').append(option);
-				break;
-
-			}
-            
-        }
-    }
-    
-    /*시간 설정*/
-    for(i = 0; i<24; i++){
-
-    	if(i<=12){
-    		var meridiem = '오전    ' + i;
-    	}else{
-    		var meridiem = '오후    ' + (i-12);
-    	}
-    	var option = $("<option value = '"+i+"'>"+i+"(  "+ meridiem +")</option>");
-    	$('#cmbTime').append(option);
-    }
-    for(i = 0; i<3; i++){
-    	var Now = new Date();
-    	var year = Now.getFullYear() + i;
-    	var option = $("<option value = '"+year+"'>"+year +"</option>");
-    	$('#cmbYear').append(option);
-    }
-    for(i = 1; i<=12; i++){
-    	var option = $("<option value = '"+i+"'>" + i + "</option>");
-    	$('#cmbMonth').append(option);
-    }
-    for(i = 1; i<=31; i++){
-    	var option = $("<option value = '"+i+"'>" + i + "</option>");
-    	$('#cmbDay').append(option);
-    }
+	            
+	        }
+	    }
+	}
+	if($('#cmbTime').length <= 1){
+	    /*시간 설정*/
+	    for(i = 0; i<24; i++){
+	
+	    	if(i<=12){
+	    		var meridiem = '오전    ' + i;
+	    	}else{
+	    		var meridiem = '오후    ' + (i-12);
+	    	}
+	    	var option = $("<option value = '"+i+"'>"+i+"(  "+ meridiem +")</option>");
+	    	$('#cmbTime').append(option);
+	    }
+	    for(i = 0; i<3; i++){
+	    	var Now = new Date();
+	    	var year = Now.getFullYear() + i;
+	    	var option = $("<option value = '"+year+"'>"+year +"</option>");
+	    	$('#cmbYear').append(option);
+	    }
+	    for(i = 1; i<=12; i++){
+	    	var option = $("<option value = '"+i+"'>" + i + "</option>");
+	    	$('#cmbMonth').append(option);
+	    }
+	    for(i = 1; i<=31; i++){
+	    	var option = $("<option value = '"+i+"'>" + i + "</option>");
+	    	$('#cmbDay').append(option);
+	    }
+	}
     setDate();
 }); 
 /*날짜 추가*/
 function fn_GetDay(){
 	var day = 32 - new Date($('#cmbYear').val(), $('#cmbMonth').val()-1, 32).getDate();
-	 for(i = 1; i<=day; i++){
+	for(i = 1; i<=day; i++){
 	    	var option = $("<option value = '"+i+"'>" + i + "</option>");
 	    	$('#cmbDay').append(option);
-	    }
+	}
 };
 /*예매 가능 날짜 여부 확인*/
 function fn_validateDay(){
@@ -103,9 +121,13 @@ function fn_validateDay(){
     var cbday = $('#cmbDay').val();
     var resdate = new Date(cbyear, cbmonth-1, cbday, 0, 0, 0, 0);
     var date = new Date();
+	var year = date.getFullYear();
+	var month = date.getMonth();
+	var day = date.getDate();
+	var dday = new Date(year, month, day, 0, 0, 0, 0);
     var maxDate = new Date();
     maxDate.setMonth(maxDate.getMonth()+1); //한달 후
-    if(resdate < date){
+    if(resdate.getTime() < dday.getTime()){
 		alert("현재 일보다 이전 날은 예매 불가능 합니다.");
 		setDate();
 	}else if(resdate > maxDate){
@@ -155,5 +177,13 @@ function putStation(name){
 	if($("#tbl_Train").hasClass("tInfo") === true) {
 		$("#tbl_Train").removeClass("tInfo")
 		$("#tbl_Train tr:not(:first)").remove();
+		$("#btnNext").removeClass("btnnext");
+		$("#btnPrev").removeClass("btnprev");
 	}
 }
+function sessionout(){
+	$.ajax({
+		url:"/korail/login/logout",
+		type:"GET"
+	});
+} 

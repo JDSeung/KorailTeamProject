@@ -22,7 +22,23 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.korail" />
+	<beans:bean id="LoginInterceptor" class="com.korail.admin.intercepter.LoginInterceptor"/>
+	<interceptors>
+        <interceptor> 
+           	<mapping path="/admin"/>
+           	<mapping path="/usermgr/"/>
+           	<mapping path="/index"/>
+			<exclude-mapping path="/admin/" />
+           <!-- 로그인체크 인터셉터 클래스 -->
+        	<beans:ref bean="LoginInterceptor"/>
+       	</interceptor>
+   	</interceptors>
+	<context:component-scan base-package="com.korail" />
 	
+ 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+ 		<beans:property name="defaultEncoding" value="UTF-8"/>
+ 		<beans:property name="maxUploadSize" value="5242880"/>
+ 	</beans:bean>
 	
 	
 </beans:beans>

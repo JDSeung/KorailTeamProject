@@ -13,8 +13,9 @@
 	  
 	}
 	thead.thead_train tr th {
-	  color: white;
-	  height: 30px; 
+		font-weight: normal;
+	  	color: white;
+	  	height: 30px; 
 	}
 	.th_train{
 	  border-right: 2px solid white;
@@ -33,6 +34,9 @@
 	  border-top: 2px solid #666;
 	  border-left: 1px solid lightblue;
 	}
+	th.th_train {
+	    font-size: 0.88em;
+	}
 	.btnArea{
 		text-align: right;
 	}
@@ -45,9 +49,11 @@
 	button.btnprev{
 		display: inline-block;
 	}
+	button.sselect{
+	    width: 6.5em;
+	}
 	table.tInfo{
 		text-align: center;
 	  	width: 100%;
 		display: block;
-		width: 100%;
 	}

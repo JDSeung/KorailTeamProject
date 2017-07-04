@@ -1,6 +1,8 @@
+<%@page import="com.korail.client.user.vo.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import = "com.korail.client.user.*" %>
 <%
 	String root = request.getContextPath()+"/resources/";
 	String rootJquery = root+"jquery/";
@@ -21,10 +23,29 @@
 <link rel="stylesheet" href="<%=rootCss%>res/searchTrain.css">
 <script type="text/javascript" src="<%=rootJS%>res/searchTrain.js" /></script>
 <title>Korail</title>
-<c:set var="resInfoList" value="${resInfoList}" />  
 <body>
+<input type="hidden" id="hdepPlandTime" name="depPlandTime" value="${depPlandTime}" />
+<input type="hidden" id="hcmbAdult" name="cmbAdult" value="${cmbAdult}" />
+<input type="hidden" id="hcmbChild" name="cmbChild" value="${cmbChild}" />
+<input type="hidden" id="hcmbSenior" name="cmbSenior" value="${cmbSenior}" />
+<input type="hidden" id="hcmbYear" name="cmbYear" value="${cmbYear}" />
+<input type="hidden" id="hcmbMonth" name="cmbMonth" value="${cmbMonth}" />
+<input type="hidden" id="hcmbDay" name="cmbDay" value="${cmbDay}" />
+<form id="resInfoForm">
+	<input type="hidden" id="strainName" name="trainName" />
+	<input type="hidden" id="strainNo" name="trainNO" />
+	<input type="hidden" id="hdepPlaceName" name="depPlaceName" value="${depPlaceName}" />
+	<input type="hidden" id="harrPlaceName" name="arrPlaceName" value="${arrPlaceName}" />
+	<input type="hidden" id="sdepPlandTime" name="depPlandTime" />
+	<input type="hidden" id="sarrPlandTime" name="arrPlandTime" />
+	<input type="hidden" id="sreservationNo" name="reservationNo" />
+	<input type="hidden" id="sseatDivision" name="seatDivision" />
+	<input type="hidden" id="srate" name="rate" />
+	<input type="hidden" id="sseat" name="seat" />
+	<input type="hidden" id="spassengerType" name="passengerType" />
+</form>
 	<jsp:include page="../main/header.jsp" />
-	<div id="wrap">
+	<div id="wrap" class="wrap">
 		<div class="container">
 			<section class="res">
 				<h2>승차권 예약</h2>
@@ -46,17 +67,17 @@
 									</td>
 									<td>
 										<label for="depPlaceName" class="labtxt">출발역</label> 
-										<input type="text" id="depPlaceName" name="depPlaceName" class="txtroot" onclick="getDepStation()" readonly/>
+										<input type="text" id="depPlaceName" name="depPlaceName" class="txtroot" onclick="getDepStation()" readonly value="서울"/>
 										<button type="button" id="btnDepStation" class="ui-button ui-corner-all ui-widget" onclick="getDepStation()"> 조 회 </button>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<select name="cmbChilde" id="cmbChilde" class="cmb"></select>
+										<select name="cmbChild" id="cmbChild" class="cmb"></select>
 									</td>
 									<td>
 										<label for="arrPlaceName" class="labtxt">도착역</label>
-										<input type="text" id="arrPlaceName" name="arrPlaceName" class="txtroot" onclick="getArrStation()" readonly/>
+										<input type="text" id="arrPlaceName" name="arrPlaceName" class="txtroot" onclick="getArrStation()" readonly value="부산"/>
 										<button type="button" id="btnArrStation" class="ui-button ui-corner-all ui-widget" onclick="getArrStation()"> 조 회 </button>	
 									</td>
 								</tr>
@@ -81,7 +102,7 @@
 								</tr>
 								<tr>
 								<td colspan="2" class="tblbtnarea">
-										<button type="button" id="getTicketingInfo" class="ui-button ui-corner-all ui-widget" > 조 회 </button>
+										<button type="button" id="getTicketingInfo" class="ui-button ui-corner-all ui-widget calUser" > 조 회 </button>
 								</td>
 								</tr>
 							</tbody>
@@ -103,11 +124,11 @@
 							<jsp:include page="trainInfo.jsp"></jsp:include>
 						</div>
 					</section>	
-					<jsp:include page="../main/footer.jsp" />
 				</section>
 			</section>
 		</div>
 	</div>
+	<jsp:include page="../main/footer.jsp" />
 	
 	
 </body>

@@ -18,6 +18,7 @@ import com.korail.client.reservation.vo.KTXInfoVO;
 import com.korail.client.reservation.vo.KTXRateInfoVO;
 import com.korail.client.reservation.vo.SeatVO;
 import com.korail.client.reservation.vo.TicketingVO;
+import com.korail.client.user.vo.UserVO;
 
 @Service
 public class ReservationServiceImpl implements ReservationService{
@@ -38,26 +39,11 @@ public class ReservationServiceImpl implements ReservationService{
 		PagingComponent pagingComponent = new PagingComponent();
 		
 		
-		String deptime = request.getParameter("cmbYear");
 		Map<String, Object>  ktxInfoMap =  new HashMap<String, Object>();
-		if(request.getParameter("cmbMonth").length()== 1){
-			deptime += ("0"+ request.getParameter("cmbMonth"));
-		}else{
-			deptime += (request.getParameter("cmbMonth"));
-		}
-		if(request.getParameter("cmbDay").length()== 1){
-			deptime += ("0"+ request.getParameter("cmbDay"));
-		}else{
-			deptime += (request.getParameter("cmbDay"));
-		}
-		if(request.getParameter("cmbTime").length()== 1){
-			deptime += ("0"+ request.getParameter("cmbTime"));
-		}else{
-			deptime += (request.getParameter("cmbTime"));
-		}
 		
+		String depTime = getDepTime(request);
 		pagingComponent.setCurruntPage(Integer.parseInt(request.getParameter("curruntPage")));
-		ktxInfoVO.setDepPlandTime(deptime);
+		ktxInfoVO.setDepPlandTime(depTime);
 		int totalContent=getTotalTrainList(ktxInfoVO);
 		pagingComponent.setTotalContent(totalContent);
 		ktxInfoMap.put("pagingComponent", pagingComponent);
@@ -85,27 +71,70 @@ public class ReservationServiceImpl implements ReservationService{
 		/*요금가져오는항목*/
 		return ktxRateInfoDAO.getTrainRate();
 	}
-
-	@Override
-	public List<TicketingVO> getTicketingInfo(TicketingVO ticketingVO) throws Exception {
-		/*내 예매정보, 전체 예매정보*/
-		return ticketingDAO.getTicketingInfo(ticketingVO);
-	}
-
-	@Override
-	public List<TicketingVO> getTicketInfo() throws Exception {
-		/*현재 발권 중인 사람 및 전체 인원*/
-		return ticketingDAO.getTicketInfo();
-	}
-
-	@Override
-	public int setTicketing(TicketingVO ticketingVO) throws Exception {
-		/*예매*/
-		return ticketingDAO.setTicketing(ticketingVO);
-	}
 	
+
+	/*예매 정보 조회*/
+	@Override
+	public List<TicketingVO> getTicketInfo(TicketingVO ticketingVO, HttpServletRequest request) throws Exception {
+		String depTime = getDepTime(request);
+		ticketingVO.setDepPlandTime(depTime);
+		return ticketingDAO.getTicketInfo(ticketingVO);
+	}
+	/*좌석 정보 조회*/
 	@Override
 	public List<SeatVO> getSeatInfo() throws Exception {
 		return seatDAO.getSeatInfo();
+	}
+
+	@Override
+	public int reservationKTX(TicketingVO ticketingVO) throws Exception {
+		if(ticketingVO.getTicketingETC() == null){
+			ticketingVO.setTicketingETC("2");
+		}
+		return ticketingDAO.reservationKTX(ticketingVO);
+	}
+	
+	public String getDepTime(HttpServletRequest request) throws Exception{
+		String depTime = request.getParameter("cmbYear");
+		if(request.getParameter("cmbMonth").length()== 1){
+			depTime += ("0"+ request.getParameter("cmbMonth"));
+		}else{
+			depTime += (request.getParameter("cmbMonth"));
+		}
+		if(request.getParameter("cmbDay").length()== 1){
+			depTime += ("0"+ request.getParameter("cmbDay"));
+		}else{
+			depTime += (request.getParameter("cmbDay"));
+		}
+		if(request.getParameter("cmbTime").length()== 1){
+			depTime += ("0"+ request.getParameter("cmbTime"));
+		}else{
+			depTime += (request.getParameter("cmbTime"));
+		}
+		return depTime;
+	}
+
+	/*예약 정보 변경*/
+	@Override
+	public int resChange(TicketingVO ticketingVO) throws Exception {
+		return ticketingDAO.resChange(ticketingVO);
+	}
+	/*내 예약정보조회*/
+	public List<TicketingVO> getTicketingInfo(TicketingVO ticketingVO, PagingComponent paging) throws Exception{
+		Map<String, Object> qnaMap = new HashMap<String, Object>();
+		qnaMap.put("ticketingVO", ticketingVO);
+		qnaMap.put("paging", paging);
+		System.out.println(paging.getKeyWordType());
+		int totalContent = ticketingDAO.getResTotalCnt(qnaMap);
+		paging.setTotalContent(totalContent);
+		qnaMap.put("ticketingVO", ticketingVO);
+		qnaMap.put("paging", paging);
+		return ticketingDAO.getTicketingInfo(qnaMap);
+	}
+
+	/*로그인시 탑승 시간이 지난 정보를 만료로 변경*/
+	@Override
+	public int updateResInfo(UserVO userVO) throws Exception{
+		return ticketingDAO.updateResInfo(userVO);
 	}
 }

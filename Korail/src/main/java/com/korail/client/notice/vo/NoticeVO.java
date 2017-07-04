@@ -9,7 +9,7 @@ public class NoticeVO {
 	private String noticeContent;
 	private String noticeRegdate;
 	private String noticeAttachments;
-	private String noticeTbEtc;
+	private String noticeEtc;
 	
 	
 	public int getNoticeNO() {
@@ -54,10 +54,10 @@ public class NoticeVO {
 	public void setNoticeAttachments(String noticeAttachments) {
 		this.noticeAttachments = noticeAttachments;
 	}
-	public String getNoticeTbEtc() {
-		return noticeTbEtc;
+	public String getNoticeEtc() {
+		return noticeEtc;
 	}
-	public void setNoticeTbEtc(String noticeTbEtc) {
-		this.noticeTbEtc = noticeTbEtc;
+	public void setNoticeEtc(String noticeEtc) {
+		this.noticeEtc = noticeEtc;
 	}
 }

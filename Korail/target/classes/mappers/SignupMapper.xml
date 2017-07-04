@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korail.client.signup.dao.SignupDAO">
+
+	<insert id="getInsertSignup" parameterType="userVO">
+		INSERT INTO USER_TB
+		(USERNO,
+		<if test="userId != null">
+			USERID,
+		</if>
+		USERPW,
+		USERNAME,USERPHONE,USERBIRTH,USEREMAIL,
+		<if test="userGender != null">
+			USERGENDER,
+		</if>
+		USERADDR,USERJOINAGREE,USERINFOAGREE,USERETC)
+		VALUES(USER_TB_SEQ.NEXTVAL,
+		<if test="userId != null">
+			#{userId},
+		</if>
+		#{userPw},#{userName},#{userPhone},#{userBirth},#{userEmail},
+		<if test="userGender != null">
+			#{userGender},
+		</if>
+		#{userAddr},'1','1',#{userEtc})
+	</insert>
+	<update id="updateSignup" parameterType="userVO">
+		UPDATE USER_TB
+		SET 
+			<if test="userId != null">
+				USERID = #{userId},
+			</if>
+			USERPW = #{userPw},
+			USERNAME = #{userName},
+			USERPHONE = #{userPhone},
+			USERBIRTH = #{userBirth},
+			USEREMAIL = #{userEmail},
+			<if test="userGender != null">
+				USERGENDER = #{userGender},
+			</if>
+			USERADDR = #{userAddr},
+			USERETC = '0'
+		WHERE USEREMAIL = #{userEmail}
+	</update>
+	<select id="getIdChk" resultType="int" parameterType="userVO">
+		SELECT COUNT(*)
+		FROM USER_TB
+		WHERE USERID = #{userId}
+	</select>
+	<select id="getChkEmail" resultType="String" parameterType="emailVO">
+		SELECT USERETC
+		FROM USER_TB
+		WHERE USEREMAIL = #{userEmail}
+	</select>
+	<select id="isSignOutUser" resultType="int" parameterType = "userVO">
+		SELECT COUNT(*)
+		FROM USER_TB
+		WHERE USEREMAIL = #{userEmail}
+			  AND (USERETC = '1' OR USERETC = '2')
+	</select>
+</mapper>

@@ -24,11 +24,35 @@
 	  height: 30px;
 	  width: 6.66em;
 	}
-	table.strain tr td a{
-	}
 	p.seat{
 		position: absolute;
 	    margin-top: 15px;
 	   	font-size: 0.7em;
     	font-weight: bold;
+    	cursor:pointer;
+	}
+	img.l_seat_off{
+		url("/korail/resources/front/img/ic_seat_left.png")
+	}
+	img.r_seat_off{
+		url("/korail/resources/front/img/ic_seat_right.png")
+	}
+	img.seatOn{
+		url("/resources/front/img/ic_seat_on_left.png")
+	}
+	button.ui-button{
+		background-color: #256cc6;
+	}
+	button.ui-button:focus {
+		background-color: #256cc6;
+	}
+	img.seat{
+		cursor:pointer;
+	}
+	ul.trainNo li a{
+		cursor:pointer;
+	}
+	ul.trainNo li a.sseat{
+		background: #256cc6;
+		color: white;
 	}

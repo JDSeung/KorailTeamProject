@@ -1,15 +1,13 @@
 @CHARSET "UTF-8";
-
+h2{
+	display: none;
+}
 html body {
    height: 80%;
    
 }
-
-#mailwrap{
-	height: 100%;
-}
-.header {
-   height: 15vh;
+p {
+    line-height: 350%;
 }
 
 
@@ -17,19 +15,18 @@ html body {
    margin: 0 auto;
    width: 90%;
    height: 100%;
-   background: white;
 }
 
 .location>h2 {
-   font-weight: bold;
-   font-size: 2.3em;
-   padding-top: 2%;
-   padding-left: 2%;
+	display: block;
+	color: #424242;
+	word-spacing: 0.8em;
+	font-size: 2.0em;
+	padding: 1% 1% 1% 10%;
 }
 
 .content {
    margin-top: 2%;
-   height: 56.4vh;
 }
 
 .content>h3 {
@@ -48,7 +45,6 @@ html body {
    margin-top: 6.5%;
    text-align: center;
    border: 1px solid;
-   padding-top: 5%;
    width: 65%;
    -webkit-border-radius: 10px;
    -moz-border-radius: 10px;

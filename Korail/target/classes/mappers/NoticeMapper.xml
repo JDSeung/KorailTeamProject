@@ -4,14 +4,38 @@
 
 <mapper namespace="com.korail.client.notice.dao.NoticeDAO">
 
-	<select id="getNoticeList"  resultType="noticeVO">
-		<![CDATA[
+	<!-- 메인 페이지 공지사항 -->
+	<select id="getNoticeList"  resultType="noticeVO" parameterType="java.util.Map">
+		
 			SELECT *
 			FROM
-				(SELECT ROWNUM AS RN, NOTICETITLE, NOTICEREGDATE
-				FROM NOTICE_TB ORDER BY NOTICEREGDATE)
-			WHERE RN <= 5 
-		]]>
+				(SELECT NOTICENO, NOTICETITLE, ADMINNAME, TO_CHAR( NOTICEREGDATE, 'YYYY-MM-DD') NOTICEREGDATE, NOTICEATTACHMENTS,
+						ROW_NUMBER() OVER (ORDER BY NOTICENO DESC) AS RN
+				FROM NOTICE_TB
+				<choose>
+					<when test="noticeVO.noticeEtc == 1">
+						WHERE NOTICEETC = '1'
+					</when>
+					<when test="pagingComponent.keyWord != '' ">
+						WHERE NOTICETITLE LIKE '%' || #{pagingComponent.keyWord} || '%'
+					</when>
+				</choose>
+				)
+			WHERE <![CDATA[ RN>=#{pagingComponent.startPage} ]]> AND  <![CDATA[ RN <= #{pagingComponent.endPage} ]]>
+		
 	</select>
-
+	
+	<select id="getNoticeTotal"  resultType="int" parameterType="PagingComponent">
+			SELECT count(*)
+			FROM NOTICE_TB
+			<if test="keyWord != ''">
+				WHERE NOTICETITLE LIKE '%' || #{keyWord} || '%'
+			</if>
+	</select>
+	
+	<select id="noticeDetail" parameterType="noticeVO" resultType="noticeVO">
+		SELECT *
+		FROM NOTICE_TB
+		WHERE NOTICENO = #{noticeNO}
+	</select>
 </mapper>

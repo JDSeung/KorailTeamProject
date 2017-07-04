@@ -1,0 +1,29 @@
+	@CHARSET "UTF-8";
+	h2{
+		display: none;
+	}
+	.paymentWrap {
+		height: 67.2vh;
+	}
+	section>h2 {
+		display: block;
+		font-size: 2.0em;
+		padding: 1% 1% 1% 10%;
+	}
+	.bankInfo{
+		width: 80%;
+		text-align: center;
+		margin: 7% auto 0;
+		border: 1px solid #e8e8e8;
+		width: 50%;
+	}
+	.bankInfo h3{
+		font-size: 2.0em;
+		margin : 3%;
+	}
+	button.btnHome{
+		display: block;
+		margin: 2% auto 0;
+		font-size: 1.8em;
+		width: 8em;
+	}

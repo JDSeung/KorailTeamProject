@@ -1,13 +1,17 @@
 @CHARSET "UTF-8";
 
 footer{
-	height: 15vh;
+	height: 8.3em;
 }
 
 .ulBox{
   display: block;
 }
-
+.footwrap{
+	margin: 0 auto;
+	background: white;
+	width: 90%;
+}
 .ulBox > li {
   display: inline-block;
   vertical-align: middle;
@@ -19,4 +23,9 @@ footer{
 }
 .comInfowrap{
 	text-align: center;
+    border-top: 1px solid #b9bbbe;
+    width: 80%;
+}
+ul.comInfo {
+    padding-top: 4vh;
 }

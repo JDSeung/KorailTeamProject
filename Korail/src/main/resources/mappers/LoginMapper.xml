@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korail.client.user.dao.UserInfoDAO">
+
+	<select id="getLogin" parameterType="userVO" resultType="userVO">
+		SELECT
+			USERNO,
+			USERID,
+			USERPW,
+			USERNAME
+		FROM USER_TB
+		WHERE 	USERID = #{userId}
+				AND USERETC = '0'
+	</select>
+	<select id="getGuest" parameterType="userVO" resultType="userVO">
+		SELECT
+				USERNO,
+				USERNAME,
+				USERPW,
+				USEREMAIL
+		FROM USER_TB
+		WHERE USEREMAIL = #{userEmail}
+	</select>
+</mapper>

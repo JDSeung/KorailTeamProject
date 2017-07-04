@@ -16,15 +16,18 @@ public class KTXInfoDAOImpl implements KTXInfoDAO {
 	@Inject
 	SqlSession session;
 	
+	/*열차정보 조회*/
 	@Override
 	public List<KTXInfoVO> getTrainInfo(Map<String, Object>  ktxInfoMap) {
-		//만약 여기서 에러가 난다고하면 의심해봐야 할 상항 resultType는 Vo인데 반환값은 ?? 매핑이 되는건지 의심한번쯤은
 		return session.selectList("getTrainInfo", ktxInfoMap);
 	}
 
+	/*검색에 따른 열차 리스트 총 개수*/
 	@Override
 	public int getTotalTrainList(KTXInfoVO ktxInfoVO) {
 		return session.selectOne("getTotalTrainList", ktxInfoVO);
 	}
+
+	
 
 }

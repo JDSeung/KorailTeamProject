@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korail.client.cscenter.dao.QnADAO">
+
+	<select id="getQnAList" parameterType="java.util.Map" resultType="qnaVO">
+	
+		SELECT *
+		FROM (SELECT
+					QNANO, 	
+			        USERNO,
+			        ADMINNO,
+			        POSTNO,
+			        QNAWRITER,
+			        TO_CHAR(QNAREGDATE,'YYYY-MM-DD') QNAREGDATE,
+			        QNATITLE,
+			        QNACONTENT,
+			        QNAATTACHMENTS,
+			        ISPUBLIC,
+			        ROW_NUMBER() OVER(ORDER BY QNANO DESC) AS RN
+			      	FROM QNA_TB
+			  WHERE QNAWRITER != '관리자'
+					<if test="pagingComponent.keyWord != ''">
+						<choose>
+							<when test="pagingComponent.keyWordType == 'all'">
+								AND (QNATITLE LIKE '%' || #{pagingComponent.keyWord} || '%' OR QNAWRITER LIKE '%' || #{pagingComponent.keyWord} || '%')
+							</when>
+							<when test="pagingComponent.keyWordType == 'title'">
+								AND QNATITLE LIKE '%' || #{pagingComponent.keyWord} || '%'
+							</when>
+							<when test="pagingComponent.keyWordType == 'name'">
+								AND QNAWRITER LIKE '%' || #{pagingComponent.keyWord} || '%'
+							</when>
+						</choose>
+					</if>)
+		WHERE <![CDATA[RN>=#{pagingComponent.startPage}]]> AND <![CDATA[ RN <= #{pagingComponent.endPage}]]>
+	</select>
+	
+	<select id="getQnATotalCnt" resultType="int" parameterType="PagingComponent">
+		SELECT count(*)
+		FROM QNA_TB
+		WHERE POSTNO IS NULL
+		<if test="keyWord != ''">
+			<choose>
+				<when test="keyWordType == 'all'">
+					AND (QNATITLE LIKE '%' || #{keyWord} || '%' OR QNAWRITER LIKE '%' || #{keyWord} || '%')
+				</when>
+				<when test="keyWordType == 'title'">
+					AND QNATITLE  LIKE '%' || #{keyWord} || '%'
+				</when>
+				<when test="keyWordType == 'name'">
+					AND QNAWRITER LIKE '%' || #{keyWord} || '%'
+				</when>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="getQnA" resultType="qnaVO" parameterType="qnaVO">
+		SELECT *
+		FROM QNA_TB
+		WHERE QNANO = #{qnaNo}
+			<choose>
+			   <when test="userNo != null and ispublic == 1">
+			     AND USERNO = #{userNo}
+			   </when>
+			 </choose>
+	</select>
+	
+	<select id="getQnAReply" resultType="qnaVO" parameterType="qnaVO">
+		SELECT *
+		FROM QNA_TB
+		WHERE POSTNO = #{qnaNo}
+	</select>
+	
+	<delete id="deleteQnA" parameterType="qnaVO">
+		DELETE
+		FROM QNA_TB
+		WHERE QNANO = #{qnaNo}
+	</delete>
+	
+	<insert id="qnaWrite" parameterType="qnaVO">
+		INSERT INTO QNA_TB
+		VALUE(
+				QNANO,
+                USERNO,
+                QNAWRITER,
+                QNATITLE,
+                QNACONTENT,
+                QNAATTACHMENTS,
+                ISPUBLIC
+		)
+		VALUES(
+				QNA_TB_SEQ.NEXTVAL,
+				#{userNo},
+				#{qnaWriter},
+				#{qnaTitle},
+				#{qnaContent},
+				<choose>
+				   <when test="qnaAttachments != null and qnaAttachments != ''">
+				    #{qnaAttachments},
+				   </when>
+				   <otherwise>
+				     'N',
+				   </otherwise>
+			 	</choose>
+					
+				#{ispublic}
+		)
+	</insert>
+	<update id="qnaUpdate" parameterType="qnaVO">
+		UPDATE QNA_TB
+		SET USERNO = #{userNo},
+            QNAWRITER = #{qnaWriter},
+            QNATITLE = #{qnaTitle},
+            QNACONTENT = #{qnaContent},
+            <choose>
+				<when test="qnaAttachments != null and qnaAttachments != ''">
+					QNAATTACHMENTS = #{qnaAttachments},
+				</when>
+				<otherwise>
+				     QNAATTACHMENTS = 'N',
+				</otherwise>
+			</choose>
+			ISPUBLIC = #{ispublic}
+		WHERE QNANO = #{qnaNo} 
+		
+	</update>
+</mapper>

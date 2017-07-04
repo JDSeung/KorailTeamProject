@@ -15,8 +15,8 @@ public class KTXRateInfoDAOImpl implements KTXRateInfoDAO{
 	@Inject
 	SqlSession session;
 	@Override
+	/*운임요금조회*/
 	public List<KTXRateInfoVO> getTrainRate() {
-		// TODO Auto-generated method stub
 		return session.selectList("getTrainRate");
 	}
 	

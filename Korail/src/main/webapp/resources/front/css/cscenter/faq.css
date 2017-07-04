@@ -1,0 +1,104 @@
+	@CHARSET "UTF-8";
+	section>h2 {
+		color: #424242;
+		word-spacing: 0.8em;
+	    display: block;
+	    font-size: 2.0em;
+	    padding: 1% 1% 1% 10%;
+	}
+	.searchNavi{
+		width: 90%;
+		margin-bottom: 3px;
+		text-align: right;
+	}
+	button.swrite{
+	    float: right;
+    	right: 11em;
+    	position: absolute;
+	}
+	table.faqtbl {
+	    width: 80%;
+	    text-align: center;
+	    margin: 2em auto 0;
+	    border-top: 2px solid #0097d0;
+	    border-collapse: collapse;
+	}
+	table.faqtbl thead{
+		word-spacing: 0.5em;
+	    text-align: center;
+		background-color: #f8f8f8;
+		font-size: 1.05em;
+	
+	}
+	table.faqtbl thead tr{
+		height: 5vh;
+	}
+	table.faqtbl thead tr th{
+		border-left: gray 1.5px solid;
+	}
+	table.faqtbl thead tr th:first-child{
+		border-left: none;
+	}
+	table.faqtbl tbody tr {
+		height: 4vh;
+		line-height: 2em;
+	}
+	table.faqtbl tbody tr td span{
+		display: inline-block;
+		text-align: center;
+	}
+	table.faqtbl tbody tr:hover {
+		background: #cfcfcf;
+	}
+	table.faqtbl tbody tr:hover a.title{
+		text-decoration: underline;
+	}
+	table.faqtbl tbody tr td{
+        font-size: 1em;
+	}
+	.pagingNavi  {
+		margin-top: 3vh;
+	    text-align: center;
+	}
+	a.pagenavi{
+		font-size: 1.13em;
+	    padding: 3px;
+	}
+	a.btnarrow img {
+	    width: 30px;
+	    height: 30px;
+	}
+	img.lock{
+		margin-top: -0.5vh;
+		width: 15px;
+		height: 15px;
+	}
+	th.tblt {
+	    word-spacing: 7em;
+	    width: 40%;
+	}
+	a:hover {
+	    cursor: pointer;
+	}
+	a.active{
+		text-decoration: underline;
+	}
+	select.keyWordType{
+		text-align: center;
+	    width: 100px;
+    	height: 30px;
+	}
+	td.tdt{
+		text-align: left;
+	}
+	a.title{
+		color: #666666;
+	    white-space: nowrap;
+	    display: inline-block;
+	    overflow: hidden;
+        width: 100%;
+	    text-overflow: ellipsis;
+	    text-align: left;
+		margin-left: 1em;
+	}
+	

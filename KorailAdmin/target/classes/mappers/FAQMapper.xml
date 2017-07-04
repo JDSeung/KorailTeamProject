@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korail.admin.cscenter.dao.FAQDAO">
+	<select id="getadFAQList" parameterType="java.util.Map"
+		resultType="FAQVO">
+
+		SELECT *
+		FROM (SELECT
+		FAQNO,
+		ADMINNO,
+		ADMINNAME,
+		TO_CHAR(FAQREGDATE,'YYYY-MM-DD') FAQREGDATE,
+		FAQTITLE,
+		FAQCONTENT,
+		ROW_NUMBER() OVER(ORDER BY FAQNO DESC) AS RN
+		FROM FAQ_TB
+
+		<if test="paging.keyWord != ''">
+			<choose>
+				<when test="paging.keyWordType == 'all'">
+					WHERE FAQTITLE LIKE '%' || #{paging.keyWord} || '%'
+				</when>
+				<when test="paging.keyWordType == 'title'">
+					WHERE FAQTITLE LIKE '%' || #{paging.keyWord} || '%'
+				</when>
+			</choose>
+		</if>
+
+		)
+		WHERE <![CDATA[RN>=#{paging.startPage}]]>
+		AND <![CDATA[ RN <= #{paging.endPage}]]>
+	</select>
+
+	<select id="getadFAQTotalCnt" resultType="int" parameterType="pagingComponent">
+		SELECT count(*)
+		FROM FAQ_TB
+		<if test="keyWord != ''">
+			<choose>
+				<when test="keyWordType == 'all'">
+					WHERE FAQTITLE LIKE '%' || #{keyWord} || '%'
+				</when>
+				<when test="keyWordType == 'title'">
+					WHERE FAQTITLE LIKE '%' || #{keyWord} || '%'
+				</when>
+			</choose>
+		</if>
+	</select>
+
+	<select id="getadFAQ" resultType="FAQVO" parameterType="FAQVO">
+		SELECT *
+		FROM FAQ_TB
+		WHERE FAQNO = #{faqNo}
+	</select>
+
+	<insert id="faqadWrite" parameterType="FAQVO">
+		INSERT INTO FAQ_TB
+		VALUE(
+		FAQNO,
+		ADMINNO,
+		ADMINNAME,
+		FAQTITLE,
+		FAQCONTENT
+		)
+		VALUES(
+		FAQ_TB_SEQ.NEXTVAL,
+		#{adminNo},
+		'관리자',
+		#{faqTitle},
+		#{faqContent}
+		)
+	</insert>
+
+	<delete id="faqadDelete" parameterType="FAQVO">
+		DELETE
+		FROM FAQ_TB
+		WHERE FAQNO = #{faqNo}
+	</delete>
+	
+	<update id="faqadUpdate" parameterType="FAQVO" >
+		UPDATE FAQ_TB
+			SET FAQTITLE = #{faqTitle},
+	            FAQCONTENT = #{faqContent}
+			WHERE FAQNO = #{faqNo} 
+	</update>
+</mapper> 

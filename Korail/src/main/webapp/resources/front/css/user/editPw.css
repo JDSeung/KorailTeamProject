@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+	h2{
+		display: none;
+	}
+	section>h2 {
+		display: block;
+	    color: #424242;
+	    word-spacing: 0.2em;
+	    display: block;
+	    font-size: 2.0em;
+	    padding: 1% 1% 1% 10%;
+	}
+	div.chpwWrap {
+	    height: 39em;
+	}
+	img.logoimg{
+		width: 15em;
+	}
+	table.tblid {
+		    width: 80%;
+		    text-align: center;
+		    margin: 11em auto 0;
+		    border-collapse: collapse;
+	}
+	table.tblid tr{
+		height: 3em;
+	}
+	table.tblid tr td{
+		border: 1px solid #000;
+	}
+	table.tblid tr .c1{
+		width: 16em;
+	}
+	table.tblid tr .c2 {
+	    width: 25em;
+	}
+	label.blab{
+		display: inline-block;
+		width: 8em;
+	}

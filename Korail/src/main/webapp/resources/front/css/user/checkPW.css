@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+	h2{
+		display: none;
+	}
+	section>h2 {
+		display: block;
+	    color: #424242;
+	    word-spacing: 0.2em;
+	    display: block;
+	    font-size: 2.0em;
+	    padding: 1% 1% 1% 10%;
+	}
+	div.checkWrap {
+	    height: 39em;
+	}
+	table.checkPWtbl{
+		width: 44em;
+		text-align: center;
+		margin: 13em auto 0;
+		border-collapse: collapse;
+	}
+	table.checkPWtbl tr{
+		height: 3em;
+	}
+	img.logoimg{
+		width: 15em;
+	}
+	.pwBtn{
+	  margin: 4px;
+	}
+	table.checkPWtbl tr td.c2{
+		width: 20em;
+	}
