@@ -34,10 +34,8 @@ public class EmailServiceImpl implements EmailService {
 		MimeMessage msg = mailSender.createMimeMessage();
 		
 		try {
-		
-			
 			msg.setSubject(title);
-            msg.setText(content);
+            msg.setText(content,"UTF-8","HTML");
             msg.setRecipients(MimeMessage.RecipientType.TO , InternetAddress.parse(emailVO.getUserEmail()));
             msg.setFrom(emailVO.getFrom());
             
@@ -81,7 +79,8 @@ public class EmailServiceImpl implements EmailService {
 	public void sendId(EmailVO emailVO){
 		title = "Korail ID찾기 입니다.";
 		UserVO userVO = userInfoDAO.searchId(emailVO);
-		content = "귀하의 인증 코드는  " + userVO.getUserId() + " 입니다.";
+		content = "<h1>Korail</h1>";
+		content += "<p>귀하의 아이디는  " + userVO.getUserId() + " 입니다.</p>";
 		System.out.println(content);
 		sendMail(emailVO);
 	}

@@ -33,12 +33,15 @@
                 <mapping path="/qnaboard/qnaedit"/>
 	       		<mapping path="/user/*"/>
 	       		<exclude-mapping path="/user/searchid" />
+	       		<exclude-mapping path="/user/checkmail" />
 	       		<exclude-mapping path="/user/searchpw" />
+	       		<exclude-mapping path="/user/editpw" />
+	       		<exclude-mapping path="/user/changepw" />
            <!-- 로그인체크 인터셉터 클래스 -->
         	<beans:ref bean="LoginInterceptor"/>
        	</interceptor>
        	<interceptor>
-       		<mapping path="/reservation/resinfo"/>
+       		<mapping path="/reservation/resSearch"/>
        		<beans:ref bean="RESInterceptor"/>
        	</interceptor>
    	</interceptors>

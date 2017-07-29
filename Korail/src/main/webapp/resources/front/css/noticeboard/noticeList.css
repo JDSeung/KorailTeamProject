@@ -1,7 +1,4 @@
 	@CHARSET "UTF-8";
-	.noticeWrap {
-		height: 67.2vh;
-	}
 	section>h2{
 		color: #424242;
 		word-spacing: 0.8em;
@@ -55,7 +52,7 @@
 	    font-size: 1em;
 	}
 	.pagingNavi{
-		margin-top: 3vh;
+		margin: 3vh 0;
 		text-align: center;
 	}
 	a.pagenavi{

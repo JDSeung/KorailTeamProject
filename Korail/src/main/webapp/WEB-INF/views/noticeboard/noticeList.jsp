@@ -19,7 +19,7 @@
 <script type="text/javascript" src="<%=rootJS%>basic.js" /></script>
 <link rel="stylesheet" href="<%=rootCss%>noticeboard/noticeList.css">
 <script type="text/javascript" src="<%=rootJS%>noticeboard/noticeList.js"></script>
-<title>Insert title here</title>
+<title>Korail</title>
 </head>
 <body>
 <jsp:include page="../main/header.jsp"/>
@@ -29,7 +29,7 @@
 		<input type="hidden" id="noticeNO" class="noticeNO" name="noticeNO" value="0"/>
 		<input type="hidden" name="keyWord" id="keyWord" class="basictxt keyWord"/>
 	</form>
-	<div id="wrap" class="wrap">
+	<div id="wrap">
 		<div class="container">
 			<section>
 				<h2>공 지 사 항</h2>

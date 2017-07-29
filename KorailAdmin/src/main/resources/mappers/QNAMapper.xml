@@ -31,6 +31,9 @@
 							<when test="paging.keyWordType == 'name'">
 								AND QNAWRITER LIKE '%' || #{paging.keyWord} || '%'
 							</when>
+							<when test="paging.keyWordType == 'main'">
+								AND POSTNO IS NULL
+							</when>
 						</choose>
 					</if>
 					)
@@ -40,7 +43,7 @@
 	<select id="getadQnATotalCnt" resultType="int" parameterType="pagingComponent">
 		SELECT count(*)
 		FROM QNA_TB
-		WHERE POSTNO IS NULL
+		WHERE QNAWRITER != '관리자'
 		<if test="keyWord != ''">
 			<choose>
 				<when test="keyWordType == 'all'">
@@ -51,6 +54,9 @@
 				</when>
 				<when test="keyWordType == 'name'">
 					AND QNAWRITER LIKE '%' || #{keyWord} || '%'
+				</when>
+				<when test="keyWordType == 'main'">
+					AND POSTNO IS NULL
 				</when>
 			</choose>
 		</if>

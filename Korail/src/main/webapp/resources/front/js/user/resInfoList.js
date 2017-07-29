@@ -28,6 +28,7 @@ $(function(){
 		initDate(calyear, calmonth, calday);
 		}
 	});
+	
 	/*데이트피커클릭시*/
 	$('.ui-datepicker-trigger').click(function(){
 		var calyear = $('#cmbYear').val();
@@ -36,6 +37,7 @@ $(function(){
 		var date = new Date(calyear, calmonth-1, calday, 0, 0, 0, 0);
 		$("#resdatepicker").datepicker("setDate", date);
 	});
+	
 	/*검색 버튼 클릭시*/
 	$("#btnSearch").click(function(){
 		$("#curruntPage").val(0);
@@ -43,6 +45,7 @@ $(function(){
 		$("#keyWordType").val('');
 		getPage();
 	});
+	
 	/*검색 버튼 클릭시*/
 	$("#btnAllSearch").click(function(){
 		$("#curruntPage").val(0);
@@ -250,7 +253,8 @@ function setCurruntPage(page){
 /*페이지 비동기 통신*/
 function getPage(){
 	var cmbmonth =  $("#cmbMonth").val().length == 1 ?'0'+ $("#cmbMonth").val() : $("#cmbMonth").val();
-	var ticketingDate = $("#cmbYear").val() + cmbmonth+ $("#cmbDay").val();
+	var cmbmday =  $("#cmbDay").val().length == 1 ?'0'+ $("#cmbDay").val() : $("#cmbDay").val();
+	var ticketingDate = $("#cmbYear").val() + cmbmonth + cmbmday;
 	$("#ticketingDate").val(ticketingDate);
 	$.ajax({
 		url:'reslist',

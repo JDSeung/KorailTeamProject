@@ -37,8 +37,6 @@ $(function() {
 	$("#searchData").keypress(function (e) {
 		if (e.which == 13){
 			shearchAddr();  // 실행할 이벤트
-			console.log(e);
-			alert(e.html());
 	    }
 	});
 	/*우편번호 다이얼로그창 끄면 데이터 초기화*/
@@ -71,22 +69,21 @@ function shearchAddr(){
 /*데이터 가져오기*/
 function addZipList(){
 	var html = '';
-	if (zipList.errorCode != null
-			&& zipList.errorCode != '' && $("#roadTable").height() == 40) {
+	var list = zipList.list;
+	if (list == null || $("#roadTable").height() == 40) {
 		html += '<tr>';
-		html += '   <td colspan="2">';
+		html += '   <td class="noaddr" colspan="2">';
 		html += '검색결과가 없습니다';
 		html += '   <td>';
 		html += '</tr>';
 	} else {
-		var list = zipList.list;
 		for (var i = 0; i < list.length; i++) {
 			html += '<tr>';
-			html += '   <td id="doro">';
+			html += '   <td id="doro'+i+'">';
 			html += list[i].zipcode;
 			html += '</td>';
 			html += '<td>';
-			html += '<a href="#" id="doroaddr" onClick="putAddr();" >';
+			html += '<a href="#" id="doroaddr'+i+'" onClick="putAddr('+i+');" >';
 			html += list[i].lnmAddress;
 			html += '</a>';
 			html += '</td>';
@@ -95,8 +92,8 @@ function addZipList(){
 	}
 	$("#roadList").append(html);
 }
-function putAddr() {
-	$("#dorozip").val($("#doro").html());
-	$("#doroaddrVil").val($("#doroaddr").html());
+function putAddr(row) {
+	$("#dorozip").val($("#doro"+row).html());
+	$("#doroaddrVil").val($("#doroaddr"+row).html());
 	$("#zipCodedialog").dialog("close");
 }

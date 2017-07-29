@@ -11,4 +11,18 @@
 		</foreach>
 		SELECT * FROM DUAL
 	</insert>
+	<update id="resUpdate">
+		<!-- 로그인시 탑승 시간이 지난 정보를 만료로 변경 -->
+		UPDATE TICKETING_TB
+		SET TICKETINGETC = '4'
+		WHERE TO_DATE(DEPPLANDTIME,'yyyy-mm-dd hh24:mi') <![CDATA[<=]]> sysdate
+	</update>
+	<delete id="resCancle">
+		<!-- 결제 시간이 10분 이상 지연시 예매 취소 -->
+		DELETE 
+		FROM TICKETING_TB
+		WHERE TICKETINGETC = '2' 
+      		AND TO_CHAR(TICKETINGDATE+1/144,'yyyy-mm-dd hh24:mi') <![CDATA[<]]> TO_CHAR(sysdate,'yyyy-mm-dd hh24:mi')
+	</delete>
 </mapper>
+

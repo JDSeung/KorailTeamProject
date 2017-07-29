@@ -96,10 +96,10 @@
 			NOTICECONTENT = #{noticeContent},
             <choose>
 				<when test="noticeAttachments != null and noticeAttachments != ''">
-					NOTICEATTACHMENTS = #{noticeAttachments},
+					NOTICEATTACHMENTS = #{noticeAttachments}
 				</when>
 				<otherwise>
-				     NOTICEATTACHMENTS = 'N',
+				     NOTICEATTACHMENTS = 'N'
 				</otherwise>
 			</choose>
 		WHERE NOTICENO = #{noticeNO} 

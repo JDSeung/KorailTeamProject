@@ -71,7 +71,6 @@ public class QnABoardMgrController {
 	@ResponseBody
 	@RequestMapping(value = "/write")
 	public int write(QnAVO qnaVO, HttpSession session, HttpServletRequest request) throws Exception{
-		System.out.println(request.getParameter("file"));
 		if(qnaVO.getFile() != null){
 			String fileName = FileUploadUtil.fileUpload(qnaVO.getFile(), request);
 			qnaVO.setQnaAttachments(fileName);
@@ -105,13 +104,14 @@ public class QnABoardMgrController {
 	
 	/*글 수정 화면 출력*/
 	@RequestMapping(value = "/qnaEdit")
-	public String qnaEdit(QnAVO qnaVO, Model model, HttpSession session) throws Exception{
+	public String qnaEdit(QnAVO qnaVO, PagingComponent paging, Model model, HttpSession session) throws Exception{
 		Map<String, QnAVO> qnaMap = new HashMap<String, QnAVO>();
 		qnaMap = qnaService.getQnAReply(qnaVO);
 		qnaVO = qnaMap.get("qnaVO");
 		QnAVO qnaReply = qnaMap.get("qnaReply");
 		model.addAttribute("qnaVO", qnaVO);
-		session.setAttribute("qnaVO", qnaReply);
+		session.setAttribute("qnaVO", qnaReply);		
+		model.addAttribute("paging", paging);
 		model.addAttribute("qnaReply", qnaReply);	
 		return "boardmgr/qna/qnaEdit";
 	}

@@ -1,5 +1,42 @@
 @CHARSET "UTF-8";
+
+.chartWrap{
+	height: 75vh;
+}
+section>h2{
+	display: none;
+}
+
 div#graph{
-	width: 50em;
+	width: 75em;
 	height: 30em;
+}
+
+table.salestbl{
+	width: 100%;
+	text-align: center;
+	margin: 2vh auto 0;
+	border-top: 2px solid #0097d0;
+	border-collapse: collapse;
+}
+table.salestbl thead{
+	word-spacing: 0.5em;
+	text-align: center;
+	background-color: #f8f8f8;
+	font-size: 1em;
+}
+table.salestbl thead tr{
+	height: 5vh;
+}
+table.salestbl thead tr th{
+	border-left: gray 1.5px solid;
+}
+table.salestbl thead tr th:first-child{
+	border-left: none;
+}
+table.salestbl tbody tr{
+	height: 4vh;
+}
+table.salestbl tbody tr td{
+	font-size: 1em;
 }

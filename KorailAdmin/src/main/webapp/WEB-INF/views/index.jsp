@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="<%=root%>jquery/jquery-ui.structure.css">
 <link rel="stylesheet" href="<%=root%>jquery/jquery-ui.theme.css">
 <link rel="stylesheet" href="<%=rootCss%>basic.css">
+<link rel="stylesheet" href="<%=rootCss%>main/index.css">
 </head>
 <body>
 	<div>
@@ -23,10 +24,10 @@
 	</div>
 
 	<div class="wrap" id="wrap">
-		<div class="container" id="container">
+		<div class="container" id="maincontainer">
 			<section>
 				<form>
-					<div>
+					<div class="adminMain">
 						<div>
 							<h2>관리자 메인</h2>
 						</div>
@@ -42,28 +43,26 @@
 							<h2>최근 QnA</h2>
 						</div>
 						<div class="qnaNew">
-							<table>
-								<caption>최근 QnA</caption>
-								<colgroup>
-									<col class="colwid1">
-									<col class="colwid2">
-									<col class="colwid3">
-									<col class="colwid4">
-									<col class="colwid5">
-									<col class="colwid6">
-								</colgroup>
+							<table class="qnaNewTb">
 								<thead>
 									<tr>
-										<th scope="col">글 번 호</th>
-										<th scope="col">제 목</th>
-										<th scope="col">작 성 자</th>
-										<th scope="col">작 성 자 ID</th>
-										<th scope="col">작 성 일</th>
-										<th scope="col">첨 부 파 일</th>
+										<th>글 번 호</th>
+										<th>제 목</th>
+										<th>작 성 자</th>
+										<th>작 성 일</th>
+										<th>저리상태</th>
 									</tr>
 								</thead>
-								<tbody id="qnas" >
-
+								<tbody>
+									<c:forEach var="newQna" items="${qnaList}" varStatus="status">
+										<tr>
+											<td id="qNo">${newQna.qnaNo}</td>
+											<td id="qtitle"><a class="at" href="/admin/boardmgr/qna/qnadetail?curruntPage=0&totalPage=0&qnaNo=${newQna.qnaNo}">${newQna.qnaTitle}</a></td>
+											<td id="qWriter">${newQna.qnaWriter}</td>
+											<td id="qDate">${newQna.qnaRegDate}</td>
+											<td id="qPostNo">대 기 중</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>

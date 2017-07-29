@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+#maincontainer{
+	height: 80%;
+}
+
+div.adminMain{
+	height: 20%;
+}
+
+table.qnaNewTb {
+	    width: 80%;
+	    text-align: center;
+	    margin: 2em auto 0;
+	    border-top: 2px solid #0097d0;
+	    border-collapse: collapse;
+	}
+	table.qnaNewTb thead{
+		word-spacing: 0.5em;
+	    text-align: center;
+		background-color: #f8f8f8;
+		font-size: 1.05em;
+	
+	}
+	table.qnaNewTb thead tr{
+		height: 5vh;
+	}
+	table.qnaNewTb thead tr th{
+		border-left: gray 1.5px solid;
+	}
+	table.qnaNewTb thead tr th:first-child{
+		border-left: none;
+	}
+	table.qnaNewTb tbody tr {
+		height: 4vh;
+	}
+	table.qnaNewTb tbody tr td span{
+		display: inline-block;
+		text-align: center;
+	}
+	table.qnaNewTb tbody tr:hover {
+		background: #cfcfcf;
+	}
+	table.qnaNewTb tbody tr:hover a.title{
+		text-decoration: underline;
+	}
+	table.qnaNewTb tbody tr td{
+	    font-size: 1.15em;
+	}

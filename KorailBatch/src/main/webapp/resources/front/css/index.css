@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+.wrap{
+	margin: 0 auto;
+	width: 90%;
+}
+.ui-dialog-titlebar {
+    display: none;
+}
+#progress{
+	text-align: center;
+}
+
+.batchwrap{
+	line-height: 3em;
+}
+table.dbData{
+	
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+	border-collapse: collapse;
+}
+table.dbData tr th{
+	height: 50px;
+	border: 1px solid #000;
+}
+table.dbData tr td{
+	border: 1px solid #000;
+	height: 50px;
+	width: 20%;
+}

@@ -27,10 +27,13 @@ $(function(){
 	/*수정버튼 클릭시.*/
 	$("#btnEdit").click(function(){
 		$("#qnaContent").val(CKEDITOR.instances.qnaContent.getData());
+		var formData = new FormData($("#pagingInfo")[0]);
 		$.ajax({
 			url:'edit',
-			type:'GET',
-			data:$("#pagingInfo").serialize(),
+			type:'POST',
+			processData : false,
+            contentType : false,
+			data:formData,
 			success:function(result){
 				if(result == 1){
 					alert("QnA게시물이 수정 되었습니다.");

@@ -6,15 +6,35 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.korail.client.user.vo.UserVO;
+
 public class LoginInterceptor extends HandlerInterceptorAdapter{
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 	    try {
-	        //admin이라는 세션key를 가진 정보가 널일경우 로그인페이지로 이동
-	        if(request.getSession().getAttribute("userVO") == null ){
-	                response.sendRedirect("/korail/login/");
-	                return false;
+	    	String url = request.getRequestURL().toString();
+	    	String[] urlMapper = url.split("/");
+	    	String mapper = urlMapper[urlMapper.length-1];
+	    	String[] guestMapper = {"resinfolist", "reservation", "resinfo", "payment", "reslist"};
+	    	UserVO user = (UserVO) request.getSession().getAttribute("userVO");
+	    	boolean isenter = true;
+	    	for(String getMapper : guestMapper){
+	    		if(getMapper.equals(mapper)){
+	    			isenter = false;
+	    		}
+	    	}
+	        if(user == null ){
+				response.sendRedirect("/korail/login/");
+				return false;
+	        }else if(isenter){
+	        	System.out.println("실행됨");
+	        	if(user.getUserId() == null){
+	        		System.out.println("실행됨2");
+	        		request.getSession().invalidate();
+					response.sendRedirect("/korail/login/");
+					return false;
+	        	}
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();

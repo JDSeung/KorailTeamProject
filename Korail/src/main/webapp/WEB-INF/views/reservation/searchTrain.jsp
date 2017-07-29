@@ -31,6 +31,7 @@
 <input type="hidden" id="hcmbYear" name="cmbYear" value="${cmbYear}" />
 <input type="hidden" id="hcmbMonth" name="cmbMonth" value="${cmbMonth}" />
 <input type="hidden" id="hcmbDay" name="cmbDay" value="${cmbDay}" />
+<input type="hidden" id="hcmbTime" name="cmbTime" value="${cmbTime}" />
 <form id="resInfoForm">
 	<input type="hidden" id="strainName" name="trainName" />
 	<input type="hidden" id="strainNo" name="trainNO" />

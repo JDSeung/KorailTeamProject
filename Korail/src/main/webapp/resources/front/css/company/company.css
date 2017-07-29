@@ -1,0 +1,31 @@
+#contents h2 {
+	width: auto; 
+	height: auto; 
+	margin: 0 0; 
+	padding:10px 0 0 30px; 
+	background: url('/korail/resources/front/img/h2_bg1.gif') no-repeat 0 15px; 
+	color: #0165b3;  
+	font: bold 1em/1.19 "나눔고딕"; 
+	font-size: 14px; text-align: left; 
+	letter-spacing: -1px; 
+	line-height: 2.25; 
+}
+.ccon{
+	margin: 0 auto;
+    width: 100%;
+    background: white;
+    height: 100%;
+}
+.cwrap{
+	width: 90%;
+	margin: 0 auto;
+	height: 75em;
+	background-color: white;
+}
+.iwrap{
+	margin: 0 2em;
+	background-color: white;
+}
+a{
+	color: black;
+}

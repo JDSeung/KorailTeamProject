@@ -40,7 +40,7 @@
 	<select id="getQnATotalCnt" resultType="int" parameterType="PagingComponent">
 		SELECT count(*)
 		FROM QNA_TB
-		WHERE POSTNO IS NULL
+		WHERE QNAWRITER != '관리자'
 		<if test="keyWord != ''">
 			<choose>
 				<when test="keyWordType == 'all'">

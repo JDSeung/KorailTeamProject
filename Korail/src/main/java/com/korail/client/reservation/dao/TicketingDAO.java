@@ -14,12 +14,14 @@ public interface TicketingDAO {
 	public int reservationKTX(TicketingVO ticketingVO) throws Exception;
 	/*예약변경*/
 	public int resChange(TicketingVO ticketingVO) throws Exception;
+	/*예약취소*/
+	public int resCancel(TicketingVO ticketingVO) throws Exception;
 	/*마이페이지 예약정보조회*/
 	public List<TicketingVO> getTicketingInfo(Map<String, Object> qnaMap) throws Exception;
 	/*마이페이지 예약정보조회*/
 	public int getResTotalCnt(Map<String, Object> qnaMap) throws Exception;
-	/*로그인시 탑승 시간이 지난 정보를 만료로 변경*/
-	public int updateResInfo(UserVO userVO) throws Exception;
 	/*예매된 회원은 탈퇴불가*/
 	public int isResUser(UserVO userVO) throws Exception; 
+	/*선택 좌석 예약 조회*/
+	public int resSearch(TicketingVO ticketingVO) throws Exception; 
 }

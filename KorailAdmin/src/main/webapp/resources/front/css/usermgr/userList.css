@@ -80,3 +80,9 @@
 	    width: 100px;
     	height: 30px;
 	}
+	p.secession{
+		color: red;
+	}
+	p.guest{
+		color : blue;
+	}

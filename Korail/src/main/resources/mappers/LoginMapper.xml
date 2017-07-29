@@ -12,7 +12,7 @@
 			USERNAME
 		FROM USER_TB
 		WHERE 	USERID = #{userId}
-				AND USERETC = '0'
+				AND USERETC = #{userEtc}
 	</select>
 	<select id="getGuest" parameterType="userVO" resultType="userVO">
 		SELECT
@@ -22,5 +22,6 @@
 				USEREMAIL
 		FROM USER_TB
 		WHERE USEREMAIL = #{userEmail}
+			AND USERETC = #{userEtc}
 	</select>
 </mapper>

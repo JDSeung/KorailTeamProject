@@ -27,13 +27,16 @@ $(function(){
 			alert("내용은 필수 입력 항목입니다.");
 			return;
 		}
+		var formData = new FormData($("#pagingInfo")[0]);
 		$.ajax({
 			url:'write',
 			type:'POST',
-			data:$("#pagingInfo").serialize(),
+			data:formData,
+			processData : false,
+            contentType : false,
 			success:function(result){
 				if(result==1){
-					alert("공지사항 입력이 완료되었습니다.");
+					alert("공지사항이 등록되었습니다.");
 					location.href="/admin/boardmgr/notice/";
 				}
 			}

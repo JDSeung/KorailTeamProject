@@ -44,12 +44,22 @@
                 <property name="applicationContextJobDataKey" value="applicationContext" />
             </bean>
         </property>
-        <property name="cronExpression" value="0 57 10 * * ?" />
+        <property name="cronExpression" value="0 30 10 * * ?" />
+    </bean>
+    <bean id="resCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean" >
+        <property name="jobDetail">
+            <bean id="testJobProcess" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass" value="com.korail.batch.quartz.ResQuartzJob" />
+                <property name="applicationContextJobDataKey" value="applicationContext" />
+            </bean>
+        </property>
+        <property name="cronExpression" value="0 0/1 * * * ?" />
     </bean>
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
                 <ref bean="testCronTrigger" />
+                <ref bean="resCronTrigger" />
             </list>
         </property>
     </bean>	

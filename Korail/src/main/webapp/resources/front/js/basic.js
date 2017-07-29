@@ -89,19 +89,21 @@ $( function() {
 	    	var option = $("<option value = '"+i+"'>"+i+"(  "+ meridiem +")</option>");
 	    	$('#cmbTime').append(option);
 	    }
-	    for(i = 0; i<3; i++){
-	    	var Now = new Date();
-	    	var year = Now.getFullYear() + i;
-	    	var option = $("<option value = '"+year+"'>"+year +"</option>");
-	    	$('#cmbYear').append(option);
-	    }
-	    for(i = 1; i<=12; i++){
-	    	var option = $("<option value = '"+i+"'>" + i + "</option>");
-	    	$('#cmbMonth').append(option);
-	    }
-	    for(i = 1; i<=31; i++){
-	    	var option = $("<option value = '"+i+"'>" + i + "</option>");
-	    	$('#cmbDay').append(option);
+	    if($('#cmbYear').val()== null){
+		    for(i = 0; i<3; i++){
+		    	var Now = new Date();
+		    	var year = Now.getFullYear() + i;
+		    	var option = $("<option value = '"+year+"'>"+year +"</option>");
+		    	$('#cmbYear').append(option);
+		    }
+		    for(i = 1; i<=12; i++){
+		    	var option = $("<option value = '"+i+"'>" + i + "</option>");
+		    	$('#cmbMonth').append(option);
+		    }
+		    for(i = 1; i<=31; i++){
+		    	var option = $("<option value = '"+i+"'>" + i + "</option>");
+		    	$('#cmbDay').append(option);
+		    }
 	    }
 	}
     setDate();

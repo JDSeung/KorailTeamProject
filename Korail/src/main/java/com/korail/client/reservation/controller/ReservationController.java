@@ -73,7 +73,6 @@ public class ReservationController {
 	}
 	
 	/*예약버튼 클릭시 임시 예약 DB저장*/
-	@ResponseBody
 	@RequestMapping(value = "/resinfo")
 	public ModelAndView resInfo(@ModelAttribute TicketingVO ticketingVO, HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView resPage = new ModelAndView("reservation/resInfo");
@@ -87,6 +86,18 @@ public class ReservationController {
 		return resPage;
 	}
 	
+	/*예약버튼 클릭시 좌석 예매여부 조회*/
+	@ResponseBody
+	@RequestMapping(value = "/resSearch")
+	public int resSearch(@ModelAttribute TicketingVO ticketingVO, HttpServletRequest request, HttpSession session) throws Exception {
+		UserVO userVO = (UserVO)session.getAttribute("userVO");
+		ticketingVO.setUserNo(userVO.getUserNo());
+		int result = reservationService.resSearch(ticketingVO);
+		if(result == 1 ){
+			return result;
+		}
+		return 0;
+	}	
 	/*예약 중 이전페이지 버튼 클릭, 예약 취소 버튼 클릭시.*/
 	@ResponseBody
 	@RequestMapping(value = "/cancelres", method = RequestMethod.POST)
@@ -96,7 +107,7 @@ public class ReservationController {
 		if(user != null){
 			ticketingVO.setUserNo(user.getUserNo());
 		}
-		int result = reservationService.resChange(ticketingVO);
+		int result = reservationService.resCancel(ticketingVO);
 		ticketingVO = null;
 		return result;
 	}
@@ -110,6 +121,8 @@ public class ReservationController {
 		reservationService.resChange(ticketingVO);
 		return "reservation/payment";
 	}
+	
+	
 	@RequestMapping(value = "/payment", method = RequestMethod.GET)
 	public String paymentGet(@ModelAttribute TicketingVO ticketingVO, HttpServletRequest request) throws Exception {
 		return "reservation/payment";

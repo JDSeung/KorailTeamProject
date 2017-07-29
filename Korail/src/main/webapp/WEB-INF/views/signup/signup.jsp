@@ -49,12 +49,16 @@
 								</tr>
 								<tr>
 									<th>비 밀 번 호</th>
-									<td><input type="password" maxlength="20" id="userPw" name="userPw" class="basictxt" maxlength="20"/>
+									<td>
+										<input type="password" maxlength="20" id="userPw" name="userPw" class="basictxt" maxlength="20"/>
+										<span class="font_red">문자, 숫자, 특수문자의 조합으로 6~20자리로 입력해주세요.</span>
 									</td>
 								</tr>
 								<tr>
 									<th>비 밀 번 호 확 인</th>
-									<td><input type="password" maxlength="20" id="userchkpw" name="userchkpw" class="basictxt" maxlength="20"/>
+									<td>
+										<input type="password" maxlength="20" id="userchkpw" name="userchkpw" class="basictxt" maxlength="20"/>
+										<span id="chk"></span>
 									</td>
 								</tr>
 								<tr>
@@ -67,7 +71,7 @@
 										</select> 
 										<label for="cmbMonth">월</label>
 										<select name="cmbDay" id="cmbDay" class="cmbdate"></select>
-										<label for="cmbDay">일</label> <input type="text" id="datepicker" />
+										<label for="cmbDay">일</label> <input type="text" id="biarthdpk" />
 									</td>
 								</tr>
 								<tr>
@@ -88,7 +92,7 @@
 								<tr>
 									<th>전 화 번 호</th>
 									<td>
-									<input type="text" id="userphone1" name="userphone1" class="userphone basictxt numbersOnly" maxlength="3"/>
+									<input type="text" id="userphone1" name="userphone1" class="userphone basictxt numbersOnly" maxlength="3" value="010" readonly/>
 									-
 									<input type="text" id="userphone2" name="userphone2" class="userphone basictxt numbersOnly" maxlength="4"/>
 									-

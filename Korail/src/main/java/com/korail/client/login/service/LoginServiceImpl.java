@@ -19,7 +19,7 @@ public class LoginServiceImpl implements LoginService {
 	/*회원로그인*/
 	@Override
 	public void getLogin(UserVO userVO, HttpSession session) {
-		
+		userVO.setUserEtc("0");
 		UserVO dbuserVO = userInfoDAO.getLogin(userVO);
 		try {
 			if (dbuserVO != null) {
@@ -40,7 +40,8 @@ public class LoginServiceImpl implements LoginService {
 	
 	/*비회원 로그인*/
 	@Override
-	public void getGuest(UserVO userVO, HttpSession session) {
+	public int getGuest(UserVO userVO, HttpSession session) {
+		int result = 0;
 		UserVO dbuserVO = userInfoDAO.getGuest(userVO);
 		try {
 			if (dbuserVO != null) {
@@ -52,10 +53,12 @@ public class LoginServiceImpl implements LoginService {
 					userVO = dbuserVO;
 					userVO.setUserPw("");
 					session.setAttribute("userVO", userVO);
+					result = 1;
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 }

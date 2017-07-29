@@ -27,15 +27,13 @@
 	}
 	table.restbl thead  tr th{
 		width: 11%;
+		border: 1px solid #cfcfcf;
 	}
 	table.restbl tr td {
 		font-size: 1.3em;
 	    border: 1px solid #cfcfcf;
 		font-weight: lighter;
 		background-color: white;
-	}
-	table.restbl thead:first-child, table.restbl tr td:first-child{
-	    border-left: none;
 	}
 	.txt_red {
 		color: red;

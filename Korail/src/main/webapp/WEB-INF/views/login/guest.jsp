@@ -74,7 +74,7 @@
 									<tr>
 										<th>전 화 번 호</th>
 										<td>
-										<input type="text" id="userphone1" name="userphone1" class="userphone basictxt numbersOnly" maxlength="3"/> -
+										<input type="text" id="userphone1" name="userphone1" class="userphone basictxt numbersOnly" maxlength="3" value="010"/> -
 										<input type="text" id="userphone2" name="userphone2" class="userphone basictxt numbersOnly" maxlength="4"/> -
 										<input type="text" id="userphone3" name="userphone3" class="userphone basictxt numbersOnly" maxlength="4"/>
 										</td>

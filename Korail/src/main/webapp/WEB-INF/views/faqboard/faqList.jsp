@@ -27,8 +27,8 @@
 			<input type="hidden"  id="totalPage" class="totalPage" name="totalPage" value="${paging.totalPage}"/>
 			<input type="hidden"  id="faqNo" class="faqNo" name="faqNo" value="0"/>
 			<jsp:include page="../main/header.jsp" />
-		<div id="wrap" class="wrap">
-			<div class="container faqWrap">
+		<div id="wrap">
+			<div class="container">
 				<section>
 					<h2>F A Q</h2>
 					<div class="searchNavi">

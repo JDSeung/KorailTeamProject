@@ -11,6 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script type="text/javascript" src="<%=root%>jquery-3.2.1.min.js" /></script>
 <script type="text/javascript" src="<%=root%>jquery/jquery-ui.js" /></script>
 <link rel="stylesheet" href="<%=rootJquery%>jquery-ui.css">
@@ -58,7 +59,15 @@
 						</tr>
 						<tr>
 							<td class="content">내용</td>
-							<td colspan="3" class="cont">${noticeVO.noticeContent}</td>
+							<td colspan="3" class="cont">
+								${noticeVO.noticeContent}
+								<c:if test="${noticeVO.noticeAttachments ne 'N'}">
+								<c:set var="attachments" value="${noticeVO.noticeAttachments}"/>
+								<c:set var="attarr" value="${fn:split(attachments,'/')}"/>
+								<c:if test="${attarr[1] == '.jpg' || attarr[1] == '.gif' || attarr[1] == '.png'}"></c:if>
+									<img class="detimg" src="/admin/resources/upload/${noticeVO.noticeAttachments}" alt="첨부파일 이미지" />
+								</c:if>
+							</td>
 						</tr>
 						<tr>
 							<td>첨부파일</td>
@@ -68,7 +77,9 @@
 										첨부파일이 존재하지 않습니다.
 									</c:when>
 									<c:otherwise>
-										${noticeVO.noticeAttachments}
+										<a class="atts" href="/admin/resources/upload/${noticeVO.noticeAttachments}" title="첨부파일 다운로드" download>
+												${noticeVO.noticeAttachments}
+										</a>
 									</c:otherwise>
 								</c:choose>
 							</td>

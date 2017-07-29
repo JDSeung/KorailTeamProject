@@ -22,12 +22,12 @@
 					<ul>
 						<li>
 							<div class="logo">
-								<a href="#"><img src="<%=root%>/resources/front/img/logo.gif" alt="Korail" /></a>
+								<a href="/admin/loginCheck"><img src="<%=root%>/resources/front/img/logo.gif" alt="Korail" /></a>
 							</div>
 						</li>
-						<li><a href="/admin/loginCheck">HOME</a></li>
+						<li><a href="/admin/index">HOME</a></li>
 						<li><a href="/admin/usermgr/">회원관리</a></li>
-						<li><a href="#">예매관리</a></li>
+						<li><a href="/admin/res/">예매관리</a></li>
 						<li><a href="/admin/chart/">통계</a></li>
 						<li><a href="#">게시판관리</a>
 							<ul>
@@ -36,9 +36,8 @@
 								<li><a href="/admin/boardmgr/notice/">공지사항</a></li>
 							</ul>
 						</li>
-						<li><a href="#">사용자페이지</a></li>
-						<li><a href="#">회사정보</a></li>
-						<li><a href="#">DB이전</a></li>
+						<li><a href="/admin/company">회사정보</a></li>
+						<li><a href="/batch/">DB이전</a></li>
 					</ul>
 				</div>
 			</header>

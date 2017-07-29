@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korail.admin.reservation.dao.TicketingDAO">
+
+	<select id="getResInfo" parameterType="pagingComponent" resultType="ticketingVO">
+			SELECT *
+			FROM (SELECT    T.TICKETINGNO,
+		                    T.USERNO,
+		                    U.USERNAME,
+		                    T.TRAINNAME,
+		                    T.TRAINNO,
+		                    T.VEHICLEKNDNM,
+		                    T.DEPPLACENAME,
+		                    T.DEPPLANDTIME,
+		                    T.ARRPLACENAME,
+		                    T.ARRPLANDTIME,
+		                    T.RESERVATIONNO,
+		                    TO_CHAR(to_number(T.RATE), '999,999,999,999,999') AS RATE,
+		                    T.SEATDIVISION,
+		                    T.SEAT,
+		                    T.PASSENGERTYPE,
+		                    TO_CHAR(T.TICKETINGDATE, 'MM"월"DD"일"') AS TICKETINGDATE,
+		                    TICKETINGETC,
+		                    ROW_NUMBER() OVER (ORDER BY TICKETINGDATE DESC) AS RN
+	            FROM TICKETING_TB T, USER_TB U
+	            WHERE T.USERNO = U.USERNO)
+		    WHERE RN BETWEEN #{startPage} AND #{endPage}
+	</select>
+	<select  id="getResDetail" parameterType="ticketingVO" resultType="ticketingVO">
+		SELECT T.TICKETINGNO,
+               T.USERNO,
+               U.USERNAME,
+               T.TRAINNAME,
+               T.TRAINNO,
+               T.VEHICLEKNDNM,
+               T.DEPPLACENAME,
+               T.DEPPLANDTIME,
+               T.ARRPLACENAME,
+               T.ARRPLANDTIME,
+               T.RESERVATIONNO,
+               TO_CHAR(to_number(T.RATE), '999,999,999,999,999') AS RATE,
+               T.SEATDIVISION,
+               T.SEAT,
+               T.PASSENGERTYPE,
+               TO_CHAR(T.TICKETINGDATE, 'MM"월"DD"일"') AS TICKETINGDATE,
+               TICKETINGETC
+		FROM TICKETING_TB T, USER_TB U
+		WHERE TICKETINGNO = #{ticketingNo} AND T.USERNO = U.USERNO
+	</select>
+	<update id="resCancel" parameterType="ticketingVO">
+		UPDATE  TICKETING_TB
+		SET TICKETINGETC = '1'
+		WHERE TICKETINGNO = #{ticketingNo}
+	</update>
+	<select id="getResTotalCnt" resultType="int" parameterType="pagingComponent">
+		SELECT count(*)
+		FROM TICKETING_TB
+		<where>
+			<if test="keyWord != ''">
+				<choose>
+					<when test="keyWordType == 'all'">
+						(USERNO LIKE '%' || #{keyWord} || '%' OR USERNAME LIKE '%' || #{keyWord} || '%' OR USERNAME LIKE '%' || #{keyWord} || '%')
+					</when>
+					<when test="keyWordType == 'name'">
+						USERNAME LIKE '%' || #{keyWord} || '%'
+					</when>
+				</choose>
+			</if>
+		</where>
+	</select>
+</mapper>

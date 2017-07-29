@@ -29,7 +29,7 @@
 		<div id="wrap">
 			<div class="container userWrap">
 				<section>
-					<h2>회원정보 관리</h2>
+					<h2>회원정보</h2>
 					<div class="searchNavi">
 						<select name="keyWordType" id="keyWordType" class="scmb keyWordType">
 							<option value="all">전체</option>
@@ -64,7 +64,6 @@
 						<a class="pagenavi ppage5" onclick="ppage(this)"></a>
 						<a class="pagenavi btnarrow" onclick="pnext()"><img src="/admin/resources/front/img/btn_paginate_next.png" alt="다음" /></a>
 						<a class="pagenavi btnarrow" onclick="plast()"><img src="/admin/resources/front/img/btn_paginate_last.png" alt="앞으로" /></a>
-						<button type="button" id="swrite" class="ui-button ui-corner-all ui-widget swrite">글쓰기</button>
 					</div>
 				</section>
 			</div>

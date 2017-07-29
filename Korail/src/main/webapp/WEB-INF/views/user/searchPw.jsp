@@ -57,7 +57,7 @@
 				                </td>
 			               </tr>
 							<tr>
-                				<td class="c3">회원님의 ID는 가입된 E-mail로 전송됩니다.</td>
+                				<td class="c3">회원님의가입된 E-mail과  ID로 비밀번호 변경이 가능합니다.</td>
               				</tr>
 						</table>
 					</form>

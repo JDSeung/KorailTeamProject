@@ -26,6 +26,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../main/header.jsp" />
    <div id="chartWrap" class="chartWrap">
       <div class="container">
          <section>

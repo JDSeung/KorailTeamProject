@@ -26,7 +26,7 @@
 		<input type="hidden"  id="curruntPage" class="curruntPage" name="curruntPage" value="${paging.curruntPage}"/>
 		<input type="hidden"  id="qnaNo" class="qnaNo" name="qnaNo" value="${qnaVO.qnaNo}"/>
 	<jsp:include page="../main/header.jsp" />
-	<div id="dwrap" class="container qnaWrap wrap">
+	<div id="dwrap" class="container">
 		<div class="qnaDetailWrap">
 			<section>
 				<h2>Q &#38; A 상세보기</h2>
@@ -128,7 +128,7 @@
 											첨부파일이 존재하지 않습니다.
 										</c:when>
 										<c:otherwise>
-											<a class="atts" href="/korail/resources/upload/${qnaReply.qnaAttachments}" title="첨부파일 다운로드" download>
+											<a class="atts" href="/admin/resources/upload/${qnaReply.qnaAttachments}" title="첨부파일 다운로드" download>
 												${qnaReply.qnaAttachments}
 											</a>
 										</c:otherwise>
@@ -142,7 +142,9 @@
 					<c:if test="${sessionScope.userVO!=null}">
 						<c:choose>
 							<c:when test="${sessionScope.userVO.userNo == qnaVO.userNo}">
-								<button type="button" id="btnedit" class="ui-button ui-corner-all ui-widget btnedit">수 정</button>
+								<c:if test="${qnaReply.qnaNo == null }">
+									<button type="button" id="btnedit" class="ui-button ui-corner-all ui-widget btnedit">수 정</button>
+								</c:if>
 								<button type="button" id="btndelete" class="ui-button ui-corner-all ui-widget btndelete">삭 제</button>
 							</c:when>
 						</c:choose>

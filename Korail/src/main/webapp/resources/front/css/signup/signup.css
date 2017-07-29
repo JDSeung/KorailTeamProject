@@ -54,6 +54,9 @@ button#btnedit, button#btnsearch{
 input.userphone{
     width: 7.0em;
 }
+#biarthdpk{
+	display: none;
+}
 img.ui-datepicker-trigger {
     width: 25px;
     height: 25px;
@@ -63,4 +66,7 @@ img.ui-datepicker-trigger {
 }
 input.addrditail{
 	width: 98%;
+}
+span.font_red{
+	color: red;
 }

@@ -129,7 +129,7 @@
 											첨부파일이 존재하지 않습니다.
 										</c:when>
 										<c:otherwise>
-											<a class="atts" href="/korail/resources/upload/${qnaReply.qnaAttachments}" title="첨부파일 다운로드" download>
+											<a class="atts" href="/admin/resources/upload/${qnaReply.qnaAttachments}" title="첨부파일 다운로드" download>
 												${qnaReply.qnaAttachments}
 											</a>
 										</c:otherwise>
@@ -140,7 +140,9 @@
 					</table>
 				</c:if>
 				<div class="btnarea">
+				<c:if test="${qnaReply.qnaNo == null }">
 					<button type="button" id="swrite" class="ui-button ui-corner-all ui-widget swrite">답변</button>
+				</c:if>
 					<c:if test="${qnaReply.qnaNo != null }">
 					<button type="button" id="btnEdit" class="ui-button ui-corner-all ui-widget swrite">수정</button>
 					</c:if>

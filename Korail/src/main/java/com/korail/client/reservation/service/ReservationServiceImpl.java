@@ -1,5 +1,6 @@
 package com.korail.client.reservation.service;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,6 @@ import com.korail.client.reservation.vo.KTXInfoVO;
 import com.korail.client.reservation.vo.KTXRateInfoVO;
 import com.korail.client.reservation.vo.SeatVO;
 import com.korail.client.reservation.vo.TicketingVO;
-import com.korail.client.user.vo.UserVO;
 
 @Service
 public class ReservationServiceImpl implements ReservationService{
@@ -43,6 +43,8 @@ public class ReservationServiceImpl implements ReservationService{
 		
 		String depTime = getDepTime(request);
 		pagingComponent.setCurruntPage(Integer.parseInt(request.getParameter("curruntPage")));
+		
+		
 		ktxInfoVO.setDepPlandTime(depTime);
 		int totalContent=getTotalTrainList(ktxInfoVO);
 		pagingComponent.setTotalContent(totalContent);
@@ -85,7 +87,13 @@ public class ReservationServiceImpl implements ReservationService{
 	public List<SeatVO> getSeatInfo() throws Exception {
 		return seatDAO.getSeatInfo();
 	}
-
+	
+	/*선택좌석 예약 정보 조회*/
+	public int resSearch(TicketingVO ticketingVO) throws Exception{
+		return ticketingDAO.resSearch(ticketingVO);
+	}
+	
+	/*예약 버튼 클릭시 예약으로 인서트*/
 	@Override
 	public int reservationKTX(TicketingVO ticketingVO) throws Exception {
 		if(ticketingVO.getTicketingETC() == null){
@@ -95,6 +103,9 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 	
 	public String getDepTime(HttpServletRequest request) throws Exception{
+		Calendar cal = Calendar.getInstance();
+		String min = cal.get ( cal.MINUTE ) + "";
+		
 		String depTime = request.getParameter("cmbYear");
 		if(request.getParameter("cmbMonth").length()== 1){
 			depTime += ("0"+ request.getParameter("cmbMonth"));
@@ -111,6 +122,11 @@ public class ReservationServiceImpl implements ReservationService{
 		}else{
 			depTime += (request.getParameter("cmbTime"));
 		}
+		if(min.length()==1){
+			depTime += ("0"+ min);
+		}else{
+			depTime += (min);
+		}
 		return depTime;
 	}
 
@@ -119,6 +135,13 @@ public class ReservationServiceImpl implements ReservationService{
 	public int resChange(TicketingVO ticketingVO) throws Exception {
 		return ticketingDAO.resChange(ticketingVO);
 	}
+	
+	/*예약취소*/
+	@Override
+	public int resCancel(TicketingVO ticketingVO) throws Exception{
+		return ticketingDAO.resCancel(ticketingVO);
+	}
+	
 	/*내 예약정보조회*/
 	public List<TicketingVO> getTicketingInfo(TicketingVO ticketingVO, PagingComponent paging) throws Exception{
 		Map<String, Object> qnaMap = new HashMap<String, Object>();
@@ -132,9 +155,5 @@ public class ReservationServiceImpl implements ReservationService{
 		return ticketingDAO.getTicketingInfo(qnaMap);
 	}
 
-	/*로그인시 탑승 시간이 지난 정보를 만료로 변경*/
-	@Override
-	public int updateResInfo(UserVO userVO) throws Exception{
-		return ticketingDAO.updateResInfo(userVO);
-	}
+	
 }

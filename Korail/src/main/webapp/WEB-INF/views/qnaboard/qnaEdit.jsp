@@ -29,8 +29,8 @@
 		<input type="hidden"  id="ispublic" class="ispublic" name="ispublic" value="${qnaVO.ispublic}"/>
 		<input type="hidden"  id="qnaNo" class="qnaNo" name="qnaNo" value="${qnaVO.qnaNo}"/>
 	<jsp:include page="../main/header.jsp" />
-	<div id="wrap" class="wrap">
-		<div class="container qnaDetailWrap">
+	<div id="wrap">
+		<div class="container">
 			<section>
 				<h2>Q &#38; A 수정</h2>
 				<table class="qnaDetailtbl">

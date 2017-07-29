@@ -118,19 +118,20 @@ public class UserInfoController {
 		return result;
 	}
 	
-	/*@ResponseBody
+	@ResponseBody
 	@RequestMapping(value="/checkmail")
-	가입 회원 확인
+	/*ID찾기용, */
 	public String checkMail(EmailVO emailVO){
-		logger.info("checkMail 호출 성공");
+		System.out.println("checkMail 호출 성공");
 		String result = "";
+		System.out.println("테스트" + emailVO.getUserEmail());
 		if(emailVO.getUserEmail() != null){
 			result = emailService.getChkEmail(emailVO);
-			logger.info("result 값" + result);
+			System.out.println("result 값" + result);
 		}
 		return result;
 	}
-	*/
+	
 	// 비밀번호 찾기
 	@RequestMapping(value="/searchpw")
 	public String searchPw(){

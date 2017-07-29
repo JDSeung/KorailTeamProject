@@ -23,12 +23,12 @@ var passengerType;
 var adultNo;
 var childNo;
 var seniorNo;
-var l_seatOn = "http://localhost:8080/korail/resources/front/img/ic_seat_on_left.png";
-var r_seatOn = "http://localhost:8080/korail/resources/front/img/ic_seat_on_right.png";
-var l_seat = "http://localhost:8080/korail/resources/front/img/ic_seat_left.png";
-var r_seat = "http://localhost:8080/korail/resources/front/img/ic_seat_right.png";
-var l_seatOff = "http://localhost:8080/korail/resources/front/img/ic_seat_off_left.png";
-var r_seatOff = "http://localhost:8080/korail/resources/front/img/ic_seat_off_right.png";
+var l_seatOn = "/korail/resources/front/img/ic_seat_on_left.png";
+var r_seatOn = "/korail/resources/front/img/ic_seat_on_right.png";
+var l_seat = "/korail/resources/front/img/ic_seat_left.png";
+var r_seat = "/korail/resources/front/img/ic_seat_right.png";
+var l_seatOff = "/korail/resources/front/img/ic_seat_off_left.png";
+var r_seatOff = "/korail/resources/front/img/ic_seat_off_right.png";
 var scnt = 0;
 /*앞으로가기 방지*/
 history.pushState(null, null, location.href);
@@ -52,6 +52,10 @@ $( function() {
 			alert("최대 예매가능 인원은 9명입니다.");
 			$("#cmbChild option:eq(0)").prop("selected", true);
 			$("#cmbSenior option:eq(0)").prop("selected", true);
+		}
+		if(totalres<1){
+			alert("최소 1명 이상 예매 가능 합니다.");
+			$("#cmbAdult option:eq(1)").prop("selected", true);
 		}
 	});
 	/*홈페이지에서 정보 조회 할 경우*/
@@ -101,7 +105,8 @@ $( function() {
 			getTrainInfo();
 		}
 	});
-	/*기차 정보 보회*/
+	
+	/*기차 정보 조회*/
 	$("#getTicketingInfo").click(function(){
 		if($("#depPlaceName").val() == "" || $("#arrPlaceName").val() == ""){
 			alert("출발지 혹은 도착지를 입력해 주십시오.");
@@ -111,12 +116,24 @@ $( function() {
 			alert("출발지와 도착지가 같습니다.");
 			return;
 		}
+		var time = $("#cmbTime").val();
+		var cmbmonth =  $("#cmbMonth").val().length == 1 ?'0'+ $("#cmbMonth").val() : $("#cmbMonth").val();
+		var cmbmday =  $("#cmbDay").val().length == 1 ?'0'+ $("#cmbDay").val() : $("#cmbDay").val();
+		depPlandTime =  $("#cmbYear").val() + cmbmonth+ cmbmday + time; //출발시간
+		var sDate = new Date($("#cmbYear").val(), cmbmonth, cmbmday, time, 0,0);
+		var nDate = new Date();
+		nDate.setMonth(nDate.getMonth()+1);
+		console.log(sDate<=nDate);
+		if(sDate<=nDate){
+			 $("#cmbTime option:eq("+nDate.getHours()+")").prop("selected", true);
+		}
 		$("#curruntPage").val(0);
 		getTrainInfo();
 	});
+	
 	/*선택 좌석 예약 버튼 클릭시 예약페이지 이동*/
     $("#btnRes").click(function(){
-    	tType = tType==1?'특실':'일반'
+    	tType = tType==1?'특실':'일반';
     	if(seatCnt != selectSeat){
     		//선택좌석과 예매매수가 같지 않을 경우
     		alert("요청하신 승객수와 선택하신 좌석수가 일치하지 않습니다.");
@@ -133,13 +150,28 @@ $( function() {
 		$("#sseatDivision").val(tType);			//좌석등급
 		$("#sseat").val(seatInfo); 				//선택좌석
 		$("#spassengerType").val(passengerType); //승객유형
-    	
-		$("#resInfoForm").attr({
-			"method":"POST",
-			"action":"resinfo"
-		});
-		$("#resInfoForm").submit();
+    	$.ajax({
+    		url:"resSearch",
+    		type:"POST",
+    		data:$("#resInfoForm").serialize(),
+    	   success:function(resultData){
+    		   if(resultData == 1){
+    			   alert("예약 중인 좌석입니다. 다시 예약을 진행 부탁드립니다.");
+    			   location.reload();
+    		   }else if(resultData == 0){
+    			   $("#resInfoForm").attr({
+    					"method":"POST",
+    					"action":"resinfo"
+    				});
+    				$("#resInfoForm").submit();
+    		   }else{
+    			   location.href='/korail/login/';
+    		   }
+    	   }
+    	});
+		
     });
+    
 });
 
 /*운임요금조회버튼 클릭 시*/
@@ -169,6 +201,7 @@ function btnpopSale(){
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
 /*좌석 버튼 클릭 시 해당 열차 정보 저장*/
 function setTrain(tName){
 	trainInfo = $(tName).closest("tr");
@@ -183,16 +216,14 @@ function setTrain(tName){
 	strtime = trainInfo.find(".arrPlaceInfo").text().split(' ')[1];
 	time = onlyNumber(strtime);
 	arrPlandTime =  $("#cmbYear").val() + cmbmonth+ cmbmday + time;//도착시간
-
-	
 }
+
 /*숫자만 추출*/
 function onlyNumber(str){
     var res;
     res = str.replace(/[^0-9]/g,"");
     return res;
 }
-
 
 /*좌석 버튼 클릭 시 selectSeat에 좌석 그리기*/
 function btnstrain(trainType){
@@ -217,7 +248,6 @@ function btnstrain(trainType){
 			}
 		}
 	}
-	
 	if(trainType == 1){
 		//특실
 		seatRow = seatList[1].seatRow;
@@ -301,6 +331,7 @@ function addSeat(tType, seatRow, seatColumn){
 	  }
 	 
 }
+
 /*의자 색 구분*/
 function getImgColor(tseat, seatNo, stype){
 	var simg;
@@ -318,6 +349,7 @@ function getImgColor(tseat, seatNo, stype){
 	}
 	return simg;
 }
+
 /*열차 칸번호 출력*/
 function addli(tType, trainNo){
 	var row = '<li>';
@@ -330,11 +362,14 @@ function addli(tType, trainNo){
 
 /*열차 번호 클릭 했을 때*/
 function rtrain(tn,tType, tNo){
+	seatCnt = 0;
+	seatInfo = new Array();
 	$("ul.trainNo li a").removeClass("sseat");
 	$(tn).addClass("sseat");
 	trainNo = tNo;
 	addSeat(tType, seatRow, seatColumn);
 }
+
 /*열차 정보 조회 버튼 클릭시*/
 function getTrainInfo(){
 	if($("#tbl_Train")){
@@ -375,12 +410,18 @@ function seatOn(seatNo, seatColumn){
 		seat = Number(seatId.substr(0,2));
 	}
 	selectSeat = Number($("#cmbAdult").val()) + Number($("#cmbChild").val()) + Number($("#cmbSenior").val());
+	var baselength = seatImg.baseURI.length-2;
+	var imgsrc = seatImg.src;
+	var imglength = imgsrc.length;
+	var totallength = imglength-baselength;
+	var rimg = imgsrc.substr(baselength, totallength);
+	rimg = '/korail/resources/' + rimg;
 	if(seat <= (seatColumn/2)){
-		if(seatImg.src == l_seatOff){
+		if(rimg == l_seatOff){
 			alert("이미 예약된 좌석입니다.");
 			return;
 		}
-		if(seatImg.src == l_seatOn){
+		if(rimg == l_seatOn){
 			seatImg.src = l_seat;
 			seatInfo.splice(seatInfo.indexOf(seatId),1);
 			seatCnt--;
@@ -393,11 +434,11 @@ function seatOn(seatNo, seatColumn){
 			alert("요청하신 승객수를 초과하여 좌석을 선택할 수 없습니다.");
 		}
 	}else{
-		if(seatImg.src == r_seatOff){
+		if(rimg == r_seatOff){
 			alert("이미 예약된 좌석입니다.");
 			return;
 		}
-		if(seatImg.src == r_seatOn){
+		if(rimg == r_seatOn){
 			seatImg.src = r_seat;
 			seatCnt--;
 			seatInfo.splice(seatInfo.indexOf(seatId),1);
@@ -423,8 +464,8 @@ function setTrainInfo(){
 		$("#btnNext").removeClass("btnnext");
 		$("#btnPrev").removeClass("btnprev");
 		alert("조회된 정보가 없습니다.");
-			$("#wrap").addClass("wrap");
-			$("#wrap").removeClass("swrap");
+		$("#wrap").addClass("wrap");
+		$("#wrap").removeClass("swrap");
 	    return;
 	}
 	$("#trainInfoWrap").addClass("traininfo");
@@ -458,10 +499,10 @@ function setTrainInfo(){
 	if(0< curruntPage && curruntPage <totalPage-1){
 		$("#btnNext").addClass("btnnext");
 		$("#btnPrev").addClass("btnprev");
-	}else if(totalPage-1 == curruntPage){
+	}else if(totalPage-1 == curruntPage && totalPage != 1){
 		$("#btnNext").removeClass("btnnext");
 		$("#btnPrev").addClass("btnprev");
-	}else {
+	}else if(totalPage != 1){
 		$("#btnNext").addClass("btnnext");
 		$("#btnPrev").removeClass("btnprev");
 	}

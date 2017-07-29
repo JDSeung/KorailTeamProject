@@ -1,4 +1,4 @@
-@CHARSET "UTF-8";
+	@CHARSET "UTF-8";
 
 section>h2 {
     color: #424242;
@@ -62,7 +62,7 @@ section>h2 {
 
 .box2 {
     margin-top: 2em;
-	margin-right: 0.3em;
+    margin-right: 2.3em;
 	position: absolute;
 	right: 0;
 	top: 0;

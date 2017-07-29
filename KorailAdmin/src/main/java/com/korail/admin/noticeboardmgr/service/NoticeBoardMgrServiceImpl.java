@@ -39,7 +39,7 @@ public class NoticeBoardMgrServiceImpl implements NoticeBoardMgrService{
 		return noticeDAO.noticeDelete(noticeVO);
 	}
 	/* 글 수정 */
-	public int noticeUpdate(NoticeVO noticeVO) throws Exception{
+	public int getNoticeUpdate(NoticeVO noticeVO) throws Exception{
 		return noticeDAO.noticeUpdate(noticeVO);
 	}
 }

@@ -77,7 +77,10 @@
 	}
 	th.tblt {
 	    word-spacing: 7em;
-	    width: 40%;
+		width: 48%;
+	}
+	th.tbla {
+	    width: 13%;
 	}
 	a:hover {
 	    cursor: pointer;

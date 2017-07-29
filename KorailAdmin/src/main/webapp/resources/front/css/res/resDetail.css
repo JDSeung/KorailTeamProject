@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+	
+	section>h2 {
+		color: #424242;
+		word-spacing: 0.8em;
+	    display: block;
+	    font-size: 2.0em;
+	    padding: 1% 1% 1% 10%;
+	}
+	table.restbl {
+		width: 80%;
+		margin: 3em auto;
+	}
+	table.restbl tbody tr td{
+		height: 2.5em;
+		word-spacing: 0.3em;
+		text-align: left;
+		background-color: white;
+		border: 0.5px solid #cfcfcf;
+	}
+	table.restbl tr:nth-child(odd) td{
+		font-weight: bold;
+		color: #424242;
+		width: 9em;
+		background-color: #efefef;
+	}
+	table.restbl tbody tr td{
+		text-align: center;
+	}

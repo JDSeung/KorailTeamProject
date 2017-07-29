@@ -51,14 +51,14 @@
                         </li>
                         <li><a href="/korail/reservation/">승차권</a></li>
                         <li>
-                           <a href="/korail/qnaboard/">고객센터</a>
+                           <a href="/korail/faqboard/">고객센터</a>
                            <ul>
                               <li><a href="/korail/faqboard/">FAQ</a></li>
                               <li><a href="/korail/qnaboard/">QnA</a></li>
                            </ul>
                         </li>
                         <li><a href="/korail/noticeboard/">공지사항</a></li>
-                        <li><a href="#">회사소개</a></li>
+                        <li><a href="/korail/company">회사소개</a></li>
                      </ul>
                </div>
             </header>

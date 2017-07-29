@@ -8,5 +8,5 @@ public interface LoginService {
 	/*회원로그인*/
 	public void getLogin(UserVO userVO, HttpSession session);
 	/*비회원로그인*/
-	public void getGuest(UserVO userVO, HttpSession session);
+	public int getGuest(UserVO userVO, HttpSession session);
 }

@@ -18,6 +18,8 @@ $(function(){
 			}
 		});
 	});
+	
+	
 });
 function valiPw(){
 	if ($("#userPw").val() == "" || $("#userPw").val() == null) {
@@ -38,7 +40,7 @@ function valiPw(){
 		return false;
 	}
 	if ($("#userPw").val() != $("#userPwchk").val()) {
-		alert("암호가 일치 하지 않습니다.");
+		alert("비밀번호가 일치 하지 않습니다.");
 		$("#userPw").val('');
 		$("#userPwchk").val('');
 		$("#userPw").focus();

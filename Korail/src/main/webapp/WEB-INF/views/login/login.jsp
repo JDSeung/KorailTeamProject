@@ -41,10 +41,10 @@
 							<div class="box1">
 								<ul>
 									<li><label id="uId">아 이 디</label>
-									<input type="text" id="userId" name="userId" maxlength="20"/>
+									<input type="text" id="userId" name="userId" maxlength="15"/>
 									</li>
 									<li><label id="uPw">패스워드</label>
-									<input type="password" id="userPw" name="userPw" maxlength="30"/>
+									<input type="password" id="userPw" name="userPw" maxlength="20"/>
 									</li>
 									<li id="loginBtn" class="loginBtn">
 									<button type="button" class="ui-button ui-corner-all ui-widget ui-okBtn ">확인</button></li>

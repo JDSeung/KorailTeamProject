@@ -34,7 +34,7 @@
 	<div id="wrap">
 		<div class="container qnaDetailWrap">
 			<section>
-				<h2>Q &#38; A 글쓰기</h2>
+				<h2>Q &#38; A 답변</h2>
 				<table class="qnaDetailtbl">
 					<thead>
 						<tr>

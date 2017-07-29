@@ -112,11 +112,11 @@ function page(){
 			row += "</td>";
 			row += "<td>";
 			if(userVO.userEtc == '1'){
-				row += '탈퇴';
+				row += '<p class="secession">탈퇴</p>';
 			}else if(userVO.userEtc == '0'){
-				row += '회원';
+				row += '<p>회원</p>';
 			}else if(userVO.userEtc == '2'){
-				row += '비회원';
+				row += '<p class="guest">비회원</p>';
 			}
 			row += "</td>";
 			row += "</tr>";

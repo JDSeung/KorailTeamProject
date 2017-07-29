@@ -7,21 +7,24 @@ $(function() {
 			$(this).val( $(this).val().replace( unKorean, '' ) );
 		}
 	});
-	// 세션 확인 후 로그인 페이지로 이동
-	if ($("#loginCheck").val() == "0") {
-		alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-		$("#loginCheck").val('');
-	}
 	/*로그인 버튼 클릭시*/
 	$("#guestLogin").click(function() {
 		if(!valiInfo()){
 			return;
 		}
-		$("#loginForm").attr({
-			"method" : "POST",
-			"action" : "guestlogin/login"
+		$.ajax({
+			url : "guestlogin/login",
+			type : "POST",
+			data : $("#loginForm").serialize(),
+			success : function(result) {
+				if(result != 1){
+					alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+					
+				}else{
+					location.href="/korail/user/resinfolist";
+				}
+			}
 		});
-		$("#loginForm").submit();
 	});
 });
 function valiInfo(){

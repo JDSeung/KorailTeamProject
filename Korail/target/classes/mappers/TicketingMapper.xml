@@ -50,11 +50,11 @@
 		<!-- 2 = 현재 발권중인 사람 예매페이지에서 예약대기에 들어갈 항목., 전체 인원 -->
 		SELECT *
 		FROM TICKETING_TB
-		WHERE (TICKETINGETC = '2' OR  TICKETINGETC = '3')
+		WHERE (TICKETINGETC = '2' OR  TICKETINGETC = '3' OR  TICKETINGETC = '4')
 			AND DEPPLACENAME = #{depPlaceName} AND ARRPLACENAME = #{arrPlaceName}
 			AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') 
-            BETWEEN TO_DATE(#{depPlandTime},'YYYYMMDDHH24') 
-            	AND 	ROUND(TO_DATE(#{depPlandTime},'YYYYMMDDHH24')+1)
+            BETWEEN TO_DATE(#{depPlandTime},'YYYYMMDDHH24MI') 
+            	AND 	ROUND(TO_DATE(#{depPlandTime},'YYYYMMDDHH24MI')+1)
 	</select>
 	<insert id="reservationKTX" parameterType="ticketingVO">
 		<!-- 예매 -->
@@ -71,20 +71,28 @@
 							#{ticketingETC}
 					 	)
 	</insert>
-	<delete id="resChange" parameterType="ticketingVO">
+	<select id="resSearch" parameterType="ticketingVO" resultType="int">
+		SELECT COUNT(*)
+		FROM TICKETING_TB
+		WHERE DEPPLACENAME = #{depPlaceName} AND ARRPLACENAME = #{arrPlaceName}
+			AND DEPPLANDTIME = #{depPlandTime} AND ARRPLANDTIME = #{arrPlandTime}
+			AND SEATDIVISION = #{seatDivision} AND SEAT = #{seat} AND (TICKETINGETC = '3'OR TICKETINGETC = '2')
+	</select>
+	<update id="resChange" parameterType="ticketingVO">
 		<!-- 예매변경 (취소, 진행, 완료, 만료) -->
 		UPDATE  TICKETING_TB
 		SET TICKETINGETC = #{ticketingETC}
 		WHERE USERNO = #{userNo} AND DEPPLACENAME = #{depPlaceName} AND ARRPLACENAME = #{arrPlaceName}
 			AND DEPPLANDTIME = #{depPlandTime} AND ARRPLANDTIME = #{arrPlandTime}
 			AND SEATDIVISION = #{seatDivision} AND SEAT = #{seat}
-	</delete>
-	<update id="updateResInfo" parameterType="userVO">
-		<!-- 로그인시 탑승 시간이 지난 정보를 만료로 변경 -->
-		UPDATE TICKETING_TB
-		SET TICKETINGETC = '4'
-		WHERE USERNO = #{userNo} AND TO_DATE(DEPPLANDTIME,'yyyy-mm-dd hh24:mi') <![CDATA[<=]]> sysdate
 	</update>
+	<delete id="resCancel" parameterType="ticketingVO">
+		<!-- 예매변경 (취소, 진행, 완료, 만료) -->
+		DELETE  TICKETING_TB
+		WHERE USERNO = #{userNo} AND DEPPLACENAME = #{depPlaceName} AND ARRPLACENAME = #{arrPlaceName}
+			AND DEPPLANDTIME = #{depPlandTime} AND ARRPLANDTIME = #{arrPlandTime}
+			AND SEATDIVISION = #{seatDivision} AND SEAT = #{seat}
+	</delete>
 	<select  id="isResUser" parameterType="userVO" resultType="int">
 		SELECT COUNT(*)
 		FROM TICKETING_TB

@@ -26,3 +26,8 @@ td#doro {
 a#doroaddr {
     margin-left: 1em;
 }
+td.noaddr{
+	width: 100%;
+	font-size: 1.3em;
+	text-align: center;
+}

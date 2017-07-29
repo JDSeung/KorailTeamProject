@@ -1,7 +1,9 @@
 package com.korail.batch.service;
 
+import java.util.Map;
+
 public interface TrainPairingService {
 	//열차 편성
-	public void getTrainParing() throws Exception;
+	public Map<String, Object> getTrainParing() throws Exception;
 	
 }

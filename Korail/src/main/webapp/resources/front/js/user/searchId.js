@@ -21,10 +21,11 @@ $(function(){
 			url : "/korail/user/checkmail",
 			type : "POST",
 			data : $("#sIdForm").serialize(),
-			success : function(data) {
-				if (data == 1) {
+			success : function(result) {
+				if (result == 0) {
 					sendMail();
-					alert("해당 메일로 인증번호가발송되었습니다.");
+					alert("해당 메일로 아이디가발송되었습니다.");
+					location.href="/korail/login/";
 				} else {
 					alert("입력하신 E-mail은 가입되어 있지 않습니다.");
 				}

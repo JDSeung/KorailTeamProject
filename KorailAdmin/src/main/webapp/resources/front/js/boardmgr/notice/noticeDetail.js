@@ -16,6 +16,14 @@ $(function(){
 			}
 		});
 	});
+	/*수정버튼 클릭시*/
+	$("#btnedit").click(function(){
+		$("#pagingInfo").attr({
+			"method" : "POST",
+			"action" : "noticeedit"
+		});
+		$("#pagingInfo").submit();
+	});
 	/*목록버튼 클릭시*/
 	$("#btnlist").click(function(){
 		$("#pagingInfo").attr({

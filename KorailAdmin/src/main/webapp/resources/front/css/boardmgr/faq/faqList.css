@@ -95,7 +95,7 @@ img.lock {
 
 th.tblt {
 	word-spacing: 7em;
-	width: 40%;
+	width: 70%;
 }
 
 a:hover {
@@ -121,8 +121,9 @@ a.title {
 	white-space: nowrap;
 	display: inline-block;
 	overflow: hidden;
-	width: 16em;
+	width: 100%;
 	text-overflow: ellipsis;
 	text-align: left;
-	margin-left: 1em;
+	margin-left: 0.5em;
+    font-size: 0.8em;
 }

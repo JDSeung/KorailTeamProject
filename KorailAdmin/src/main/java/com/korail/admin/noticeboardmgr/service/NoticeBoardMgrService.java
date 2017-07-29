@@ -1,7 +1,6 @@
 package com.korail.admin.noticeboardmgr.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.korail.admin.Paging.PagingComponent;
 import com.korail.admin.noticeboardmgr.vo.NoticeVO;
@@ -16,5 +15,6 @@ public interface NoticeBoardMgrService {
 	/* 글 삭제 */
 	public int noticeDelete(NoticeVO noticeVO) throws Exception;
 	/* 글 수정 */
-	public int noticeUpdate(NoticeVO noticeVO) throws Exception;
+	public int getNoticeUpdate(NoticeVO noticeVO) throws Exception;
+	
 }

@@ -12,9 +12,10 @@ public class RESInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		try {
+			TicketingVO ticketInfo = null;
 			if(request.getMethod().equals("POST")){
 				request.getSession().setAttribute("dest", "/reservation/resinfo");
-				TicketingVO ticketInfo = new TicketingVO();
+				ticketInfo = new TicketingVO();
 				ticketInfo.setTrainName(request.getParameter("trainName"));
 				ticketInfo.setTrainNO(request.getParameter("trainNO"));
 				ticketInfo.setArrPlaceName(request.getParameter("arrPlaceName"));

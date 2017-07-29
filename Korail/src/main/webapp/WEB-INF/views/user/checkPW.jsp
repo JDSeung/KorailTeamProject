@@ -36,7 +36,7 @@
             			<td class="c2"><img src="<%=root%>front/img/Korail.jpg" alt="korail" class="logoimg" /></td>
             			<td class="c1">
             				비밀번호
-            				<input type="password" id="userPw" name="userPw" class="basictxt"/>
+            				<input type="password" id="userPw" name="userPw" class="basictxt" maxlength="20"/>
             				<button type="button" id="pwBtn" class="btnspw ui-button ui-corner-all ui-widget pwBtn">확인</button>
             				<p>개인정보 보호를 위해 비밀번호를 입력해 주십시오.</p> 
             			</td>

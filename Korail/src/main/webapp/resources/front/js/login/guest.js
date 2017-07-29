@@ -1,3 +1,6 @@
+	var regPw =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
+	var regName = /^[가-힣]{2,10}$/;
+	var regId = /^[a-z0-9_-]{6,15}$/;
 $(function(){
 	
 	/*메일 버튼 클릭시*/
@@ -10,6 +13,50 @@ $(function(){
 	});
 	
 	$("#okguestBtn").click(function(){
+		if(!valiId()){
+			return;
+		}
+		if ($("#userPw").val() != $("#userchkpw").val()) {
+			alert("비밀번호가 일치 하지 않습니다.");
+			$("#userPw").val('');
+			$("#userchkpw").val('');
+			$("#userPw").focus();
+			return;
+		}
+		if ($("#userPw").val() == "" || $("#userchkpw").val() == "") {
+			alert("비밀번호를 입력해주세요.");
+			$("#userPw").val('');
+			$("#userchkpw").val('');
+			$("#userPw").focus();
+			return;
+		}
+		if ($("#userPw").val().length < 6 || !regPw.test($("#userPw").val())) {
+			alert("비밀번호는 문자, 숫자, 특수문자의 조합으로 6~20자리로 입력해주세요.");
+			$("#userPw").val('');
+			$("#userchkpw").val('');
+			$("#userPw").focus();
+			return;
+		}
+		if (!regName.test($("#userName").val()) || $("#userName").val() == "") {
+			alert("한글이름만 가능합니다.");
+			$("#userName").val('');
+			$("#userName").focus();
+			return;
+		}
+		if ($("#userphone1").val() == ""
+				|| $("#userphone2").val() == ""
+				|| $("#userphone3").val() == "") {
+			alert("전화번호를 입력해주세요.");
+			$("#userphone1").val('');
+			$("#userphone2").val('');
+			$("#userphone3").val('');
+			$("#userphone1").focus();
+			return;
+		}
+		if ($("#dorozip").val() == "" || $("#doroaddrVil").val() == "" || $("#doroaddrDit").val() == "") {
+			alert("주소를 입력해주세요.");
+			return;
+		}
 		$.ajax({
 			url : "/korail/signup/sign",
 			type : "POST",
@@ -64,7 +111,44 @@ $(function(){
 		$('#cmbDay').append(option);
 	}
 	setDate();
+	
+	$("#userPw").keyup(function() {
+		if($('#chk').val() == ''){
+			$('#chk').html('비밀번호를 입력 바랍니다.').css("color", "red")
+			.css("font-weight", "bold");
+		}else{
+			$('#chk').html('비밀번호가가 일치하지 않습니다.').css("color", "red")
+			.css("font-weight", "bold");
+		}
+	});
+
+	$("#userchkpw").keyup(function() {
+		if ($("#userPw").val() != $("#userchkpw").val()) {
+			$('#chk').html('비밀번호가가 일치하지 않습니다.').css("color", "red")
+					.css("font-weight", "bold");
+		}
+		if ($("#userPw").val() == $("#userchkpw").val()) {
+			$('#chk').html('비밀번호가 일치합니다.').css("color", "#256cc6").css("font-weight", "bold");
+		}
+	});
+	
+	
 });
+function valiId(){
+	if ($("#userId").val() == "") {
+		alert("아이디를 입력해주세요.");
+		$("#userId").val('');
+		$("#userId").focus();
+		return false;
+	}
+	if (!regId.test($("#userId").val())) {
+		alert("아이디는 6~15자 이내만 가능합니다.");
+		$("#userId").val('');
+		$("#userId").focus();
+		return false;
+	}
+	return true;
+}
 /*이메일 변경 금지를 위해 클릭시 다얼로그창 오픈*/
 function emailChk(){
 	$("#maildialog").dialog("open"); // 다이얼로그창 오픈

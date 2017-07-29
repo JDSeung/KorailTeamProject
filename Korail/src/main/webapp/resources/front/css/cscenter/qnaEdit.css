@@ -1,7 +1,5 @@
 	@CHARSET "UTF-8";
-	.qnaDetailWrap {
-	    height: 40em;
-	}
+	
 	div#cke_qnaContent {
 	    margin: 0 auto;
 	}
@@ -28,7 +26,7 @@
 	    border-collapse: collapse;
 	}
 	table.qnaDetailtbl tr td {
-		height: 5vh;
+		height: 3em;
 	    border: 1px solid #999;
 	}	
 	table.qnaDetailtbl tr td.tdpub {
@@ -57,7 +55,7 @@
 		width: 40%;
 	}
 	.btnarea {
-	    margin-top: 3vh;
+	    margin: 2em 0;
 	    width: 90%;
 	    text-align: right;
 	}

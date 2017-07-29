@@ -1,8 +1,10 @@
 package com.korail.batch.service;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -57,15 +59,21 @@ public class TrainPairingServiceImpl implements TrainPairingService {
 	private Elements apiElements = null;
 	private List<CityAccotTrainVO> cityAccottrainList= null;
 	private List<KTXInfoVO> trainInfoList= null;
+	private List<KTXInfoVO> trainList= null;
 	private Map<String, List<KTXInfoVO>> korailInfoListMap = null;
 	private KTXInfoVO trainPairingVO;
+	private Map<String, Object> batchMap;
 	@Override
-	public void getTrainParing() throws Exception {
+	public Map<String, Object> getTrainParing() throws Exception {
 		System.out.println("getStrtpntAlocFndTrainInfoURL 실행");
+		batchMap = new HashMap<String,Object>();
 		cityAccottrainList = new ArrayList<CityAccotTrainVO>();
 		korailInfoListMap =new HashMap<String, List<KTXInfoVO>>();
 		trainInfoList = new ArrayList<KTXInfoVO>();
+		trainList = new ArrayList<KTXInfoVO>();
 		getStationData();
+		batchMap.put("insertDBCnt", trainList.size());
+		return batchMap;
 		
 	}
 	
@@ -100,10 +108,14 @@ public class TrainPairingServiceImpl implements TrainPairingService {
 			korailInfoListMap.put("trainInfoList", trainInfoList);
 			trainPairingDAO.korailInfoInsert(korailInfoListMap);
 		}
-		
+		batchMap.put("trainList", trainList);
 		
 	}
 	private void getAPIData(CityAccotTrainVO depArrVo) throws Exception{
+		Calendar getDate = Calendar.getInstance();
+		DateFormat setDate = new SimpleDateFormat("yyyyMMdd");
+		getDate.add(Calendar.DATE, 1);
+		String setApiDate = setDate.format(getDate.getTime());
 		//출_도착지기반열차정보 가져오기
 		urlBuilder = new StringBuilder("http://openapi.tago.go.kr/openapi/service/TrainInfoService/");
 		url = "getStrtpntAlocFndTrainInfo";
@@ -112,7 +124,8 @@ public class TrainPairingServiceImpl implements TrainPairingService {
 		urlBuilder.append("&pageNo=1");
 		urlBuilder.append("&depPlaceId=" + depArrVo.getDepID());
 		urlBuilder.append("&arrPlaceId=" + depArrVo.getArrID());
-		urlBuilder.append("&depPlandTime=" + "20170706");
+		urlBuilder.append("&depPlandTime=");
+		urlBuilder.append(setApiDate);
 		urlBuilder.append("&trainGradeCode=" + "00");
 		System.out.println(urlBuilder.toString());
 		apiElements = connectURLServiceImpl.connectURL(urlBuilder);
@@ -133,6 +146,7 @@ public class TrainPairingServiceImpl implements TrainPairingService {
 			trainPairingVO.setTrainName(itemElement.select("traingradename").text());
 			trainPairingVO.setTakeTime(getTakeTime(trainPairingVO));
 			trainInfoList.add(trainPairingVO);
+			trainList.add(trainPairingVO);
 			if((trainInfoList.size() % 500) == 0){
 				System.out.println(urlBuilder);
 				System.out.println("실행완료 건수 : " + trainInfoList.size());

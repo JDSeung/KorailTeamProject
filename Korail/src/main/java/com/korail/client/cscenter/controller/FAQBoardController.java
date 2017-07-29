@@ -17,7 +17,7 @@ import com.korail.client.paging.PagingComponent;
 
 
 @Controller
-@RequestMapping(value="faqboard")
+@RequestMapping(value="/faqboard")
 public class FAQBoardController {
 	
 	@Autowired

@@ -69,9 +69,9 @@ public class NoticeBoardMgrController {
 	@RequestMapping(value="/write")
 	public int write(NoticeVO noticeVO, HttpSession session, HttpServletRequest request)throws Exception{
 		if(noticeVO.getFile() != null){
-	         String fileName = FileUploadUtil.fileUpload(noticeVO.getFile(), request);
-	         noticeVO.setNoticeAttachments(fileName);
-	      }
+			String fileName = FileUploadUtil.fileUpload(noticeVO.getFile(), request);
+		    noticeVO.setNoticeAttachments(fileName);
+		}
 		AdminVO admin = (AdminVO) session.getAttribute("adminVO");
 		noticeVO.setAdminName("관리자");
 		noticeVO.setAdminNO(admin.getAdminNo());
@@ -96,6 +96,26 @@ public class NoticeBoardMgrController {
 		return result;
 	}
 	
+	/* 글 수정 화면 */
+	@RequestMapping(value="/noticeedit")
+	public ModelAndView noticeEdit(NoticeVO noticeVO, PagingComponent paging) throws Exception{
+		ModelAndView noticeView = new ModelAndView();
+		noticeVO = noticeService.getNotice(noticeVO);
+		noticeView.addObject("noticeVO", noticeVO);
+		noticeView.addObject("paging", paging);
+		noticeView.setViewName("/boardmgr/notice/noticeEdit");
+		return noticeView;
+	}
 	
-	
+	/*글 수정*/
+	@ResponseBody
+	@RequestMapping(value = "/edit")
+	public int noticeUpdate(NoticeVO noticeVO, HttpServletRequest request) throws Exception {
+		if(noticeVO.getFile() != null){
+			String fileName = FileUploadUtil.fileUpload(noticeVO.getFile(), request);
+		    noticeVO.setNoticeAttachments(fileName);
+		}
+		int result = noticeService.getNoticeUpdate(noticeVO);
+		return result;
+	}
 }

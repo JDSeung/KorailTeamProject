@@ -17,8 +17,8 @@
                    FROM KTXINFO_TB
                    WHERE DEPPLACENAME = #{ktxInfoVO.depPlaceName} AND ARRPLACENAME = #{ktxInfoVO.arrPlaceName}
                             AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') 
-                            	BETWEEN TO_DATE(#{ktxInfoVO.depPlandTime},'YYYYMMDDHH24') 
-                            	AND 	ROUND(TO_DATE(#{ktxInfoVO.depPlandTime},'YYYYMMDDHH24')+1))
+                            	BETWEEN TO_DATE(#{ktxInfoVO.depPlandTime},'YYYYMMDDHH24MI') 
+                            	AND 	ROUND(TO_DATE(CONCAT(SUBSTR(#{ktxInfoVO.depPlandTime},1,8),'00'),'YYYYMMDDHH24MI')+1))
          WHERE RN>=#{pagingComponent.startPage} AND RN <= #{pagingComponent.endPage})]]>
 	</select>
 	<select  id="getTotalTrainList" resultType="int" parameterType="ktxInfoVO">
@@ -26,7 +26,7 @@
 		FROM KTXINFO_TB
 		WHERE DEPPLACENAME = #{depPlaceName} AND ARRPLACENAME = #{arrPlaceName}
              	AND TO_DATE(SUBSTR(DEPPLANDTIME,1,10),'yyyymmddHH24') 
-             		BETWEEN TO_DATE(#{depPlandTime},'YYYYMMDDHH24') 
-             		AND 	ROUND(TO_DATE(#{depPlandTime},'YYYYMMDDHH24')+1)
+             		BETWEEN TO_DATE(#{depPlandTime},'YYYYMMDDHH24MI') 
+             		AND 	ROUND(TO_DATE(CONCAT(SUBSTR(#{depPlandTime},1,8),'00'),'YYYYMMDDHH24MI')+1)
 	</select>
 </mapper>

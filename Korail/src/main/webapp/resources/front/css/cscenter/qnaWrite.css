@@ -1,6 +1,6 @@
 	@CHARSET "UTF-8";
-	.qnaDetailWrap {
-        height: 40em;
+	.wrap {
+	   height: 42em;
 	}
 	div#cke_qnaContent {
 	    margin: 0 auto;

@@ -21,11 +21,11 @@
 <link rel="stylesheet" href="<%=rootCss%>main/index.css">
 <script type="text/javascript" src="<%=rootJS%>main/index.js"></script>
 <script src="http://malsup.github.com/jquery.cycle2.js"></script>
-<title>Insert title here</title>
+<title>Korail</title>
 </head>
 <body>
 <jsp:include page="main/header.jsp"/>
-	<div id="wrap" class="wrap indexwrap">
+	<div id="wrap" class="wrap">
 		<div class="container bContainer">
 			<div class="topSection">
 				<section>
@@ -91,11 +91,10 @@
 								data-cycle-fx="scrollHorz"
 								data-cycle-pause-on-hover="true"
 								data-cycle-timeout=2500
-								data-cycle-speed="1000"
-							>
+								data-cycle-speed="1000">
 							<c:forEach var="noticeEvent" items="${noticeEventList}" varStatus="status">
 									<td>
-										<img src="/korail/resources/upload/${noticeEvent.noticeAttachments}" alt="이벤트 글" onclick="enotice(${noticeEvent.noticeNO})"/>
+										<img src="/admin/resources/upload/${noticeEvent.noticeAttachments}" alt="이벤트 글" onclick="enotice(${noticeEvent.noticeNO})"/>
 									</td>
 							</c:forEach>
 							</div>
@@ -127,7 +126,7 @@
 								<th>
 									<c:forEach var="FAQList" items="${getFAQList}" varStatus="status">
 										<tr>
-											<td id = "atitle"><a class="at" href="#">${FAQList.faqTitle}</a></td>
+											<td id = "atitle"><a class="at" href="/korail/faqboard/faqdetail?curruntPage=0&totalPage=0&faqNo=${FAQList.faqNo}">${FAQList.faqTitle}</a></td>
 											<td id ="adate">${FAQList.faqRegdate}</td>
 										</tr>
 									</c:forEach>

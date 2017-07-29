@@ -59,7 +59,13 @@ public class SignInIUpController {
 		if(request.getParameter("uemail") != null){
 			userVO.setUserEmail(request.getParameter("uemail"));			
 		}
-		int result = signUpService.insertUser(userVO, request);
+		int result = signUpService.selectId(userVO);
+		if(result == 0){
+			result = signUpService.insertUser(userVO, request);
+		}else{
+			result = 0;
+		}
+		
 		return result;
 	}
 	

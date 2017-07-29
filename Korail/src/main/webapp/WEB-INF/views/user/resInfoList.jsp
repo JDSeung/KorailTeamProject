@@ -12,7 +12,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript" src="<%=root%>jquery-3.2.1.min.js" /></script>
 <script type="text/javascript" src="<%=root%>jquery/jquery-ui.js" /></script>
 <link rel="stylesheet" href="<%=root%>jquery/jquery-ui.css">

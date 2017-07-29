@@ -41,7 +41,6 @@ public class MainController {
 		List<NoticeVO> noticeList = new ArrayList<NoticeVO>();
 		List<NoticeVO> noticeEventList = new ArrayList<NoticeVO>();
 		PagingComponent pagingComponent = new PagingComponent();
-		pagingComponent.setStartPage(1);
 		pagingComponent.setListSize(5);
 		noticeList = noticeService.getNoticeList(noticeVO, pagingComponent);
 		logger.info("noticeList : " + noticeList.toString());
@@ -59,4 +58,8 @@ public class MainController {
     public String favicon() {
         return "forward:/resources/img/fav.ico";
     }
+	@RequestMapping(value = "/company")
+	public String compony() {
+		return "/company/company";
+	}
 }

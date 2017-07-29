@@ -1,8 +1,9 @@
 package com.korail.admin.reservation.vo;
 
 public class TicketingVO {
-	private int ticketNo; 			//예매번호
+	private int ticketingNo; 			//예매번호
     private int userNo;				//회원번호
+    private String userName;		//회원성명
     private String trainName;		//차량번호
     private String trainNO;			//열차호수
     private String vehiclekndNm;	//열차종별
@@ -18,17 +19,23 @@ public class TicketingVO {
     private String ticketingDate; 	//예매일자
     private String ticketingETC;   	//티켓상황 0 - 대기, 1 - 취소, 2 - 진행, 3 - 완료, 4 ? 만료
     private String cnt;				//일자별 데이터
-	public int getTicketNo() {
-		return ticketNo;
+	public int getTicketingNo() {
+		return ticketingNo;
 	}
-	public void setTicketNo(int ticketNo) {
-		this.ticketNo = ticketNo;
+	public void setTicketingNo(int ticketingNo) {
+		this.ticketingNo = ticketingNo;
 	}
 	public int getUserNo() {
 		return userNo;
 	}
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getTrainName() {
 		return trainName;
@@ -43,7 +50,7 @@ public class TicketingVO {
 		this.trainNO = trainNO;
 	}
 	public String getVehiclekndNm() {
-		return "KTX";
+		return vehiclekndNm;
 	}
 	public void setVehiclekndNm(String vehiclekndNm) {
 		this.vehiclekndNm = vehiclekndNm;
@@ -114,20 +121,11 @@ public class TicketingVO {
 	public void setTicketingETC(String ticketingETC) {
 		this.ticketingETC = ticketingETC;
 	}
-	
 	public String getCnt() {
 		return cnt;
 	}
 	public void setCnt(String cnt) {
 		this.cnt = cnt;
 	}
-	@Override
-	public String toString() {
-		return "TicketingVO [ticketNo=" + ticketNo + ", userNo=" + userNo + ", trainName=" + trainName + ", trainNO="
-				+ trainNO + ", vehiclekndNm=" + vehiclekndNm + ", depPlaceName=" + depPlaceName + ", depPlandTime="
-				+ depPlandTime + ", arrPlaceName=" + arrPlaceName + ", arrPlandTime=" + arrPlandTime
-				+ ", reservationNo=" + reservationNo + ", rate=" + rate + ", seatDivision=" + seatDivision + ", seat="
-				+ seat + ", passengerType=" + passengerType + ", ticketingDate=" + ticketingDate + ", ticketingETC="
-				+ ticketingETC + "]";
-	}
+	
 }
