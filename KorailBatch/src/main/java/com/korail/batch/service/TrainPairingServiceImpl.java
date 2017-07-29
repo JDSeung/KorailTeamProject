@@ -114,7 +114,7 @@ public class TrainPairingServiceImpl implements TrainPairingService {
 	private void getAPIData(CityAccotTrainVO depArrVo) throws Exception{
 		Calendar getDate = Calendar.getInstance();
 		DateFormat setDate = new SimpleDateFormat("yyyyMMdd");
-		getDate.add(Calendar.DATE, 1);
+		getDate.add(Calendar.DATE, 0);
 		String setApiDate = setDate.format(getDate.getTime());
 		//출_도착지기반열차정보 가져오기
 		urlBuilder = new StringBuilder("http://openapi.tago.go.kr/openapi/service/TrainInfoService/");

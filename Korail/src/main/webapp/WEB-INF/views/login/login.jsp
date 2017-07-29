@@ -21,9 +21,15 @@
 <link rel="stylesheet" href="<%=rootCss%>basic.css">
 <link rel="stylesheet" href="<%=rootCss%>login/login.css" />
 <script type="text/javascript" src="<%=rootJS%>login/login.js"></script>
+<script type="text/javascript" src="<%=rootJS%>rsa/jsbn.js"></script>
+<script type="text/javascript" src="<%=rootJS%>rsa/rsa.js"></script>
+<script type="text/javascript" src="<%=rootJS%>rsa/prng4.js"></script>
+<script type="text/javascript" src="<%=rootJS%>rsa/rng.js"></script>
 </head>
 <body>
 	<input type="hidden" id="loginCheck" value="${sessionScope.loginCheck}" />
+	<input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
+     <input type="hidden" id="RSAExponent" value="${RSAExponent}"/>
 	<%
 		session.removeAttribute("loginCheck");
 	%>

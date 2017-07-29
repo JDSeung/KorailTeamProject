@@ -21,6 +21,10 @@ $(function() {
 		if(!valiInfo()){
 			return;
 		}
+		var rsa = new RSAKey();
+		rsa.setPublic($('#RSAModulus').val(),$('#RSAExponent').val());
+
+		$("#userPw").val(rsa.encrypt($("#userPw").val()));
 		$("#loginForm").attr({
 			"method" : "POST",
 			"action" : "user"
